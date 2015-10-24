@@ -1,0 +1,14 @@
+{
+  "generator-angular-meteor": {
+    "filters": {
+      "js": true,
+      "jade": true,
+      "less": true,
+      "pagination": true,
+      "framework": "bootstrap",
+      "bower": true,
+      "auth": true
+    },
+    "appname": "waxYeoAngu"
+  }
+}

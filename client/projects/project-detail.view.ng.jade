@@ -1,0 +1,59 @@
+.project-detail.container
+    div(ng-if='hasRights()')
+        h1 Détails du projet
+        form(ng-submit='save()', name='form', novalidate='')
+            .row
+                .col-sm-12
+                    h3 Nom
+                    input.form-control(type='text', placeholder='Name', ng-model='project.name')
+            .row
+                .col-sm-2
+                    h3 Images
+                    div(ng-repeat='image in project.images', ng-click="showPopup()")
+                        img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                    div(ng-if="!project.images && newImages.length == 0 ", ng-click="showPopup()")
+                        img(class="img-responsive", src='http://lorempixel.com/200/200/')
+                    .images-container-title(layout='row')
+                        .party-image-container(ng-repeat='image in newImages')
+                            img(ng-src='{{ image.url() }}')
+                            br
+                    
+                .col-sm-10
+                    h3 Description
+                    textarea.form-control(placeholder='description', ng-model='project.description')
+            
+            .row
+                input.btn.btn-primary(type='submit', value='Sauver')
+                a.btn.btn-default(ng-click='reset()') Reset
+                a.btn.btn-default(href='/projects') Retour
+    div(ng-if='!hasRights()')
+        .row
+            .col-xs-12.col-sm-12
+                .box
+                  .box-icon
+                    img(class="", ng-src='{{getMainImage(project.images)}}')
+                  .info
+                      h4.text-center {{ project.name }}
+                      div.description-full
+                          div.images(ng-repeat='image in project.images')
+                              img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                          | {{ project.description }}
+                          p(ng-if="!project.description ") Pas de description
+            
+.modal.fade(id="popup")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4.modal-title Ajout d'images
+      .modal-body
+          .drop-box(ng-hide="imgSrc", ngf-drop='', ngf-select='', ngf-change='addImages($files)', ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}", ngf-multiple='false', ngf-allow-dir='false', ngf-accept="'image/*'", ngf-drop-available='dropAvailable')
+              div Click here to select image
+              strong OR
+              div(ng-show='dropAvailable') You can also drop image to here
+          .ng-crop-container(ng-show='imgSrc')
+            p Great! Now edit & crop your image...
+            img-crop(image='imgSrc', result-image='myCroppedImage', area-type='square')
+      .modal-footer
+          a.btn.btn-primary(ng-click='saveCroppedImage()', ng-disabled='!imgSrc') Save Image     

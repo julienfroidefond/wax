@@ -1,0 +1,36 @@
+.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      button.navbar-toggle(type='button', ng-click='isCollapsed = !isCollapsed')
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      a.navbar-brand(href='/') WAX par Atixnet
+      
+    .navbar-main.navbar-collapse.collapse(collapse='!isCollapsed')
+      ul.nav.navbar-nav.navbar-right
+        //- li
+        //-   blaze-template(name='loginButtons')
+        li(ng-show="$root.currentUser")
+          a(href='#') {{$root.currentUser.emails[0].address}}
+        li(ng-hide="$root.currentUser")
+          a(href='/login') 
+              i.glyphicon.glyphicon-user
+              | &nbsp;&nbsp;Connexion
+        li
+          a(href='/projects') 
+              i.glyphicon.glyphicon-lock
+              | &nbsp;&nbsp;Projets
+        li(ng-if='$root.currentUser')
+          a(href='/chat') 
+              i.glyphicon.glyphicon-thumbs-up
+              | &nbsp;&nbsp;Chat
+        li
+          a(href='/about')
+              i.glyphicon.glyphicon-info-sign
+              | &nbsp;&nbsp;A propos
+        li(ng-show="$root.currentUser")
+          a(href='/logout') 
+              i.glyphicon.glyphicon-share-alt
+              | &nbsp;&nbsp;Déconnexion

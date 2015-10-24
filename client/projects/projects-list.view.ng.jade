@@ -1,0 +1,39 @@
+.projects-list.container
+  h1 Projets
+  form(ng-submit='save()', name='form', novalidate='')
+    p.input-group
+      input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
+      span.input-group-btn
+        input.btn.btn-primary(type='submit', value='Ajouter')
+    hr
+    .input-group.col-xs-4.col-xs-offset-8
+      input.form-control(type='search', ng-model='search', placeholder='Rechercher')
+      .dropdown.input-group-btn(dropdown='', on-toggle='toggled(open)')
+        button.btn.btn-primary.dropdown-toggle(dropdown-toggle='') {{ orderProperty==='1' ? 'Ascendant' : 'Descendant' }}
+          span.caret
+        ul.dropdown-menu(role='menu')
+          li(ng-click="orderProperty='1'") Ascending
+          li(ng-click="orderProperty='-1'") Descending
+  br
+  .row
+      .col-xs-12.col-sm-3(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+          .box
+            .box-icon
+              img(class="", ng-src='{{getMainImage(project.images)}}')
+            .info
+                h4.text-center {{ project.name }}
+                div.description
+                    | {{ project.description }}
+                    //- div.images(ng-repeat='image in project.images')
+                    //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                div.buttons
+                    a.btn(ng-if='hasRights(project)', ng-click='remove(project)') Supprimer
+                    a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}') Editer
+                    a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}') Voir
+                div.avatars
+                    img.avatar(src="avatar.jpg", width="40")
+                    img.avatar(src="avatar.jpg", width="40")
+                    img.avatar(src="avatar.jpg", width="40")
+      dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
+  hr
+  p Nombre de projets: {{projectsCount.count}}

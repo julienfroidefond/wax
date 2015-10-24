@@ -1,0 +1,11 @@
+.container
+    h1 {{viewName}}
+    form(ng-submit='send()', name='form', novalidate='')
+      p.input-group
+        input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
+        span.input-group-btn
+          input.btn.btn-primary(type='submit', value='Envoyer')
+    .well
+        p(ng-repeat="chat in chats")
+            b {{chat.user.emails[0].address}}
+            | : {{chat.message}}
