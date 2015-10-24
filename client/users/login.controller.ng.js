@@ -7,7 +7,8 @@ angular.module('waxYeoAnguApp')
 
     vm.credentials = {
         email: '',
-        password: ''
+        password: '',
+        participeTo: ''
     };
 
     vm.error = '';

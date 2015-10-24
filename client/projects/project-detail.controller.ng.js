@@ -86,4 +86,77 @@ angular.module('waxYeoAnguApp')
     $scope.hasRights = function(){
         return $rootScope.currentUser && $scope.project.owner==$rootScope.currentUser._id
     }
+    $scope.join = function(){
+
+        $meteor.call('setParticipeTo', $rootScope.currentUser._id, $scope.project._id).then(
+          function(data){
+
+            if($scope.project.participants == null) $scope.project.participants = [];
+            $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.emails[0].address});
+
+            $scope.project.save().then(
+                function(numberOfDocs) {
+                    console.log('save successful, docs affected ', numberOfDocs);
+                },
+                function(error) {
+                    console.log('save error ', error);
+                }
+            )
+          },
+          function(err){
+            console.log('failed', err);
+          }
+        );
+
+
+    }
+
+    $scope.isAParticipant = function(){
+        var isPart = false;
+        angular.forEach($scope.project.participants, function(participant) {
+            if(participant && participant.id == $rootScope.currentUser._id)
+                isPart = true;
+        });
+        return isPart;
+
+    }
+    $scope.isAParticipantInAnotherProject = function(){
+        return $rootScope.currentUser.profile.participeTo && $rootScope.currentUser.profile.participeTo != $scope.project._id;
+    }
+    $scope.unjoin = function(){
+
+        $meteor.call('setParticipeTo', $rootScope.currentUser._id, null).then(
+          function(data){
+
+            angular.forEach($scope.project.participants, function(participant, i) {
+                if(participant && participant.id == $rootScope.currentUser._id)
+                    $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);
+            });
+            $scope.project.save().then(
+                function(numberOfDocs) {
+                    console.log('save successful, docs affected ', numberOfDocs);
+                },
+                function(error) {
+                    console.log('save error ', error);
+                }
+            )
+          },
+          function(err){
+            console.log('failed', err);
+          }
+        );
+    }
+    $scope.getAvatar = function(userId){
+        console.log(userId);
+
+
+        // $meteor.call('getAvatar', userId).then(
+        //   function(data){
+        //       console.log(data)
+        //   },
+        //   function(err){
+        //     console.log('failed', err);
+        //   }
+        // );
+    }
 });

@@ -9,7 +9,7 @@ Projects.allow({
   update: function(userId, project, fields, modifier) {
     project.createdAt = new Date();
     project.name_sort = project.name.toLowerCase();
-    return userId && project.owner === userId;
+    return userId;
   },
   remove: function(userId, project) {
     return userId && project.owner === userId;

@@ -36,10 +36,16 @@
                           p(ng-if="!project.description ") Pas de description
                           div.images(ng-repeat='image in project.images')
                               img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                        .buttons(ng-if="$root.currentUser")
+                            .btn.btn-primary(ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
+                            .btn.btn-primary(ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+                            .btn.btn-default(ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
+                        
                       div.avatars
                           img.avatar(src="avatar.jpg", width="40")
                           img.avatar(src="avatar.jpg", width="40")
                           img.avatar(src="avatar.jpg", width="40")
+                          span.avatar(ng-repeat="particip in project.participants") {{particip.avatar}}
             
 .modal.fade(id="popup")
   .modal-dialog
