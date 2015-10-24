@@ -16,7 +16,7 @@
           li(ng-click="orderProperty='-1'") Descending
   br
   .row
-      .col-xs-12.col-sm-3(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+      .col-xs-12.col-sm-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box
             .box-icon
               img(class="", ng-src='{{getMainImage(project.images)}}')

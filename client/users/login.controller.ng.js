@@ -2,6 +2,7 @@
 
 angular.module('waxYeoAnguApp')
 .controller('LoginCtrl', function($scope, $meteor, $state) {
+
     var vm = $scope;
 
     vm.credentials = {

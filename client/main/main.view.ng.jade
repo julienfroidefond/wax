@@ -2,7 +2,7 @@
     h1 
         | Bienvenue 
         small sur le site du Wax
-#tf-about
+#tf-about.fade(ng-class="showClass")
       .container
         .row
           .col-md-6
@@ -34,11 +34,11 @@
                   em 
                 li
                   span.fa.fa-dot-circle-o
-                  strong eXperience
+                  strong Xperience
                   |  
                   em 
 
-#tf-team.text-center
+#tf-team.text-center.fade(ng-class="showClass")
       .overlay
         .container
           .section-title.center
@@ -105,9 +105,9 @@
                   p CEO / Founder
                   p Do not seek to change what has come before. Seek to create that which has not.
 
-  .align-center
+  .align-center.fade(ng-class="showClass")
       img(src="YellowCheeseWax.jpg")
-  nav#footer
+  nav#footer.fade(ng-class="showClass")
   .container
     .pull-left.fnav
       p

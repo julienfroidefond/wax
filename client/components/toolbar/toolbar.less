@@ -14,3 +14,53 @@
     padding-bottom: 15px;
   }
 }
+
+
+
+
+/* The starting CSS styles for the enter animation */
+.fade{
+    opacity: 0;
+    transition:0.7s cubic-bezier(.55,0,.1,1) all;
+    &#tf-about, &#login-panel{
+        padding-top: 40px !important;
+    }
+}
+.fade.inScope {
+  opacity:1;
+  &#tf-about, &#login-panel{
+      padding-top: 80px !important;
+  }
+}
+
+.repeat-animation.ng-enter-stagger,
+.repeat-animation.ng-leave-stagger,
+.repeat-animation.ng-move-stagger {
+  /* 200ms will be applied between each sucessive enter operation */
+  -webkit-transition-delay:0.2s;
+  transition-delay:0.2s;
+}
+
+.repeat-animation.ng-enter,
+.repeat-animation.ng-leave,
+.repeat-animation.ng-move {
+  -webkit-transition:1s cubic-bezier(.55,0,.1,1) all;
+  transition:1s cubic-bezier(.55,0,.1,1) all;
+}
+
+.repeat-animation.ng-leave.ng-leave-active,
+.repeat-animation.ng-enter,
+.repeat-animation.ng-move {
+  -webkit-transition:1s cubic-bezier(.55,0,.1,1) all;
+  transition:1s cubic-bezier(.55,0,.1,1) all;
+
+  opacity:0;
+  margin-top:10px;
+}
+
+.repeat-animation.ng-leave,
+.repeat-animation.ng-move.ng-move-active,
+.repeat-animation.ng-enter.ng-enter-active {
+  opacity:1;
+  margin-top:0px;
+}

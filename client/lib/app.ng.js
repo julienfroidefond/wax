@@ -4,7 +4,8 @@ angular.module('waxYeoAnguApp', [
   'ui.bootstrap',
   'angularUtils.directives.dirPagination',
   'ngFileUpload',
-  'ngImgCrop'
+  'ngImgCrop',
+  'ngAnimate'
 ]);
 
 onReady = function() {

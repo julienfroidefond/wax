@@ -6,6 +6,7 @@ afruth:chapp@0.1.6
 alexk111:ng-img-crop@0.3.2
 angular@1.0.2
 angular:angular@1.4.7
+angular:angular-animate@1.4.7
 angularui:angular-ui-bootstrap@0.13.0
 angularui:angular-ui-router@0.2.15
 angularutils:pagination@0.9.0
