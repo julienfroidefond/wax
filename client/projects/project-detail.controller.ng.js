@@ -14,7 +14,7 @@ angular.module('waxYeoAnguApp')
 
         //if($scope.form.$valid) {
             if ($scope.newImages && $scope.newImages.length > 0) {
-                $scope.project.images = [];
+                if($scope.project.images == null) $scope.project.images = [];
                 angular.forEach($scope.newImages, function(image) {
                     $scope.project.images.push({id: image._id});
                 });

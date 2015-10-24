@@ -9,22 +9,19 @@
             .row
                 .col-sm-2
                     h3 Images
-                    div(ng-repeat='image in project.images', ng-click="showPopup()")
+                    .project-image-container(ng-if="!project.images && newImages.length == 0 ", ng-click="showPopup()")
+                        img(class="img-responsive", src='http://placehold.it/200x200/')
+                    .project-image-container(ng-repeat='image in project.images', ng-click="showPopup()")
                         img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
-                    div(ng-if="!project.images && newImages.length == 0 ", ng-click="showPopup()")
-                        img(class="img-responsive", src='http://lorempixel.com/200/200/')
-                    .images-container-title(layout='row')
-                        .party-image-container(ng-repeat='image in newImages')
-                            img(ng-src='{{ image.url() }}')
-                            br
+                    .project-image-container(ng-repeat='image in newImages')
+                        img(class="img-responsive", ng-src='{{ image.url() }}')
                     
                 .col-sm-10
                     h3 Description
-                    textarea.form-control(placeholder='description', ng-model='project.description')
+                    textarea.form-control(class="description", placeholder='description', ng-model='project.description')
             
-            .row
+            .row.buttons
                 input.btn.btn-primary(type='submit', value='Sauver')
-                a.btn.btn-default(ng-click='reset()') Reset
                 a.btn.btn-default(href='/projects') Retour
     div(ng-if='!hasRights()')
         .row
@@ -35,10 +32,14 @@
                   .info
                       h4.text-center {{ project.name }}
                       div.description-full
-                          div.images(ng-repeat='image in project.images')
-                              img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
                           | {{ project.description }}
                           p(ng-if="!project.description ") Pas de description
+                          div.images(ng-repeat='image in project.images')
+                              img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                      div.avatars
+                          img.avatar(src="avatar.jpg", width="40")
+                          img.avatar(src="avatar.jpg", width="40")
+                          img.avatar(src="avatar.jpg", width="40")
             
 .modal.fade(id="popup")
   .modal-dialog
