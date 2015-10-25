@@ -8,6 +8,10 @@
             .panel-body
                 .alert.alert-warning(ng-show="error") Erreur : {{error}}
                 form(role='form')
+                    .image
+                        .avatar.align-center
+                            img(src="avatar.jpg", ng-click="showPopup()", ng-hide="avatar")
+                            img(width="100" ,src="avatar.jpg", ng-click="showPopup()", ng-src="{{avatar.url()}}", ng-show="avatar")
                     .form-group
                         label(for='exampleInputEmail1') Email
                         input#exampleInputEmail1.form-control(type='email', placeholder='Enter email', ng-model="credentials.email")
@@ -23,3 +27,21 @@
         h1 Logout
         p
             a(ng-click="logout()", ng-show="$root.currentUser") Logout
+
+    .modal.fade(id="popup")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4.modal-title Ajout d'images
+          .modal-body
+              .drop-box(ng-hide="imgSrc", ngf-drop='', ngf-select='', ngf-change='addImage($files)', ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}", ngf-multiple='false', ngf-allow-dir='false', ngf-accept="'image/*'", ngf-drop-available='dropAvailable')
+                  div Click here to select image
+                  strong OR
+                  div(ng-show='dropAvailable') You can also drop image to here
+              .ng-crop-container(ng-show='imgSrc')
+                p Great! Now edit & crop your image...
+                img-crop(image='imgSrc', result-image='myCroppedImage', area-type='square')
+          .modal-footer
+              a.btn.btn-primary(ng-click='saveCroppedImage()', ng-disabled='!imgSrc') Save Image   

@@ -92,7 +92,7 @@ angular.module('waxYeoAnguApp')
           function(data){
 
             if($scope.project.participants == null) $scope.project.participants = [];
-            $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.emails[0].address});
+            $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.profile.avatar});
 
             $scope.project.save().then(
                 function(numberOfDocs) {
@@ -133,6 +133,7 @@ angular.module('waxYeoAnguApp')
                 if(participant && participant.id == $rootScope.currentUser._id)
                     $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);
             });
+            if($scope.project.participants.length == 0) $scope.project.participants = null;
             $scope.project.save().then(
                 function(numberOfDocs) {
                     console.log('save successful, docs affected ', numberOfDocs);
@@ -147,17 +148,12 @@ angular.module('waxYeoAnguApp')
           }
         );
     }
-    $scope.getAvatar = function(userId){
-        console.log(userId);
 
-
-        // $meteor.call('getAvatar', userId).then(
-        //   function(data){
-        //       console.log(data)
-        //   },
-        //   function(err){
-        //     console.log('failed', err);
-        //   }
-        // );
+    $scope.getAvatarUrl = function(idToFind){
+        if(!idToFind) return "avatar.jpg";
+          if($filter('filter')($scope.images, {_id: idToFind}).length>0){
+            var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
+            return url;
+        }
     }
 });

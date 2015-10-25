@@ -1,12 +1,18 @@
 
 Meteor.methods({
-  setParticipeTo: function (userId, projectId) {
-    Meteor.users.update({_id : userId}, {$set: {"profile.participeTo": projectId}}, {},function(data){
-        return data;
-    });
-},
-  getAvatar: function (userId) {
-    var user = Meteor.users.findOne({_id : userId});
-    return user;
-  }
+    setParticipeTo: function (userId, projectId) {
+        Meteor.users.update({_id : userId}, {$set: {"profile.participeTo": projectId}}, {},function(data){
+            return data;
+        });
+    }
+});
+
+
+
+Meteor.methods({
+    setAvatar: function (userId, imageId) {
+        Meteor.users.update({_id : userId}, {$set: {"profile.avatar": imageId}}, {},function(data){
+            return data;
+        });
+    }
 });

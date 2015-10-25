@@ -5,7 +5,22 @@
         input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
         span.input-group-btn
           input.btn.btn-primary(type='submit', value='Envoyer')
-    .well
-        p(ng-repeat="chat in chats")
-            b {{chat.user.emails[0].address}}
-            | : {{chat.message}}
+    //- .well
+    //-     p(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? 'me' : 'other'")
+    //-         b {{chat.user.emails[0].address}}
+    //-         | : {{chat.message}}
+    ul.timeline
+      li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
+        .timeline-badge
+            img(width="50", ng-src="{{getImageUrl(chat.user.profile.avatar)}}")
+        .timeline-panel
+          .timeline-heading
+            h4.timeline-title {{chat.user.emails[0].address}}
+            p
+              small.text-muted
+                i.glyphicon.glyphicon-time
+                |  {{chatTime(chat.createdAt)}}
+          .timeline-body
+            p
+              | {{chat.message}}
+      

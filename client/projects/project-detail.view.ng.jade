@@ -41,11 +41,11 @@
                             .btn.btn-primary(ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
                             .btn.btn-default(ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
                         
-                      div.avatars
-                          img.avatar(src="avatar.jpg", width="40")
-                          img.avatar(src="avatar.jpg", width="40")
-                          img.avatar(src="avatar.jpg", width="40")
-                          span.avatar(ng-repeat="particip in project.participants") {{particip.avatar}}
+                      div.avatars(ng-if="project.participants")
+                          img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(project.ownerAvatar)}}")
+                          img.avatar(src="avatar.jpg", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(particip.avatar)}}")
+                      div.avatars(ng-if="!project.participants")
+                          img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(project.ownerAvatar)}}")
             
 .modal.fade(id="popup")
   .modal-dialog

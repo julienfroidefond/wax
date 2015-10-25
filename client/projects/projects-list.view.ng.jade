@@ -31,9 +31,9 @@
                     a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}') Editer
                     a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}') Voir
                 div.avatars
-                    img.avatar(src="avatar.jpg", width="40")
-                    img.avatar(src="avatar.jpg", width="40")
-                    img.avatar(src="avatar.jpg", width="40")
+                    img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(project.ownerAvatar)}}")
+                    img.avatar(src="avatar.jpg", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(particip.avatar)}}")
+                
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
   hr
   p Nombre de projets: {{projectsCount.count}}

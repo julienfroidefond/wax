@@ -28,6 +28,7 @@ angular.module('waxYeoAnguApp')
 
   $scope.save = function() {
     if($scope.form.$valid) {
+        $scope.newProject.ownerAvatar=$rootScope.currentUser.profile.avatar;
         $scope.newProject.owner=$rootScope.currentUser._id;
         $scope.projects.save($scope.newProject);
         $scope.newProject = undefined;
@@ -65,4 +66,13 @@ angular.module('waxYeoAnguApp')
       $scope.sort = {name_sort: parseInt($scope.orderProperty)};
     }
   });
+
+  $scope.getAvatarUrl = function(idToFind){
+      if(!idToFind) return "avatar.jpg";
+        if($filter('filter')($scope.images, {_id: idToFind}).length>0){
+          var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
+          return url;
+      }
+  }
+
 });
