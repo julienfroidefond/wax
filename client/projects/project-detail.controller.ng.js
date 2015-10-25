@@ -121,7 +121,8 @@ angular.module('waxYeoAnguApp')
 
     }
     $scope.isAParticipantInAnotherProject = function(){
-        return $rootScope.currentUser.profile.participeTo && $rootScope.currentUser.profile.participeTo != $scope.project._id;
+        if($rootScope.currentUser.profile == null) return false;
+        return ($rootScope.currentUser.profile.participeTo != null && $rootScope.currentUser.profile.participeTo != '' && $rootScope.currentUser.profile.participeTo != $scope.project._id);
     }
     $scope.unjoin = function(){
 

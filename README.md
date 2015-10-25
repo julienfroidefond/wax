@@ -1,1 +1,16 @@
 # wax
+
+Site du WAX (Workshop Atixnet Xperience).
+
+Url : http://atixnet-wax.herokuapp.com/
+Hébergé par heroku
+
+Projet Meteorjs. https://www.meteor.com/
+Utilisation de : https://www.npmjs.com/package/generator-angular-meteor
+
+Pour le lancer :
+git clone https://github.com/julienfroidefond/wax.git
+cd wax
+meteor
+
+Permet de créer des projets et d'y souscrire.
