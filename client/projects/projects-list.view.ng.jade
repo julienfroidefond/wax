@@ -23,7 +23,7 @@
             .info
                 h4.text-center {{ project.name }}
                 div.description
-                    | {{ project.description }}
+                    div(ng-bind-html="getHtml(project.description)") 
                     //- div.images(ng-repeat='image in project.images')
                     //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
                 div.buttons

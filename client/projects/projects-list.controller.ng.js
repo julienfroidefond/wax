@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope) {
+.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce) {
   $scope.page = 1
   $scope.perPage = 8
   $scope.sort = {name_sort : 1};
@@ -75,4 +75,7 @@ angular.module('waxYeoAnguApp')
       }
   }
 
+  $scope.getHtml = function(html) {
+     return $sce.trustAsHtml(html);
+   };
 });

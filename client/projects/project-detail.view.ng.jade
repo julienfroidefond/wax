@@ -18,7 +18,7 @@
                     
                 .col-sm-10
                     h3 Description
-                    textarea.form-control(class="description", placeholder='description', ng-model='project.description')
+                    textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
             
             .row.buttons
                 input.btn.btn-primary(type='submit', value='Sauver')
@@ -32,7 +32,7 @@
                   .info
                       h4.text-center {{ project.name }}
                       div.description-full
-                          | {{ project.description }}
+                          div(ng-bind-html="getHtml(project.description)") 
                           p(ng-if="!project.description ") Pas de description
                           div.images(ng-repeat='image in project.images')
                               img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')

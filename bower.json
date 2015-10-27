@@ -11,10 +11,21 @@
     "tests"
   ],
   "dependencies": {
+    "angular-summernote": "~0.5.1",
+    "angular-sanitize": "~1.4.7"
   },
   "overrides": {
     "angular": {
-      "main": [] 
+      "main": []
+    },
+    "jquery": {
+      "main": []
+    },
+    "bootstrap": {
+      "main": []
+    },
+    "font-awesome": {
+      "main": []
     }
   }
 }

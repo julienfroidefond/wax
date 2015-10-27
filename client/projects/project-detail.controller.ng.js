@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce) {
 
     $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
     $scope.$meteorSubscribe('projects');
@@ -156,4 +156,7 @@ angular.module('waxYeoAnguApp')
             return url;
         }
     }
+    $scope.getHtml = function(html) {
+       return $sce.trustAsHtml(html);
+     };
 });

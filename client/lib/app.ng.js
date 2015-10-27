@@ -5,7 +5,9 @@ angular.module('waxYeoAnguApp', [
   'angularUtils.directives.dirPagination',
   'ngFileUpload',
   'ngImgCrop',
-  'ngAnimate'
+  'ngAnimate',
+  'summernote',
+  'ngSanitize'
 ]);
 
 onReady = function() {
