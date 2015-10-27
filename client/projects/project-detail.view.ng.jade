@@ -38,7 +38,7 @@
                               img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
                         .buttons(ng-if="$root.currentUser")
                             .btn.btn-primary(ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
-                            .btn.btn-primary(ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+                            .btn.btn-danger(ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
                             .btn.btn-default(ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
                         
                       div.avatars(ng-if="project.participants")
