@@ -2,7 +2,7 @@
 
 angular.module('waxYeoAnguApp')
 .controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce) {
-
+    $scope.pageClass= "project-detail-page";
     $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
     $scope.$meteorSubscribe('projects');
 

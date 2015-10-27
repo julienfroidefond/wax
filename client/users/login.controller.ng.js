@@ -5,6 +5,8 @@ angular.module('waxYeoAnguApp')
 
     var vm = $scope;
 
+    vm.pageClass= "login-page";
+
     vm.credentials = {
         email: '',
         password: '',

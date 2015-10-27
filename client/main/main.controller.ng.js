@@ -2,6 +2,7 @@
 
 angular.module('waxYeoAnguApp')
 .controller('MainCtrl', function($scope, $meteor) {
+    $scope.pageClass= "main-page";
     $("#team").owlCarousel({
           navigation: false, // Show next and prev buttons       // 49
           slideSpeed: 300,                                       // 50

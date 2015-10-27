@@ -7,6 +7,7 @@ angular.module('waxYeoAnguApp')
   $scope.sort = {name_sort : 1};
   $scope.orderProperty = '1'
 
+  $scope.pageClass= "project-list-page";
 
   $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 

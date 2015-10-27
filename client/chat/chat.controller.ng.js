@@ -3,6 +3,8 @@
 angular.module('waxYeoAnguApp')
 .controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope) {
     $scope.viewName = 'Chat';
+    
+    $scope.pageClass= "chat-page";
 
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
