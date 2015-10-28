@@ -12,9 +12,9 @@
       ul.nav.navbar-nav.navbar-right
         //- li
         //-   blaze-template(name='loginButtons')
-        li(ng-show="$root.currentUser")
+        li(ng-if="$root.currentUser")
           a(href='#') 
-              img(width="20", class="img-circle", ng-src="{{getAvatarUrl($root.currentUser.profile.avatar)}}")
+              img(width="20", class="img-circle", ng-src="{{avatar[0].url()}}")
               |  &nbsp;&nbsp;{{$root.currentUser.emails[0].address}}
         li(ng-hide="$root.currentUser")
           a(href='/login') 
