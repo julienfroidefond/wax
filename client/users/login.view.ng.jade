@@ -9,9 +9,11 @@
                 .alert.alert-warning(ng-show="error") Erreur : {{error}}
                 form(role='form')
                     .image
-                        .avatar.align-center
-                            img(src="avatar.jpg", ng-click="showPopup()", ng-hide="avatar")
-                            img(width="100" ,src="avatar.jpg", ng-click="showPopup()", ng-src="{{avatar.url()}}", ng-show="avatar")
+                        .avatar.align-center(ng-click="showPopup()")
+                            .info(ng-hide="avatar")
+                                .btn.btn-default Choisir un avatar
+                            img(src="avatar.jpg", ng-hide="avatar")
+                            img(width="100" ,src="avatar.jpg", ng-src="{{avatar.url()}}", ng-show="avatar")
                     .form-group
                         label(for='exampleInputEmail1') Email
                         input#exampleInputEmail1.form-control(type='email', placeholder='Enter email', ng-model="credentials.email")
@@ -20,8 +22,8 @@
                             | Mot de passe 
                             a(href='#', ng-click="reset()") (mot de passe oublié)
                         input#exampleInputPassword1.form-control(type='password', placeholder='Password', ng-model="credentials.password")
-                    button.btn.btn-sm.btn-default(ng-click="register()",type='submit') S'enregistrer
                     button.btn.btn-sm.btn-primary.pull-right(ng-click="login()",type='submit') Se connecter
+                    button.btn.btn-sm.btn-default(ng-click="register()",type='submit') S'enregistrer
         
     div(ng-show="$root.currentUser")
         h1 Logout
