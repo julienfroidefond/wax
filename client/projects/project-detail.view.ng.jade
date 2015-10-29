@@ -42,8 +42,8 @@
                             .btn.btn-default(ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
                         
                       div.avatars(ng-if="project.participants")
-                          img.avatar(data-toggle="tooltip", data-placement="top", title="{{getUser(project.owner)[0].emails[0].address}}", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
-                          img.avatar(data-toggle="tooltip", data-placement="top", title="{{getUser(particip.id)[0].emails[0].address}}", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(getUser(particip.id)[0].profile.avatar)}}")
+                          img.avatar(tooltip="{{getUser(project.owner)[0].emails[0].address}}", data-toggle="tooltip", data-placement="top", title="{{getUser(project.owner)[0].emails[0].address}}", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
+                          img.avatar(tooltip="{{getUser(particip.id)[0].emails[0].address}}", data-toggle="tooltip", data-placement="top", title="{{getUser(particip.id)[0].emails[0].address}}", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(getUser(particip.id)[0].profile.avatar)}}")
                       div.avatars(ng-if="!project.participants")
                           img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
             
