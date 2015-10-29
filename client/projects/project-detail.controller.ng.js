@@ -8,6 +8,8 @@ angular.module('waxYeoAnguApp')
 
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
+    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
+
     $scope.newImages = [];
 
     $scope.save = function() {
@@ -154,6 +156,12 @@ angular.module('waxYeoAnguApp')
           if($filter('filter')($scope.images, {_id: idToFind}).length>0){
             var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
             return url;
+        }
+    }
+    $scope.getUser= function(idToFind){
+        if(!idToFind) return null;
+          if($filter('filter')($scope.users, {_id: idToFind}).length>0){
+            return $filter('filter')($scope.users, {_id: idToFind});
         }
     }
     $scope.getHtml = function(html) {
