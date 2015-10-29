@@ -1,6 +1,6 @@
 .projects-list.container
   h1 Projets
-  form(ng-submit='save()', name='form', novalidate='')
+  form(ng-submit='save()', name='form', novalidate='', ng-if="$root.currentUser")
     p.input-group
       input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
       span.input-group-btn
