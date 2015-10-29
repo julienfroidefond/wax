@@ -23,4 +23,16 @@
                     a(href="https://github.com/julienfroidefond/wax") on github
                     |  hosted by 
                     a(href="https://heroku.com") heroku
-                    
+    .col-md-6
+        .panel.panel-default
+            .panel-heading 
+                h4 Users list
+            .panel-body
+                div(ng-repeat="user in users")
+                    .row
+                        .col-xs-2
+                            img.img-circle(width="40", ng-src="{{getImageUrl(user.profile.avatar)}}")
+                        .col-xs-10
+                            |  {{user.emails[0].address}} 
+                    br
+                        
