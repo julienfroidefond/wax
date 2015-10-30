@@ -7,7 +7,8 @@ angular.module('waxYeoAnguApp', [
   'ngImgCrop',
   'ngAnimate',
   'summernote',
-  'ngSanitize'
+  'ngSanitize',
+  'angular-owl-carousel'
 ]);
 
 onReady = function() {

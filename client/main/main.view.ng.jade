@@ -43,68 +43,19 @@
         .container
           .section-title.center
             h2
-              | Les membres 
-              strong du WAX
+              | Les 
+              strong WAXers
             .line
               hr
-          #team.owl-carousel.owl-theme.row
-            .item
+          #team.owl-carousel.owl-theme.row(owl-carousel="team", owl-options="{}")
+            .item()
               .thumbnail
-                img.img-circle.team-img(src='users/damien.gif', alt='...')
+                img.img-circle.team-img(ng-src="{{item.image}}", alt='...')
                 .caption
-                  h3 Damien
-                  p Dev front-end killer
-                  p Blah blah
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='users/thomas.png', alt='...')
-                .caption
-                  h3 Thomas
-                  p Dev back-end killer
-                  p Blah blah
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='users/jeremy.jpg', alt='...')
-                .caption
-                  h3 Jérémy
-                  p Dev back-end killer
-                  p Blah blah
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='img/team/04.jpg', alt='...')
-                .caption
-                  h3 ???
-                  p xxx
-                  p Blah blah
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='img/team/04.jpg', alt='...')
-                .caption
-                  h3 Jenn Gwapa
-                  p CEO / Founder
-                  p Do not seek to change what has come before. Seek to create that which has not.
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='img/team/01.jpg', alt='...')
-                .caption
-                  h3 Jenn Gwapa
-                  p CEO / Founder
-                  p Do not seek to change what has come before. Seek to create that which has not.
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='img/team/02.jpg', alt='...')
-                .caption
-                  h3 Jenn Gwapa
-                  p CEO / Founder
-                  p Do not seek to change what has come before. Seek to create that which has not.
-            .item
-              .thumbnail
-                img.img-circle.team-img(src='img/team/03.jpg', alt='...')
-                .caption
-                  h3 Jenn Gwapa
-                  p CEO / Founder
-                  p Do not seek to change what has come before. Seek to create that which has not.
-
+                  h3 {{item.name}}
+                  p {{item.intro}}
+                  p {{item.description}}
+            
   .align-center.fade(ng-class="showClass")
       img(src="YellowCheeseWax.jpg")
   nav#footer.fade(ng-class="showClass")
