@@ -6,67 +6,67 @@ angular.module('waxYeoAnguApp')
     $scope.team = [
         {
             name: 'Damien',
-            image: 'users/damien.gif',
+            image: 'users/mini/damien.jpg',
             intro: 'Dev front-end',
             description: 'Blah blah'
         },
         {
             name: 'Thomas',
-            image: 'users/thomas.png',
+            image: 'users/mini/thomas.png',
             intro: 'Dev back-end',
             description: 'Blah blah'
         },
         {
             name: 'Jérémy',
-            image: 'users/jeremy.jpg',
+            image: 'users/mini/jeremy.jpg',
             intro: 'Dev back-end',
             description: 'Blah blah'
         },
         {
             name: 'Julien',
-            image: 'users/julienfr.jpeg',
+            image: 'users/mini/julienfr.jpg',
             intro: 'Dev front-end',
             description: 'Blah blah'
         },
         {
             name: 'Julien',
-            image: 'users/julienlejeune.jpeg',
+            image: 'users/mini/julienlejeune.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Ludovic',
-            image: 'users/ludo.jpg',
+            image: 'users/mini/ludo.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Tristan',
-            image: 'users/Tristan.jpg',
+            image: 'users/mini/Tristan.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Christophe',
-            image: 'users/christophecr.jpeg',
+            image: 'users/mini/christophecr.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Issa',
-            image: 'users/Issa.jpeg',
+            image: 'users/mini/Issa.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Damien',
-            image: 'users/damiendesvignes.jpg',
+            image: 'users/mini/damiendesvignes.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         },
         {
             name: 'Guillaume',
-            image: 'users/guillaume.png',
+            image: 'users/mini/guillaume.jpg',
             intro: 'xxx',
             description: 'Blah blah'
         }
