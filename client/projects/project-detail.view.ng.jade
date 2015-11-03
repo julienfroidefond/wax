@@ -1,4 +1,6 @@
 .project-detail.container
+    a.btn.btn-default.pull-right(href="/projects") Retour
+    h1 {{project.name}}
     div(ng-if='hasRights()')
         h1 Détails du projet
         form(ng-submit='save()', name='form', novalidate='')
@@ -9,12 +11,10 @@
             .row
                 .col-sm-2
                     h3 Images
-                    .project-image-container(ng-if="!project.images && newImages.length == 0 ", ng-click="showPopup()")
+                    .project-image-container(ng-if="!project.image", ng-click="showPopup()")
                         img(class="img-responsive", src='http://placehold.it/200x200/')
-                    .project-image-container(ng-repeat='image in project.images', ng-click="showPopup()")
-                        img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
-                    .project-image-container(ng-repeat='image in newImages')
-                        img(class="img-responsive", ng-src='{{ image.url() }}')
+                    .project-image-container(ng-if='project.image', ng-click="showPopup()")
+                        img(class="img-responsive", ng-src='{{getMainImage()}}')
                     
                 .col-sm-10
                     h3 Description
@@ -28,14 +28,13 @@
             .col-xs-12.col-sm-12
                 .box
                   .box-icon
-                    img(class="", ng-src='{{getMainImage(project.images)}}')
+                    img(class="", ng-src='{{getMainImage()}}')
                   .info
                       h4.text-center {{ project.name }}
                       div.description-full
                           div(ng-bind-html="getHtml(project.description)") 
                           p(ng-if="!project.description ") Pas de description
-                          div.images(ng-repeat='image in project.images')
-                              img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                          img(class="img-responsive", ng-src='{{getImageUrl()}}')
                         .buttons(ng-if="$root.currentUser")
                             .btn.btn-primary(ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
                             .btn.btn-danger(ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
@@ -53,7 +52,7 @@
       .modal-header
         button.close(type='button', data-dismiss='modal', aria-label='Close')
           span(aria-hidden='true') ×
-        h4.modal-title Ajout d'images
+        h4.modal-title Ajout d'image
       .modal-body
           .drop-box(ng-hide="imgSrc", ngf-drop='', ngf-select='', ngf-change='addImages($files)', ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}", ngf-multiple='false', ngf-allow-dir='false', ngf-accept="'image/*'", ngf-drop-available='dropAvailable')
               div Click here to select image

@@ -10,26 +10,26 @@ angular.module('waxYeoAnguApp')
 
     $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
-    $scope.newImages = [];
+    // $scope.newImage = null;
 
     $scope.save = function() {
 
         //if($scope.form.$valid) {
-            if ($scope.newImages && $scope.newImages.length > 0) {
-                if($scope.project.images == null) $scope.project.images = [];
-                angular.forEach($scope.newImages, function(image) {
-                    $scope.project.images.push({id: image._id});
-                });
+        // if ($scope.newImages && $scope.newImages.length > 0) {
+        //     if($scope.project.images == null) $scope.project.images = [];
+        //     angular.forEach($scope.newImages, function(image) {
+        //         $scope.project.images.push({id: image._id});
+        //     });
+        // }
+        $scope.project.save().then(
+            function(numberOfDocs) {
+                console.log('save successful, docs affected ', numberOfDocs);
+                $location.path('/projects');
+            },
+            function(error) {
+                console.log('save error ', error);
             }
-            $scope.project.save().then(
-                function(numberOfDocs) {
-                    console.log('save successful, docs affected ', numberOfDocs);
-                    $location.path('/projects');
-                },
-                function(error) {
-                    console.log('save error ', error);
-                }
-            )
+        )
         // }
     };
 
@@ -54,35 +54,25 @@ angular.module('waxYeoAnguApp')
 
     };
     $scope.saveCroppedImage = function() {
-      if ($scope.myCroppedImage !== '') {
-        $scope.images.save($scope.myCroppedImage).then(function(result) {
-          $scope.newImages.push(result[0]._id);
-          $scope.imgSrc = undefined;
-          $scope.myCroppedImage = '';
-          $('#popup').modal('hide');
-        });
-      }
+        if ($scope.myCroppedImage !== '') {
+            $scope.images.save($scope.myCroppedImage).then(function(result) {
+                $scope.project.image = result[0]._id._id;
+                $scope.imgSrc = undefined;
+                $scope.myCroppedImage = '';
+                $('#popup').modal('hide');
+            });
+        }
 
     };
     $scope.showPopup = function() {
-      $('#popup').modal('show');
+        $('#popup').modal('show');
     };
 
-    $scope.getMainImage = function(images) {
-      if (images && images.length && images[0]) {
-          if($filter('filter')($scope.images, {_id: images[0].id}).length>0){
-        var url = $filter('filter')($scope.images, {_id: images[0].id})[0].url();
-        return url;
-    }
-      }
-    };
-    $scope.getImageUrl = function(images, idToFind) {
-      if (images && images.length && $scope.images && $scope.images.length) {
-          if($filter('filter')($scope.images, {_id: idToFind}).length>0){
-            var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
+    $scope.getMainImage = function() {
+        if($filter('filter')($scope.images, {_id: $scope.project.image}).length>0){
+            var url = $filter('filter')($scope.images, {_id: $scope.project.image})[0].url();
             return url;
         }
-      }
     };
 
     $scope.hasRights = function(){
@@ -91,23 +81,23 @@ angular.module('waxYeoAnguApp')
     $scope.join = function(){
 
         $meteor.call('setParticipeTo', $rootScope.currentUser._id, $scope.project._id).then(
-          function(data){
+            function(data){
 
-            if($scope.project.participants == null) $scope.project.participants = [];
-            $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.profile.avatar});
+                if($scope.project.participants == null) $scope.project.participants = [];
+                $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.profile.avatar});
 
-            $scope.project.save().then(
-                function(numberOfDocs) {
-                    console.log('save successful, docs affected ', numberOfDocs);
-                },
-                function(error) {
-                    console.log('save error ', error);
-                }
-            )
-          },
-          function(err){
-            console.log('failed', err);
-          }
+                $scope.project.save().then(
+                    function(numberOfDocs) {
+                        console.log('save successful, docs affected ', numberOfDocs);
+                    },
+                    function(error) {
+                        console.log('save error ', error);
+                    }
+                )
+            },
+            function(err){
+                console.log('failed', err);
+            }
         );
 
 
@@ -117,7 +107,7 @@ angular.module('waxYeoAnguApp')
         var isPart = false;
         angular.forEach($scope.project.participants, function(participant) {
             if(participant && participant.id == $rootScope.currentUser._id)
-                isPart = true;
+            isPart = true;
         });
         return isPart;
 
@@ -129,42 +119,42 @@ angular.module('waxYeoAnguApp')
     $scope.unjoin = function(){
 
         $meteor.call('setParticipeTo', $rootScope.currentUser._id, null).then(
-          function(data){
+            function(data){
 
-            angular.forEach($scope.project.participants, function(participant, i) {
-                if(participant && participant.id == $rootScope.currentUser._id)
+                angular.forEach($scope.project.participants, function(participant, i) {
+                    if(participant && participant.id == $rootScope.currentUser._id)
                     $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);
-            });
-            if($scope.project.participants.length == 0) $scope.project.participants = null;
-            $scope.project.save().then(
-                function(numberOfDocs) {
-                    console.log('save successful, docs affected ', numberOfDocs);
-                },
-                function(error) {
-                    console.log('save error ', error);
-                }
-            )
-          },
-          function(err){
-            console.log('failed', err);
-          }
+                });
+                if($scope.project.participants.length == 0) $scope.project.participants = null;
+                $scope.project.save().then(
+                    function(numberOfDocs) {
+                        console.log('save successful, docs affected ', numberOfDocs);
+                    },
+                    function(error) {
+                        console.log('save error ', error);
+                    }
+                )
+            },
+            function(err){
+                console.log('failed', err);
+            }
         );
     }
 
     $scope.getAvatarUrl = function(idToFind){
         if(!idToFind) return "avatar.jpg";
-          if($filter('filter')($scope.images, {_id: idToFind}).length>0){
+        if($filter('filter')($scope.images, {_id: idToFind}).length>0){
             var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
             return url;
         }
     }
     $scope.getUser= function(idToFind){
         if(!idToFind) return null;
-          if($filter('filter')($scope.users, {_id: idToFind}).length>0){
+        if($filter('filter')($scope.users, {_id: idToFind}).length>0){
             return $filter('filter')($scope.users, {_id: idToFind});
         }
     }
     $scope.getHtml = function(html) {
-       return $sce.trustAsHtml(html);
-     };
+        return $sce.trustAsHtml(html);
+    };
 });

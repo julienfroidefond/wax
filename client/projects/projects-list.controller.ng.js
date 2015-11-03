@@ -60,11 +60,10 @@ angular.module('waxYeoAnguApp')
         $scope.page = newPage;
     };
 
-    $scope.getMainImage = function(images) {
-        if (images && images.length && images[0] && images[0].id) {
-            var url = $filter('filter')($scope.images, {_id: images[0].id})[0].url();
-            return url;
-        }
+    $scope.getMainImage = function(image) {
+        if(!image) return "atixnet.png";
+        var url = $filter('filter')($scope.images, {_id: image})[0].url();
+        return url;
     };
 
     $scope.getImageUrl = function(images, idToFind) {
@@ -98,4 +97,8 @@ angular.module('waxYeoAnguApp')
     $scope.getHtml = function(html) {
         return $sce.trustAsHtml(html);
     };
+
+    $scope.myProject = $scope.$meteorCollection(function() {
+        return Projects.find({_id : $rootScope.currentUser.profile.participeTo}, {});
+    }).subscribe('projects');
 });

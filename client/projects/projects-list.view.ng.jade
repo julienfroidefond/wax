@@ -15,11 +15,13 @@
           li(ng-click="orderProperty='1'") Ascending
           li(ng-click="orderProperty='-1'") Descending
   br
+  p(class="alert alert-info", ng-if="myProject[0]") 
+      | Je participe à : {{ myProject[0].name }}
   .row
-      .col-xs-12.col-sm-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+      .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box
             .box-icon
-              img(class="", ng-src='{{getMainImage(project.images)}}')
+              img(class="", ng-src='{{getMainImage(project.image)}}')
             .info
                 h4.text-center {{ project.name }}
                 div.description
@@ -27,14 +29,20 @@
                     //- div.images(ng-repeat='image in project.images')
                     //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
                 div.buttons
-                    a.btn(ng-if='hasRights(project)', ng-click='remove(project)') Supprimer
-                    a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}') Editer
-                    a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}') Voir
+                    a.btn(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
+                        i(class="fa fa-trash-o")
+                    a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
+                        i(class="fa fa-pencil")
+                    a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', tooltip="Voir") 
+                        i(class="fa fa-eye")
+                    //- a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', title="J'aime") 
+                    //-     i(class="fa fa-thumbs-o-up")
+                    //- a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', title="Participer") Participe
                 div.avatars(ng-if="project.participants")
-                    img.avatar(tooltip="{{getUser(project.owner)[0].emails[0].address}}", data-toggle="tooltip", data-placement="top", title="{{getUser(project.owner)[0].emails[0].address}}", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
-                    img.avatar(tooltip="{{getUser(particip.id)[0].emails[0].address}}", data-toggle="tooltip", data-placement="top", title="{{getUser(particip.id)[0].emails[0].address}}", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(getUser(particip.id)[0].profile.avatar)}}")
+                    img.avatar(tooltip="{{getUser(project.owner)[0].emails[0].address}}", data-placement="top", title="{{getUser(project.owner)[0].emails[0].address}}", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
+                    img.avatar(tooltip="{{getUser(particip.id)[0].emails[0].address}}", data-placement="top", title="{{getUser(particip.id)[0].emails[0].address}}", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(getUser(particip.id)[0].profile.avatar)}}")
                 div.avatars(ng-if="!project.participants")
-                    img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
+                    img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}", tooltip="{{getUser(project.owner)[0].emails[0].address}}")
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
   hr
   p Nombre de projets: {{projectsCount.count}}
