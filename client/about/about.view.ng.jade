@@ -37,10 +37,6 @@
                 h4 Users list
             .panel-body
                 div(ng-repeat="user in users")
-                    .row
-                        .col-xs-2
-                            img.img-circle(width="40", ng-src="{{getImageUrl(user.profile.avatar)}}")
-                        .col-xs-10
-                            |  {{user.emails[0].address}} 
+                    avatar(width='40', user="user")
                     br
                         

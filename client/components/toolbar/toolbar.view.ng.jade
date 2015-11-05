@@ -14,8 +14,7 @@
         //-   blaze-template(name='loginButtons')
         li(ng-if="$root.currentUser")
           a(href='#') 
-              img(width="20", class="img-circle", ng-src="{{avatar[0].url()}}")
-              |  &nbsp;&nbsp;{{$root.currentUser.emails[0].address}}
+              avatar(user="$root.currentUser")
         li(ng-hide="$root.currentUser")
           a(href='/login') 
               i.glyphicon.glyphicon-user

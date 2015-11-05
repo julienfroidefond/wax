@@ -1,26 +1,16 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce, UserService) {
+
     $scope.pageClass= "project-detail-page";
     $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
     $scope.$meteorSubscribe('projects');
 
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
-    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
-
-    // $scope.newImage = null;
-
     $scope.save = function() {
 
-        //if($scope.form.$valid) {
-        // if ($scope.newImages && $scope.newImages.length > 0) {
-        //     if($scope.project.images == null) $scope.project.images = [];
-        //     angular.forEach($scope.newImages, function(image) {
-        //         $scope.project.images.push({id: image._id});
-        //     });
-        // }
         $scope.project.save().then(
             function(numberOfDocs) {
                 console.log('save successful, docs affected ', numberOfDocs);
@@ -140,19 +130,8 @@ angular.module('waxYeoAnguApp')
             }
         );
     }
-
-    $scope.getAvatarUrl = function(idToFind){
-        if(!idToFind) return "avatar.jpg";
-        if($filter('filter')($scope.images, {_id: idToFind}).length>0){
-            var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
-            return url;
-        }
-    }
     $scope.getUser= function(idToFind){
-        if(!idToFind) return null;
-        if($filter('filter')($scope.users, {_id: idToFind}).length>0){
-            return $filter('filter')($scope.users, {_id: idToFind});
-        }
+        return UserService.getUser(idToFind);
     }
     $scope.getHtml = function(html) {
         return $sce.trustAsHtml(html);

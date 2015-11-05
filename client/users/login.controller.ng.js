@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('LoginCtrl', function($scope, $meteor, $state, $rootScope) {
+.controller('LoginCtrl', function($scope, $meteor, $state, $rootScope, ImageService) {
 
     var vm = $scope;
 
@@ -97,10 +97,6 @@ angular.module('waxYeoAnguApp')
     };
 
     $scope.getImageUrl = function(idToFind) {
-        if(!idToFind) return "avatar.jpg";
-      if($filter('filter')(vm.images, {_id: idToFind}).length>0){
-        var url = $filter('filter')(vm.images, {_id: idToFind})[0].url();
-        return url;
-    }
+        return ImageService.getImageUrl(images, idToFind);
     };
 });

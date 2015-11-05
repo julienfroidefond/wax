@@ -12,7 +12,7 @@
     ul.timeline
       li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
         .timeline-badge
-            img(width="50", ng-src="{{getImageUrl(chat.user.profile.avatar)}}")
+            avatar(user='chat.user', width="50", imageonly="true")
         .timeline-panel
           .timeline-heading
             h4.timeline-title {{chat.user.emails[0].address}}

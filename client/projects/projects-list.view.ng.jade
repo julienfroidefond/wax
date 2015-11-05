@@ -2,9 +2,9 @@
   h1 Projets
   form(ng-submit='save()', name='form', novalidate='')
     p.input-group(ng-if="$root.currentUser")
-      input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
-      span.input-group-btn
-        input.btn.btn-primary(type='submit', value='Ajouter')
+    //-   input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
+    //-   span.input-group-btn
+    //-     input.btn.btn-primary(type='submit', value='Ajouter')
     hr
     .input-group.col-xs-4.col-xs-offset-8
       input.form-control(type='search', ng-model='search', placeholder='Rechercher')
@@ -15,8 +15,9 @@
           li(ng-click="orderProperty='1'") Ascending
           li(ng-click="orderProperty='-1'") Descending
   br
-  p(class="alert alert-info", ng-if="myProject[0]") 
-      | Je participe à : {{ myProject[0].name }}
+  p(class="alert alert-info", ng-if="projectParticipe") 
+      | Je participe au projet : 
+      a(href='/projects/{{projectParticipe._id}}') {{ projectParticipe.name }}
   .row
       .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box
@@ -39,10 +40,11 @@
                     //-     i(class="fa fa-thumbs-o-up")
                     //- a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', title="Participer") Participe
                 div.avatars(ng-if="project.participants")
-                    img.avatar(tooltip="{{getUser(project.owner)[0].emails[0].address}}", data-placement="top", title="{{getUser(project.owner)[0].emails[0].address}}", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}")
-                    img.avatar(tooltip="{{getUser(particip.id)[0].emails[0].address}}", data-placement="top", title="{{getUser(particip.id)[0].emails[0].address}}", width="40", ng-repeat="particip in project.participants", ng-src="{{getAvatarUrl(getUser(particip.id)[0].profile.avatar)}}")
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                    avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
                 div.avatars(ng-if="!project.participants")
-                    img.avatar(src="avatar.jpg", width="40", ng-src="{{getAvatarUrl(getUser(project.owner)[0].profile.avatar)}}", tooltip="{{getUser(project.owner)[0].emails[0].address}}")
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
   hr
   p Nombre de projets: {{projectsCount.count}}

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce) {
+.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce, UserService, ImageService) {
     $scope.page = 1
     $scope.perPage = 8
     $scope.sort = {name_sort : 1};
@@ -9,24 +9,23 @@ angular.module('waxYeoAnguApp')
 
     $scope.pageClass= "project-list-page";
 
-    $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
-    $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
-
     $scope.projects = $scope.$meteorCollection(function() {
         return Projects.find({}, {sort:$scope.getReactively('sort')});
     });
 
     $meteor.autorun($scope, function() {
-        $scope.$meteorSubscribe('projects', {
-            limit: parseInt($scope.getReactively('perPage')),
-            skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage')),
-            sort: $scope.getReactively('sort')
+        var limitP = parseInt($scope.getReactively('perPage'));
+        var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
+        var sortP = $scope.getReactively('sort');
+        $meteor.subscribe('projects', {
+            limit: limitP,
+            skip: skipP,
+            sort: sortP
         }, $scope.getReactively('search')).then(function() {
             $scope.projectsCount = $scope.$meteorObject(Counts, 'numberOfProjects', false);
         });
     });
 
-    $meteor.session('projectsCounter').bind($scope, 'page');
 
     $scope.newProject={};
     $scope.save = function() {
@@ -34,15 +33,9 @@ angular.module('waxYeoAnguApp')
             $scope.newProject.ownerAvatar=$rootScope.currentUser.profile.avatar;
             $scope.newProject.owner=$rootScope.currentUser._id;
             $scope.projects.save($scope.newProject).then( function() {
-
-                // todos were successfully saved
                 console.log('The todo was saved');
-
             }, function(err) {
-
-                // an error occurred while saving the todos: maybe you're not authorized
                 console.error( 'An error occurred. The error message is: ' + err.message);
-
             });
             $scope.newProject = {};
         }
@@ -57,20 +50,16 @@ angular.module('waxYeoAnguApp')
     };
 
     $scope.pageChanged = function(newPage) {
+        console.log('pageChanged');
         $scope.page = newPage;
     };
 
     $scope.getMainImage = function(image) {
-        if(!image) return "atixnet.png";
-        var url = $filter('filter')($scope.images, {_id: image})[0].url();
-        return url;
+        return ImageService.getImageById(image);
     };
 
     $scope.getImageUrl = function(images, idToFind) {
-        if (images && images.length) {
-            var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
-            return url;
-        }
+        return ImageService.getImageUrl(images, idToFind);
     };
 
     $scope.$watch('orderProperty', function() {
@@ -79,26 +68,20 @@ angular.module('waxYeoAnguApp')
         }
     });
 
-    $scope.getAvatarUrl = function(idToFind){
-        if(!idToFind) return "avatar.jpg";
-        if($filter('filter')($scope.images, {_id: idToFind}).length>0){
-            var url = $filter('filter')($scope.images, {_id: idToFind})[0].url();
-            return url;
-        }
-    }
-
     $scope.getUser= function(idToFind){
-        if(!idToFind) return null;
-        if($filter('filter')($scope.users, {_id: idToFind}).length>0){
-            return $filter('filter')($scope.users, {_id: idToFind});
-        }
+        return UserService.getUser(idToFind);
     }
 
     $scope.getHtml = function(html) {
         return $sce.trustAsHtml(html);
     };
 
-    $scope.myProject = $scope.$meteorCollection(function() {
-        return Projects.find({_id : $rootScope.currentUser.profile.participeTo}, {});
-    }).subscribe('projects');
+
+    $scope.projectParticipe = UserService.getProjectParticipeTo($rootScope.currentUser ? $rootScope.currentUser : null)
+
+    // if($rootScope.currentUser){
+    //     $scope.myProject = $scope.$meteorCollection(function() {
+    //         return Projects.find({_id : $rootScope.currentUser.profile.participeTo}, {});
+    //     }).subscribe('projects');
+    // }
 });
