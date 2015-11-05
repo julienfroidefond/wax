@@ -20,6 +20,7 @@ Meteor.startup(function() {
             if(image._id){
                 var userExists = Accounts.findUserByEmail(user.email);
                 if(!userExists){
+                    console.log("WAX ::: Creation du user : "+ user.email);
                     Accounts.createUser({
                         username: user.username,
                         email: user.email,
