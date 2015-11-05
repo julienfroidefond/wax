@@ -16,23 +16,25 @@ Meteor.startup(function() {
             var user = data.users[i];
 
             var fsFile = new FS.File(basePath+'/public/users/'+user.avatar);
-            var image = Images.insert(fsFile);
-            if(image._id){
-                var userExists = Accounts.findUserByEmail(user.email);
-                if(!userExists){
-                    console.log("WAX ::: Creation du user : "+ user.email);
-                    Accounts.createUser({
-                        username: user.username,
-                        email: user.email,
-                        password: user.password,
-                        profile: {
-                            participeTo: null,
-                            avatar: image._id,
-                            group: user.group,
-                            firstName: user.firstName,
-                            lastName: user.lastName
-                        }
-                    });
+            if(fsFile){
+                var image = Images.insert(fsFile);
+                if(image._id){
+                    var userExists = Accounts.findUserByEmail(user.email);
+                    if(!userExists){
+                        console.log("WAX ::: Creation du user : "+ user.email);
+                        Accounts.createUser({
+                            username: user.username,
+                            email: user.email,
+                            password: user.password,
+                            profile: {
+                                participeTo: null,
+                                avatar: image._id,
+                                group: user.group,
+                                firstName: user.firstName,
+                                lastName: user.lastName
+                            }
+                        });
+                    }
                 }
             }
         }

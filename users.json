@@ -115,14 +115,8 @@
             "firstName": "Tristan",
             "avatar": "Tristan.jpg",
             "password": "test",
-            "group": "waxer"
-        },
-        {
-            "username": "rpiffard@atixnet.fr",
-            "email": "rpiffard@atixnet.fr",
-            "lastName": "Romain",
-            "firstName": "Piffard",
-            "avatar": null,
+            "group": "waxer",
+            "avatar": "avatar.jpg",
             "password": "test",
             "group": "nonwaxer"
         }
