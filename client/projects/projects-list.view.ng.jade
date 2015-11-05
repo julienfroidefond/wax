@@ -2,9 +2,9 @@
   h1 Projets
   form(ng-submit='save()', name='form', novalidate='')
     p.input-group(ng-if="$root.currentUser")
-    //-   input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
-    //-   span.input-group-btn
-    //-     input.btn.btn-primary(type='submit', value='Ajouter')
+      input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
+      span.input-group-btn
+        input.btn.btn-primary(type='submit', value='Ajouter')
     hr
     .input-group.col-xs-4.col-xs-offset-8
       input.form-control(type='search', ng-model='search', placeholder='Rechercher')
@@ -15,9 +15,9 @@
           li(ng-click="orderProperty='1'") Ascending
           li(ng-click="orderProperty='-1'") Descending
   br
-  p(class="alert alert-info", ng-if="projectParticipe") 
+  p(class="alert alert-info", ng-if="projectParticipe[0]._id") 
       | Je participe au projet : 
-      a(href='/projects/{{projectParticipe._id}}') {{ projectParticipe.name }}
+      a(href='/projects/{{projectParticipe[0]._id}}') {{ projectParticipe[0].name }} 
   .row
       .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box

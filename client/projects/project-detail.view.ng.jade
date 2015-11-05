@@ -20,7 +20,7 @@
                     textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
             div.avatars(ng-if="project.participants")
                 avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline")
+                avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
             div.avatars(ng-if="!project.participants")
                 avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
             

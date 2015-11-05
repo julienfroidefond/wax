@@ -1,0 +1,130 @@
+{
+    "users": [
+        {
+            "username": "jfroidefond@atixnet.fr",
+            "email": "jfroidefond@atixnet.fr",
+            "lastName": "Froidefond",
+            "firstName": "Julien",
+            "avatar": "julienfr.jpeg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "admin",
+            "email": "admin@atixnet.fr",
+            "lastName": "admin",
+            "firstName": "admin",
+            "avatar": "avatar.jpg",
+            "password": "admin",
+            "group": "admin"
+        },
+        {
+            "username": "ccrozat@atixnet.fr",
+            "email": "ccrozat@atixnet.fr",
+            "lastName": "Crozat",
+            "firstName": "Christophe",
+            "avatar": "christophecr.jpeg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "dernoult@atixnet.fr",
+            "email": "dernoult@atixnet.fr",
+            "lastName": "Ernoult",
+            "firstName": "Damien",
+            "avatar": "damien.gif",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "ddesvignes@atixnet.fr",
+            "email": "ddesvignes@atixnet.fr",
+            "lastName": "Desvignes",
+            "firstName": "Damien",
+            "avatar": "damiendesvignes.jpg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "fbaumel@atixnet.fr",
+            "email": "fbaumel@atixnet.fr",
+            "lastName": "Baumel",
+            "firstName": "Florence",
+            "avatar": "Florence.jpeg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "gtotot@atixnet.fr",
+            "email": "gtotot@atixnet.fr",
+            "lastName": "Totot",
+            "firstName": "Guillaume",
+            "avatar": "guillaume.png",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "isoumare@atixnet.fr",
+            "email": "isoumare@atixnet.fr",
+            "lastName": "Soumare",
+            "firstName": "Issa",
+            "avatar": "Issa.jpeg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "jesnault@atixnet.fr",
+            "email": "jesnault@atixnet.fr",
+            "lastName": "Esnault",
+            "firstName": "Jérémy",
+            "avatar": "jeremy.jpg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "jlejeune@atixnet.fr",
+            "email": "jlejeune@atixnet.fr",
+            "lastName": "Lejeune",
+            "firstName": "Julien",
+            "avatar": "julienlejeune.jpeg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "lgillier@atixnet.fr",
+            "email": "lgillier@atixnet.fr",
+            "lastName": "Gillier",
+            "firstName": "Ludovic",
+            "avatar": "ludo.jpg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "tgilbert@atixnet.fr",
+            "email": "tgilbert@atixnet.fr",
+            "lastName": "Gilbert",
+            "firstName": "Thomas",
+            "avatar": "thomas.png",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "tchapelle@atixnet.fr",
+            "email": "tchapelle@atixnet.fr",
+            "lastName": "Chapelle",
+            "firstName": "Tristan",
+            "avatar": "Tristan.jpg",
+            "password": "test",
+            "group": "waxer"
+        },
+        {
+            "username": "rpiffard@atixnet.fr",
+            "email": "rpiffard@atixnet.fr",
+            "lastName": "Romain",
+            "firstName": "Piffard",
+            "avatar": null,
+            "password": "test",
+            "group": "nonwaxer"
+        }
+    ]
+}

@@ -35,17 +35,19 @@ angular.module('waxYeoAnguApp')
             vm.error = "L'avatar est obligatoire";
             return;
         }
+        vm.credentials.profile = {};
+        vm.credentials.profile.avatar = vm.avatar._id;
         $meteor.createUser(vm.credentials).then(
             function () {
-
-                $meteor.call('setAvatar', $rootScope.currentUser._id, vm.avatar ? vm.avatar._id : null).then(
-                  function(data){
-                      $state.go('projects-list');
-                  },
-                  function(err){
-                    console.log('failed', err);
-                  }
-                );
+                // 
+                // $meteor.call('setAvatar', $rootScope.currentUser._id, vm.avatar ? vm.avatar._id : null).then(
+                //   function(data){
+                //       $state.go('projects-list');
+                //   },
+                //   function(err){
+                //     console.log('failed', err);
+                //   }
+                // );
 
             },
             function (err) {

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce, UserService) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce, UserService, ImageService, ProjectService) {
 
     $scope.pageClass= "project-detail-page";
     $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
@@ -10,7 +10,6 @@ angular.module('waxYeoAnguApp')
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
     $scope.save = function() {
-
         $scope.project.save().then(
             function(numberOfDocs) {
                 console.log('save successful, docs affected ', numberOfDocs);
@@ -20,7 +19,6 @@ angular.module('waxYeoAnguApp')
                 console.log('save error ', error);
             }
         )
-        // }
     };
 
     $scope.reset = function() {
@@ -41,8 +39,8 @@ angular.module('waxYeoAnguApp')
         else {
             $scope.imgSrc = undefined;
         }
-
     };
+
     $scope.saveCroppedImage = function() {
         if ($scope.myCroppedImage !== '') {
             $scope.images.save($scope.myCroppedImage).then(function(result) {
@@ -59,77 +57,55 @@ angular.module('waxYeoAnguApp')
     };
 
     $scope.getMainImage = function() {
-        if($filter('filter')($scope.images, {_id: $scope.project.image}).length>0){
-            var url = $filter('filter')($scope.images, {_id: $scope.project.image})[0].url();
-            return url;
-        }
+        return ImageService.getImageById($scope.project.image);
     };
 
     $scope.hasRights = function(){
         return $rootScope.currentUser && $scope.project.owner==$rootScope.currentUser._id
     }
     $scope.join = function(){
+        ProjectService.joinProject($rootScope.currentUser, $scope.project, function(){
+            if($scope.project.participants == null) $scope.project.participants = [];
+            $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.profile.avatar});
 
-        $meteor.call('setParticipeTo', $rootScope.currentUser._id, $scope.project._id).then(
-            function(data){
+            $scope.project.save().then(
+                function(numberOfDocs) {
+                    console.log('save successful, docs affected ', numberOfDocs);
+                },
+                function(error) {
+                    console.log('save error ', error);
+                }
+            )
+        });
 
-                if($scope.project.participants == null) $scope.project.participants = [];
-                $scope.project.participants.push({id: $rootScope.currentUser._id, avatar: $rootScope.currentUser.profile.avatar});
+    }
 
-                $scope.project.save().then(
-                    function(numberOfDocs) {
-                        console.log('save successful, docs affected ', numberOfDocs);
-                    },
-                    function(error) {
-                        console.log('save error ', error);
-                    }
-                )
-            },
-            function(err){
-                console.log('failed', err);
-            }
-        );
-
+    $scope.unjoin = function(){
+        ProjectService.unjoinProject($rootScope.currentUser, $scope.project, function(){
+            angular.forEach($scope.project.participants, function(participant, i) {
+                if(participant && participant.id == $rootScope.currentUser._id)
+                $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);
+            });
+            if($scope.project.participants.length == 0) $scope.project.participants = null;
+            $scope.project.save().then(
+                function(numberOfDocs) {
+                    console.log('save successful, docs affected ', numberOfDocs);
+                },
+                function(error) {
+                    console.log('save error ', error);
+                }
+            )
+        });
 
     }
 
     $scope.isAParticipant = function(){
-        var isPart = false;
-        angular.forEach($scope.project.participants, function(participant) {
-            if(participant && participant.id == $rootScope.currentUser._id)
-            isPart = true;
-        });
-        return isPart;
-
+        return UserService.isParticipant($rootScope.currentUser, $scope.project.participants);
     }
     $scope.isAParticipantInAnotherProject = function(){
-        if($rootScope.currentUser.profile == null) return false;
-        return ($rootScope.currentUser.profile.participeTo != null && $rootScope.currentUser.profile.participeTo != '' && $rootScope.currentUser.profile.participeTo != $scope.project._id);
+        return UserService.isAParticipantInAnotherProject($rootScope.currentUser, $scope.project)
     }
-    $scope.unjoin = function(){
 
-        $meteor.call('setParticipeTo', $rootScope.currentUser._id, null).then(
-            function(data){
-
-                angular.forEach($scope.project.participants, function(participant, i) {
-                    if(participant && participant.id == $rootScope.currentUser._id)
-                    $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);
-                });
-                if($scope.project.participants.length == 0) $scope.project.participants = null;
-                $scope.project.save().then(
-                    function(numberOfDocs) {
-                        console.log('save successful, docs affected ', numberOfDocs);
-                    },
-                    function(error) {
-                        console.log('save error ', error);
-                    }
-                )
-            },
-            function(err){
-                console.log('failed', err);
-            }
-        );
-    }
     $scope.getUser= function(idToFind){
         return UserService.getUser(idToFind);
     }

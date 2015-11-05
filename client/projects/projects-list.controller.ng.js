@@ -76,8 +76,8 @@ angular.module('waxYeoAnguApp')
         return $sce.trustAsHtml(html);
     };
 
-
-    $scope.projectParticipe = UserService.getProjectParticipeTo($rootScope.currentUser ? $rootScope.currentUser : null)
+    if($rootScope.currentUser)
+        $scope.projectParticipe = UserService.getProjectParticipeTo($rootScope.currentUser)
 
     // if($rootScope.currentUser){
     //     $scope.myProject = $scope.$meteorCollection(function() {

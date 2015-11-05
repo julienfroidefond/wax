@@ -7,8 +7,6 @@ Meteor.methods({
     }
 });
 
-
-
 Meteor.methods({
     setAvatar: function (userId, imageId) {
         Meteor.users.update({_id : userId}, {$set: {"profile.avatar": imageId}}, {},function(data){
