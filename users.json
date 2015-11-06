@@ -7,6 +7,7 @@
             "firstName": "Julien",
             "avatar": "julienfr.jpeg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -16,6 +17,7 @@
             "firstName": "admin",
             "avatar": "avatar.jpg",
             "password": "admin",
+            "role": ["admin"],
             "group": "admin"
         },
         {
@@ -25,6 +27,7 @@
             "firstName": "Christophe",
             "avatar": "christophecr.jpeg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -34,6 +37,7 @@
             "firstName": "Damien",
             "avatar": "damien.gif",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -43,6 +47,7 @@
             "firstName": "Damien",
             "avatar": "damiendesvignes.jpg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -52,6 +57,7 @@
             "firstName": "Florence",
             "avatar": "Florence.jpeg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -61,6 +67,7 @@
             "firstName": "Guillaume",
             "avatar": "guillaume.png",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -70,6 +77,7 @@
             "firstName": "Issa",
             "avatar": "Issa.jpeg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -79,6 +87,7 @@
             "firstName": "Jérémy",
             "avatar": "jeremy.jpg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -88,6 +97,7 @@
             "firstName": "Julien",
             "avatar": "julienlejeune.jpeg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -97,6 +107,7 @@
             "firstName": "Ludovic",
             "avatar": "ludo.jpg",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -106,6 +117,7 @@
             "firstName": "Thomas",
             "avatar": "thomas.png",
             "password": "test",
+            "role": ["coder"],
             "group": "waxer"
         },
         {
@@ -115,10 +127,18 @@
             "firstName": "Tristan",
             "avatar": "Tristan.jpg",
             "password": "test",
-            "group": "waxer",
+            "role": ["coder"],
+            "group": "waxer"
+        },
+        {
+            "username": "test@atixnet.fr",
+            "email": "test@atixnet.fr",
+            "lastName": "Test",
+            "firstName": "Test",
             "avatar": "avatar.jpg",
             "password": "test",
-            "group": "nonwaxer"
+            "role": ["coder"],
+            "group": "non-waxer"
         }
     ]
 }

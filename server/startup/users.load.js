@@ -22,7 +22,7 @@ Meteor.startup(function() {
                     var userExists = Accounts.findUserByEmail(user.email);
                     if(!userExists){
                         console.log("WAX ::: Creation du user : "+ user.email);
-                        Accounts.createUser({
+                        var id = Accounts.createUser({
                             username: user.username,
                             email: user.email,
                             password: user.password,
@@ -34,6 +34,8 @@ Meteor.startup(function() {
                                 lastName: user.lastName
                             }
                         });
+                        console.log("WAX ::: Ajout au groupe : "+ user.group);
+                        Roles.addUsersToRoles(id, user.role, user.group);
                     }
                 }
             }

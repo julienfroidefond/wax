@@ -33,6 +33,16 @@ services.factory('UserService', function($filter, $meteor) {
         });
         return isPart;
     }
+    userService.userIsWaxer = function(user, callback){
+         $meteor.call('userIsWaxer', user).then(
+            function(data){
+                callback(data);
+            },
+            function(err){
+                console.log('failed', err);
+            }
+        );
+    }
 
     return userService;
 });

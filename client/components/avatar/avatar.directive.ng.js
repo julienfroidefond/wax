@@ -1,22 +1,20 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('avatar', function($meteor, $filter, $rootScope) {
+.directive('avatar', function($meteor, $filter, $rootScope, ImageService) {
     return {
         restrict: 'AE',
         templateUrl: 'client/components/avatar/avatar.view.html',
         replace: true,
         scope: {
             user: "=",
-            width: "=",
-            imageonly: "="
+            width: "@",
+            imageonly: "@"
         },
-        link: function($scope){
+        link: function($scope, element, attrs){
             if($scope.user){
                 var avatarId = $scope.user.profile.avatar;
-                $scope.avatar = $meteor.collectionFS(function(){
-                    return Images.find({_id : avatarId});
-                }, false).subscribe('images');
+                $scope.avatar = ImageService.getImageById(avatarId);
                 $scope.email = $scope.user.emails[0].address;
             }
             else{

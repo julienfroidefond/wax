@@ -7,4 +7,9 @@ angular.module('waxYeoAnguApp')
 
   $scope.users = $meteor.collection(Meteor.users, false).subscribe('users');
 
+  $scope.isWaxer = function(user){
+    //   UserService.userIsWaxer(user, function(data){
+    //       return data;
+    //   });
+  }
 });
