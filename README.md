@@ -14,3 +14,11 @@ cd wax
 meteor
 
 Permet de créer des projets et d'y souscrire.
+
+## Notes :
+
+### Droits :
+
+Utilisation de https://github.com/alanning/meteor-roles
+$rootScope.userIsInRole(user, role, group) : permet de savoir si un user a certains roles ou droits
+$rootScope.isInRole(role, group) : permet de savoir si le user courant a un certain role

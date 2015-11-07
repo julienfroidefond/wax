@@ -1,7 +1,7 @@
 .projects-list.container
   h1 Projets
   form(ng-submit='save()', name='form', novalidate='')
-    p.input-group(ng-if="$root.currentUser")
+    p.input-group(ng-if="$root.currentUser && $root.isInRole('coder', 'waxer')")
       input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
       span.input-group-btn
         input.btn.btn-primary(type='submit', value='Ajouter')

@@ -33,16 +33,6 @@ services.factory('UserService', function($filter, $meteor) {
         });
         return isPart;
     }
-    userService.userIsWaxer = function(user, callback){
-         $meteor.call('userIsWaxer', user).then(
-            function(data){
-                callback(data);
-            },
-            function(err){
-                console.log('failed', err);
-            }
-        );
-    }
 
     return userService;
 });
@@ -53,6 +43,8 @@ services.factory('ImageService', function($filter, $meteor) {
     var images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
     ImageService.getImageUrl = function(images, idToFind) {
+        if(!idToFind) return "atixnet.png";
+        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet.png";
         if (images && images.length) {
             var url = $filter('filter')(images, {_id: idToFind})[0].url();
             return url;
@@ -60,6 +52,7 @@ services.factory('ImageService', function($filter, $meteor) {
     };
     ImageService.getImageById = function(idToFind) {
         if(!idToFind) return "atixnet.png";
+        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet.png";
         var url = $filter('filter')(images, {_id: idToFind})[0].url();
         return url;
     };

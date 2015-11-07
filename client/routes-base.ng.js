@@ -6,6 +6,13 @@ angular.module('waxYeoAnguApp')
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 }).run(['$rootScope', '$state', function($rootScope, $state) {
+    $rootScope.uiHelpers = UI._globalHelpers;
+    $rootScope.isInRole = function(role, group) {
+        return $rootScope.uiHelpers.isInRole(role, group);
+    }
+    $rootScope.userIsInRole = function(user, role, group) {
+        return Roles.userIsInRole(user, role, group);
+    }
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     switch(error) {
       case 'AUTH_REQUIRED':
