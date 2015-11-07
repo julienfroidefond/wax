@@ -15,7 +15,7 @@
             avatar(user='chat.user', width="50", imageonly="true")
         .timeline-panel
           .timeline-heading
-            h4.timeline-title {{chat.user.emails[0].address}}
+            h4.timeline-title {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}
             p
               small.text-muted
                 i.glyphicon.glyphicon-time
