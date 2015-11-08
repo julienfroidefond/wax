@@ -6,6 +6,8 @@ angular.module('waxYeoAnguApp')
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 }).run(['$rootScope', '$state', function($rootScope, $state) {
+
+    $.cloudinary.config().cloud_name = "dpcocrdyl";
     $rootScope.uiHelpers = UI._globalHelpers;
     $rootScope.isInRole = function(role, group) {
         return $rootScope.uiHelpers.isInRole(role, group);

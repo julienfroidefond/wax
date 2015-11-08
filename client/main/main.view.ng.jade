@@ -49,16 +49,18 @@
               hr
           #team.owl-carousel.owl-theme.row(owl-carousel="team", owl-options="{}")
             .item()
-              .thumbnail
-                img.img-circle.team-img(ng-src="{{item.image}}", alt='...')
+              .thumbnail(ng-if="item._id")
+                img.img-circle.team-img(ng-src="{{avatar(item.profile.avatar)}}", alt='...')
                 .caption
-                  h3 {{item.name}}
-                  p {{item.intro}}
-                  p {{item.description}}
-            
-  .align-center.fade(ng-class="showClass")
-      img(src="YellowCheeseWax.jpg")
-  nav#footer.fade(ng-class="showClass")
+                  h3 {{item.profile.firstName}}
+                  p {{item.profile.lastName}} {{item.profile.firstName}}
+                  p {{item.emails[0].address}}
+
+    
+.align-center.fade(ng-class="showClass")
+    img(src="YellowCheeseWax.jpg")
+
+nav#footer.fade(ng-class="showClass")
   .container
     .pull-left.fnav
       p

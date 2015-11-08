@@ -2,7 +2,7 @@
 
 var services = angular.module('waxServices', []);
 
-services.factory('UserService', function($filter, $meteor) {
+services.factory('UserService', function($filter, $meteor, $rootScope) {
     var userService = {};
 
     var users = $meteor.collection(Meteor.users, false).subscribe('users');
@@ -34,10 +34,35 @@ services.factory('UserService', function($filter, $meteor) {
         return isPart;
     }
 
+    userService.getWaxers = function() {
+        var waxers = Roles.getUsersInRole('coder','waxer').fetch();
+        return shuffle(waxers);
+    };
+
     return userService;
 });
 
-services.factory('ImageService', function($filter, $meteor) {
+function shuffle(array) {
+  var currentIndex = array.length, temporaryValue, randomIndex ;
+
+  // While there remain elements to shuffle...
+  while (0 !== currentIndex) {
+
+    // Pick a remaining element...
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex -= 1;
+
+    // And swap it with the current element.
+    temporaryValue = array[currentIndex];
+    array[currentIndex] = array[randomIndex];
+    array[randomIndex] = temporaryValue;
+  }
+
+  return array;
+}
+
+
+services.factory('ImageService', function($filter, $meteor, $rootScope) {
     var ImageService = {};
 
     var images = $meteor.collectionFS(Images, false, Images).subscribe('images');
@@ -50,11 +75,17 @@ services.factory('ImageService', function($filter, $meteor) {
             return url;
         }
     };
+
     ImageService.getImageById = function(idToFind) {
         if(!idToFind) return "atixnet.png";
         if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet.png";
         var url = $filter('filter')(images, {_id: idToFind})[0].url();
         return url;
+    };
+
+    ImageService.getAvatarUrl = function(idToFind, options) {
+        if(!idToFind) return "atixnet.png";
+        return $rootScope.uiHelpers.c().url(idToFind, {'hash': options});
     };
 
     return ImageService;

@@ -14,15 +14,13 @@ angular.module('waxYeoAnguApp')
         link: function($scope, element, attrs){
             if($scope.user){
                 var avatarId = $scope.user.profile.avatar;
-                $scope.avatar = ImageService.getImageById(avatarId);
+                $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
                 $scope.email = $scope.user.emails[0].address;
             }
             else{
                 if($rootScope.currentUser && $rootScope.currentUser.profile){
                     var avatarId = $rootScope.currentUser.profile.avatar;
-                    $scope.avatar = $meteor.collectionFS(function(){
-                        return Images.find({_id : avatarId});
-                    }, false).subscribe('images');
+                    $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
                     $scope.email = $rootScope.currentUser.emails[0].address;
                 }
             }
