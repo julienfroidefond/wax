@@ -112,6 +112,19 @@
     }
     .project-image-container{
         margin-bottom:10px;
+        .btn-add-image{
+            text-align: center;
+            width: 100%;
+            margin-top: -180px;
+            opacity:0;
+            transition:0.2s cubic-bezier(.55,0,.1,1) all;
+        }
+        &:hover{
+            .btn-add-image{
+                opacity:0.8;
+                margin-top: -210px;
+            }
+        }
     }
 }
 

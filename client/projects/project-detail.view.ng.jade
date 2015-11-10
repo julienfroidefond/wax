@@ -13,8 +13,10 @@
                     h3 Images
                     .project-image-container(ng-if="!project.image", ng-click="showPopup()")
                         img(class="img-responsive", src='http://placehold.it/200x200/')
+                        a.btn.btn-default.btn-add-image Ajouter une image
                     .project-image-container(ng-if='project.image', ng-click="showPopup()")
                         img(class="img-responsive", ng-src='{{getMainImage()}}')
+                        a.btn.btn-default.btn-add-image Ajouter une image
                 .col-sm-10
                     h3 Description
                     textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
