@@ -77,6 +77,19 @@ angular.module('waxYeoAnguApp')
     $meteor.autorun($scope, function() {
         $scope.team = UserService.getWaxers();
     })
+    $scope.testimonials = [{
+        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
+        name:'Jonh Doe',
+        job: 'CEO Acme Inc.'
+    },{
+        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
+        name:'Jonh Doe',
+        job: 'CEO Acme Inc.'
+    },{
+        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
+        name:'Jonh Doe',
+        job: 'CEO Acme Inc.'
+    }];
 
 
     $scope.avatar = function(avatarId){

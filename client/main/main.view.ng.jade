@@ -56,7 +56,63 @@
                   p {{item.profile.lastName}} {{item.profile.firstName}}
                   p {{item.emails[0].address}}
 
-    
+  #tf-services.text-center
+        .container
+          .section-title.center
+            h2
+              | Je suis Waxer ... 
+              strong Et maintenant ?
+            .line
+              hr
+            .clearfix
+            | 
+          .space
+          .row
+            .col-md-3.col-sm-6.service
+              i.fa.fa-lightbulb-o
+              h4
+                strong J'ai une idée !
+              p
+                | Pendant six mois, vous pourrez réfléchir sur des idées novatrices autour du thème de l'informatique.
+                
+            .col-md-3.col-sm-6.service
+              i.fa.fa-desktop
+              h4
+                strong Je la poste
+              p
+                | "J'ai une idée, et je sens que c'est la bonne !" ... Tant mieux ! Partagez-la sur ce site dès que vous pouvez !
+            .col-md-3.col-sm-6.service
+              i.fa.fa-thumbs-o-up
+              h4
+                strong Je vote et like
+              p
+                | Trois possibilités sur le site : Ajouter un projet, Voter pour un projet, Liker un projet. Vous pouvez tout liker mais voter uniquement pour un et un seul projet (qui n'est pas le votre)
+            .col-md-3.col-sm-6.service
+              i.fa.fa-terminal
+              h4
+                strong Je code :)
+              p
+                | A la fin des 6 mois nous nou retrouvons à Bdx pour mener nos deux projets finaux élus.
+                
+    #tf-testimonials.text-center
+          .overlay
+            .container
+              .section-title.center
+                h2
+                  strong Témoignages
+                  |  Waxer
+                .line
+                  hr
+              .row
+                .col-md-8.col-md-offset-2
+                  #testimonial.owl-carousel.owl-theme(owl-carousel="testimonials", owl-options="{\"singleItem\":true}")
+                    .item
+                      h5
+                        | {{item.content}}
+                      p
+                        strong {{item.name}}
+                        | , {{item.job}}
+                        
 .align-center.fade(ng-class="showClass")
     img(src="YellowCheeseWax.jpg")
 
