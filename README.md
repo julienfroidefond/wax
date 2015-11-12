@@ -11,8 +11,10 @@ Site du **WAX** (*Workshop Atixnet Xperience*).
 	 - angular-owl-carousel,
 	 - angular-summernote (wysiwyg)
  - Front end en **Bootstrap 3** avec **font awesome** et **moment**
+ - **Bower** pour gestion des ressources
  - Utilisation de **Yeoman**: https://www.npmjs.com/package/generator-angular-meteor
  - **Cloudinary** pour les images
+ - **spiderable** pour le référencement
  - **Users auto** au démarrage de l'appli
 
 Pour le lancer :

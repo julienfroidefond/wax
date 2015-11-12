@@ -78,17 +78,29 @@ angular.module('waxYeoAnguApp')
         $scope.team = UserService.getWaxers();
     })
     $scope.testimonials = [{
-        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
-        name:'Jonh Doe',
-        job: 'CEO Acme Inc.'
+        content:'Chacun est libre de proposer n\'importe quelle idée autour de la technologie.',
+        name:'Règle 1',
+        job: 'Liberté'
     },{
-        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
-        name:'Jonh Doe',
-        job: 'CEO Acme Inc.'
+        content:'Deux projets s\'affrontent au final pour le WAX. Que le meilleur gagne',
+        name:'Règle 2',
+        job: 'Deux projets'
     },{
-        content:'Au Wax, nous avons pu cette année encore découvrir les techno qui sortent et tout juste, etc....',
-        name:'Jonh Doe',
-        job: 'CEO Acme Inc.'
+        content:'Une semaine. C\'est la durée du WAX. Vous aurez une semaine pour développer votre projet et créer les techno de demain.',
+        name:'Règle 3',
+        job: 'Durée du WAX'
+    },{
+        content:'Le vendredi du WAX, à 14h, on arrète tout pour présentation au CEO d\'Atixnet.',
+        name:'Règle 4',
+        job: 'Presentation'
+    },{
+        content:'Have FUN',
+        name:'Règle 5',
+        job: 'Amusez-vous'
+    },{
+        content:'Chaque équipe est composée : d\'un chef de projet, d\'un présentateur, de développeurs. Ils sont élus démocratiquement le lundi matin par l\'équipe.',
+        name:'Règle 6',
+        job: 'Equipe'
     }];
 
 
