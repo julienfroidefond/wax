@@ -40,6 +40,10 @@ angular.module('waxYeoAnguApp')
             $scope.newProject = {};
         }
     };
+    $scope.nbLikes = function(project){
+        if(!project.likers) return 0;
+        return project.likers.length;
+    }
 
     $scope.hasRights = function(project) {
         return $rootScope.currentUser && project.owner==$rootScope.currentUser._id

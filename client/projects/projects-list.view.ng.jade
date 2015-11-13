@@ -26,14 +26,20 @@
   .row
       .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box
+            .ribbon(ng-if="nbLikes(project) > 0")
+                div
+                    span.nb-likes {{nbLikes(project)}} 
+                    span likes !
             .box-icon
               img(class="", ng-src='{{getMainImage(project.image)}}')
+            
             .info
                 h4.text-center {{ project.name }}
                 div.description
                     div(ng-bind-html="getHtml(project.description)") 
                     //- div.images(ng-repeat='image in project.images')
                     //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
+                hr
                 div.buttons
                     liker(project="project", ng-if='$root.currentUser')
                     a.btn(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")

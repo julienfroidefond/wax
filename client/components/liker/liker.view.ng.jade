@@ -1,7 +1,5 @@
 a.btn(ng-click="like()", ng-class="cssClasses")
-    span.fa.fa-thumbs-o-up
-    | &nbsp;
-    span(ng-if='alreadyLiked()', tooltip="Je n'aime plus") ({{nbLikes()}})
-    span(ng-if='!alreadyLiked()', tooltip="J'aime") ({{nbLikes()}})
+    span(ng-if='alreadyLiked()', tooltip="Je n'aime plus").fa.fa-thumbs-o-down
+    span(ng-if='!alreadyLiked()', tooltip="J'aime").fa.fa-thumbs-o-up
         
     
