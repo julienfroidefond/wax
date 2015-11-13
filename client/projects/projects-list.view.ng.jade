@@ -1,5 +1,8 @@
 .projects-list.container
-  h1 Projets
+  h1 
+    | Les projets 
+    small du Wax 2015
+  
   form(ng-submit='save()', name='form', novalidate='')
     p.input-group(ng-if="$root.currentUser && $root.isInRole('coder', 'waxer')")
       input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
@@ -14,7 +17,9 @@
         ul.dropdown-menu(role='menu')
           li(ng-click="orderProperty='1'") Ascending
           li(ng-click="orderProperty='-1'") Descending
+  
   br
+  
   p(class="alert alert-info", ng-if="projectParticipe[0]._id") 
       | Je participe au projet : 
       a(href='/projects/{{projectParticipe[0]._id}}') {{ projectParticipe[0].name }} 
