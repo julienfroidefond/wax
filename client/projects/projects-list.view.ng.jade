@@ -35,6 +35,7 @@
                     //- div.images(ng-repeat='image in project.images')
                     //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
                 div.buttons
+                    liker(project="project", ng-if='$root.currentUser')
                     a.btn(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
                         i(class="fa fa-trash-o")
                     a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")

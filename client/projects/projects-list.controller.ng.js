@@ -33,7 +33,7 @@ angular.module('waxYeoAnguApp')
             $scope.newProject.ownerAvatar=$rootScope.currentUser.profile.avatar;
             $scope.newProject.owner=$rootScope.currentUser._id;
             $scope.projects.save($scope.newProject).then( function() {
-                console.log('The todo was saved');
+                console.log('The project was saved');
             }, function(err) {
                 console.error( 'An error occurred. The error message is: ' + err.message);
             });

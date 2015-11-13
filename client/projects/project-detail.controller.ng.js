@@ -98,7 +98,7 @@ angular.module('waxYeoAnguApp')
         });
 
     }
-
+    
     $scope.isAParticipant = function(){
         return UserService.isParticipant($rootScope.currentUser, $scope.project.participants);
     }
