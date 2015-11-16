@@ -2,13 +2,18 @@
     a.btn.btn-default.pull-right(href="/projects") Retour
     h1 {{project.name}}
     div(ng-if='hasRights()')
-        h1 Détails du projet
         form(ng-submit='save()', name='form', novalidate='')
-            .row
+          .box
+            .box-icon
+              .project-image-container(ng-if="!project.image", ng-click="showPopup()")
+                  img(class="img-responsive", src='http://placehold.it/200x200/')
+              .project-image-container(ng-if='project.image', ng-click="showPopup()")
+                  img(class="img-responsive", ng-src='{{getMainImage()}}')
+            .info
+              div.description-full
                 .col-sm-12
                     h3 Nom
                     input.form-control(type='text', placeholder='Name', ng-model='project.name')
-            .row
                 .col-sm-2
                     h3 Images
                     .project-image-container(ng-if="!project.image", ng-click="showPopup()")
@@ -20,16 +25,17 @@
                 .col-sm-10
                     h3 Description
                     textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
-            div.avatars(ng-if="project.participants")
-                avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-            div.avatars(ng-if="!project.participants")
-                avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                .buttons
+                    liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+                    a.btn.btn-primary(ng-click='save()') Sauver
+                    a.btn.btn-default(href='/projects') Retour
+              div.avatars(ng-if="project.participants")
+                  avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                  avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+              div.avatars(ng-if="!project.participants")
+                  avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
             
-            .row.buttons
-                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                input.btn.btn-primary(type='submit', value='Sauver')
-                a.btn.btn-default(href='/projects') Retour
+            
     div(ng-if='!hasRights()')
         .row
             .col-xs-12.col-sm-12
