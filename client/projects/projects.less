@@ -24,6 +24,15 @@
     text-align: right;
     display: block;
     margin-top: 60px;
+    &:hover{
+      box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+      .box-icon-likes{
+        opacity:0;
+      }
+      .box-icon-likes-txt{
+        opacity:0;
+      }
+    }
 }
 .avatars .avatar{
     border-radius: 50%;
@@ -61,7 +70,7 @@
     width: 100px;
     position: relative;
     color: #fff;
-    opacity: 0.5;
+    opacity: 0.8;
     padding-top: 8px;
     text-align: center;
     margin-top: -98px;
@@ -81,6 +90,7 @@
     text-align: center;
     margin-top: -102px;
     text-shadow: 2px 1px 4px black;
+    transition: all 0.5s ease 0s;
 }
 .info h4 {
     font-size: 26px;
