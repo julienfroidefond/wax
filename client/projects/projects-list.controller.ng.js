@@ -10,18 +10,27 @@ angular.module('waxYeoAnguApp')
     $scope.pageClass= "project-list-page";
 
     $scope.projects = $scope.$meteorCollection(function() {
-        return Projects.find({}, {sort:$scope.getReactively('sort')});
-    });
 
-    $meteor.autorun($scope, function() {
         var limitP = parseInt($scope.getReactively('perPage'));
         var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
         var sortP = $scope.getReactively('sort');
-        $meteor.subscribe('projects', {
+        return Projects.find({}, {
             limit: limitP,
             skip: skipP,
             sort: sortP
-        }, $scope.getReactively('search')).then(function() {
+        });
+    });
+
+    $meteor.autorun($scope, function() {
+
+        var limitP = parseInt($scope.getReactively('perPage'));
+        var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
+        var sortP = $scope.getReactively('sort');
+        $scope.$meteorSubscribe('projects', {
+            limit: limitP,
+            skip: skipP,
+            sort: sortP
+        }, $scope.getReactively('search')).then(function(a) {
             $scope.projectsCount = $scope.$meteorObject(Counts, 'numberOfProjects', false);
         });
     });
@@ -54,7 +63,6 @@ angular.module('waxYeoAnguApp')
     };
 
     $scope.pageChanged = function(newPage) {
-        console.log('pageChanged');
         $scope.page = newPage;
     };
 
