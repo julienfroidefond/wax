@@ -26,13 +26,15 @@
   .row
       .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
           .box
-            .ribbon(ng-if="nbLikes(project) > 0")
+            .ribbon(ng-if="nbLikes(project) > 4")
                 div
-                    span.nb-likes {{nbLikes(project)}} 
-                    span likes !
+                    span Populaire
             .box-icon
               img(class="", ng-src='{{getMainImage(project.image)}}')
-            
+            .box-icon-likes(ng-if='nbLikes(project)>0')
+            .box-icon-likes-txt(ng-if='nbLikes(project)>0', tooltip="{{nbLikes(project)}} likes")
+              | +{{nbLikes(project)}}
+          
             .info
                 h4.text-center {{ project.name }}
                 div.description

@@ -65,6 +65,18 @@
   margin-top:0px;
 }
 
+.ng-leave.ng-leave-active,
+.ng-enter,
+.ng-move {
+    -webkit-transition:0.5s cubic-bezier(.55,0,.1,1) all;
+    transition:0.5s cubic-bezier(.55,0,.1,1) all;
+    opacity:0;
+}
+.ng-leave,
+.ng-move.ng-move-active,
+.ng-enter.ng-enter-active {
+  opacity:1;
+}
 
 .login-page, .project-detail-page, .chat-page, .main-page, .about-page{
     // &.ng-enter {
