@@ -137,7 +137,7 @@
             "firstName": "Test",
             "avatar": "avatar.jpg",
             "password": "test",
-            "role": ["coder"],
+            "role": ["other"],
             "group": "non-waxer"
         },
         {
