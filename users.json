@@ -139,6 +139,156 @@
             "password": "test",
             "role": ["coder"],
             "group": "non-waxer"
+        },
+        {
+            "username": "calmira@atixnet.fr",
+            "email": "calmira@atixnet.fr",
+            "lastName": "Almira",
+            "firstName": "Christophe",
+            "avatar": "calmira.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "rpiffard@atixnet.fr",
+            "email": "rpiffard@atixnet.fr",
+            "lastName": "Piffard",
+            "firstName": "Romain",
+            "avatar": "rpiffard.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "abouvier@atixnet.fr",
+            "email": "abouvier@atixnet.fr",
+            "lastName": "Bouvier",
+            "firstName": "Antoine",
+            "avatar": "abouvier.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "btoure@atixnet.fr",
+            "email": "btoure@atixnet.fr",
+            "lastName": "Toure",
+            "firstName": "Bakari",
+            "avatar": "btoure.png",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "vmoula@atixnet.fr",
+            "email": "vmoula@atixnet.fr",
+            "lastName": "Moula",
+            "firstName": "Valentin",
+            "avatar": "vmoula.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "abuino@atixnet.fr",
+            "email": "abuino@atixnet.fr",
+            "lastName": "Buino",
+            "firstName": "Alexandre",
+            "avatar": "abuino.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "nporqueddu@atixnet.fr",
+            "email": "nporqueddu@atixnet.fr",
+            "lastName": "Porqueddu",
+            "firstName": "Nicolas",
+            "avatar": "nporqueddu.png",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "hgmichon@atixnet.fr",
+            "email": "hgmichon@atixnet.fr",
+            "lastName": "Michon",
+            "firstName": "Henry-Georges",
+            "avatar": "hgmichon.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "cgerdil@atixnet.fr",
+            "email": "cgerdil@atixnet.fr",
+            "lastName": "Gerdil",
+            "firstName": "Corentin",
+            "avatar": "cgerdil.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "kledeunf@atixnet.fr",
+            "email": "kledeunf@atixnet.fr",
+            "lastName": "Le Deunf",
+            "firstName": "Kevin",
+            "avatar": "kledeunf.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "gnunes@atixnet.fr",
+            "email": "gnunes@atixnet.fr",
+            "lastName": "Nunes",
+            "firstName": "Gabriel",
+            "avatar": "gnunes.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "aloupil@atixnet.fr",
+            "email": "aloupil@atixnet.fr",
+            "lastName": "Loupil",
+            "firstName": "Adrien",
+            "avatar": "aloupil.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "rteixeira@atixnet.fr",
+            "email": "rteixeira@atixnet.fr",
+            "lastName": "Teixeira",
+            "firstName": "Rémi",
+            "avatar": "rteixeira.jpeg",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "fterrioux@atixnet.fr",
+            "email": "fterrioux@atixnet.fr",
+            "lastName": "Terrioux",
+            "firstName": "Florian",
+            "avatar": "fterrioux.png",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
+        },
+        {
+            "username": "mcourty@atixnet.fr",
+            "email": "mcourty@atixnet.fr",
+            "lastName": "Courty",
+            "firstName": "Mathieu",
+            "avatar": "mcourty.png",
+            "password": "test",
+            "role": ["other"],
+            "group": "non-waxer"
         }
     ]
 }

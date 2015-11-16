@@ -10,6 +10,7 @@
             div.panel-body
                 .alert.alert-danger Ajout des comptes non Waxers
                 .alert.alert-danger Fonctionnalité du like sur projets : UI
+                .alert.alert-warning Trier par nombre de likes
                 .alert.alert-warning Passer les uploads sur cloudinary
                 .alert.alert-warning Compléter texte commercial
                 .alert.alert-warning Image pour la home dans réalisations
@@ -41,7 +42,7 @@
                 h4 Users list
             .panel-body
                 div.row
-                    div.col-xs-6(ng-repeat="user in users")
+                    div.col-sm-6(ng-repeat="user in users")
                         avatar(width='40', user="user")
                         br
                             

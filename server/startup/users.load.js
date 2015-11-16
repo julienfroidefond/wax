@@ -5,7 +5,7 @@ Meteor.startup(function() {
     // var fsFile = new FS.File(basePath+'/users.json');
     // console.log(fsFile.attachData);
 
-    if(Meteor.users.find().count() < 12) {
+    if(Meteor.users.find().count() < 29) {
         var basePath = process.env.PWD;
         var fs = Npm.require('fs');
         data = fs.readFileSync(basePath+'/users.json', 'utf8');
@@ -72,10 +72,10 @@ function addCloudinaryImage(user, callback){
     Cloudinary.api.resource(user.username,
         Meteor.bindEnvironment(function(result)  {
             if(result.error && result.error.http_code == 404){
-                Cloudinary.uploader.upload(basePath+'/public/users/'+user.avatar, function(res) {
+                Cloudinary.uploader.upload(basePath+'/public/users/'+user.avatar, Meteor.bindEnvironment(function(res) {
                     addUser(user, res.public_id);
                     return callback(res, user);
-                }, { public_id: user.username });
+                }), { public_id: user.username });
             }else{
                 addUser(user, result.public_id);
                 return callback(result, user);

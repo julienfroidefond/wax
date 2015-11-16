@@ -1,3 +1,4 @@
 p
     img(width="{{width ? width : '20'}}", class="img-circle", ng-src="{{avatar}}", tooltip="{{email}}")
     span(ng-if="!imageonly")  &nbsp;&nbsp;{{email}}
+    span(ng-if="showname") {{name}}

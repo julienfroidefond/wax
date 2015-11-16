@@ -27,7 +27,7 @@
                 avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
             
             .row.buttons
-                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary")
+                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
                 input.btn.btn-primary(type='submit', value='Sauver')
                 a.btn.btn-default(href='/projects') Retour
     div(ng-if='!hasRights()')
@@ -42,10 +42,10 @@
                           div(ng-bind-html="getHtml(project.description)") 
                           p(ng-if="!project.description ") Pas de description
                         .buttons
+                            liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
                             .btn.btn-primary(ng-if="$root.currentUser", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
                             .btn.btn-danger(ng-if="$root.currentUser", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
                             .btn.btn-default(ng-if="$root.currentUser", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
-                            liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary")
                             a.btn.btn-default(href='/projects') Retour  
                       div.avatars(ng-if="project.participants")
                           avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
