@@ -4,7 +4,6 @@ accounts-ui@1.1.6
 accounts-ui-unstyled@1.1.8
 afruth:chapp@0.1.6
 alanning:roles@1.2.14
-alexk111:ng-img-crop@0.3.2
 angular@1.0.4
 angular:angular@1.4.7
 angular:angular-animate@1.4.7
@@ -43,6 +42,7 @@ cfs:worker@0.1.4
 check@1.1.0
 civilframe:angular-jade@0.0.3
 coffeescript@1.0.11
+correpw:ng-img-crop-full-extended@0.4.3
 danialfarid:ng-file-upload@5.0.9
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2

@@ -23,34 +23,47 @@
   p(class="alert alert-info", ng-if="projectParticipe[0]._id") 
       | Je participe au projet : 
       a(href='/projects/{{projectParticipe[0]._id}}') {{ projectParticipe[0].name }} 
-  .row
-      .col-xs-12.col-sm-4.col-md-3.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
-        .card.hovercard
-          .cardheader(ng-style="{'background-image':'url('+getMainImage(project.image)+')'}")
-          .cardheader-likes(ng-if='nbLikes(project)>0')
-          .cardheader-likes-content(ng-if='nbLikes(project)>0', tooltip="{{nbLikes(project)}} likes") 
-            | +{{nbLikes(project)}}
-          .avatar
+  .row.project-list
+      .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+        .card
+          .image
             a(href='/projects/{{project._id}}')
-              img(ng-src='{{getMainImage(project.image)}}')
-          .info
+              img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
+            .hover-content
+              .centered
+                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
+              .bottom
+                avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
+                .pull-right
+                  a.btn.btn-link.btn-sm(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
+                    i.fa.fa-pencil
+                  a.btn.btn-link.btn-sm(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
+                    i.fa.fa-trash
+            //- .pull-right {{projectCreatedDate(project.createdAt)}}
+          .content
             .title
-              a(href='/projects/{{project._id}}') {{ project.name }}
+              a(href='/projects/{{project._id}}') 
+                h2 {{ project.name }}
             .desc(ng-bind-html="getHtml(project.description)")
-          .bottom
-            liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary")
-            a.btn.btn-warning.btn-sm(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
-              i.fa.fa-pencil
-            a.btn.btn-default.btn-sm(ng-if='!hasRights(project)', href='/projects/{{project._id}}', tooltip="Voir") 
-              i.fa.fa-eye
-            a.btn.btn-danger.btn-sm(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
-              i.fa.fa-trash
-          .avatars(ng-if="project.participants")
+          .content
+            .avatars(ng-if="project.participants")
               avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
               avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-          .avatars(ng-if="!project.participants")
+            .avatars(ng-if="!project.participants")
               avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-
+          .content
+            a.btn.btn-block.btn-default(href='/projects/{{project._id}}') 
+              span(ng-if='hasRights(project)') Editer
+              span(ng-if='!hasRights(project)') En savoir plus
+          //- .extra.content.clearfix
+          //-   a(ng-if='project.participants')
+          //-     i.fa.fa-users
+          //-     span  {{project.participants.length +1 }} participants
+          //-   a.pull-right
+          //-     i.glyphicon.glyphicon-heart
+          //-     |  {{nbLikes(project)}} likes
+            
+        
           //- .box
           //-   .ribbon(ng-if="nbLikes(project) > 4")
           //-       div

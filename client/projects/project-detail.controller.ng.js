@@ -98,7 +98,7 @@ angular.module('waxYeoAnguApp')
         });
 
     }
-    
+
     $scope.isAParticipant = function(){
         return UserService.isParticipant($rootScope.currentUser, $scope.project.participants);
     }
@@ -112,4 +112,7 @@ angular.module('waxYeoAnguApp')
     $scope.getHtml = function(html) {
         return $sce.trustAsHtml(html);
     };
+    $scope.projectCreatedDate = function(){
+        return moment($scope.project.createdAt).fromNow();
+    }
 });

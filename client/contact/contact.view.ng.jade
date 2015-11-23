@@ -6,7 +6,7 @@
   .container
     .row
       .col-md-6
-        img.img-responsive(src='img/atixnet02.png')
+        img.img-responsive.logo-extended(src='WAX-logo-extended.png')
       .col-md-6
         .about-text
           .section-title
@@ -25,7 +25,7 @@
                     input#InputEmail.form-control(type='email', name='InputEmail', placeholder='Votre Email', required='true', ng-model='newMessage.email')
                 .form-group
                     textarea#InputMessage.form-control(name='InputMessage', rows='5', required='true', placeholder='Votre message', ng-model='newMessage.message')
-                input#submit.btn.btn-info.pull-right(type='submit', name='submit', value='Envoyer')
+                input#submit.btn.btn-primary.pull-right(type='submit', name='submit', value='Envoyer')
           div.intro(ng-if="hasSentMessage")
             p.alert.alert-success Votre message a bien été enregistré...
               

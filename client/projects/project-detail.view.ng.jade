@@ -3,61 +3,106 @@
     h1 {{project.name}}
     div(ng-if='hasRights()')
         form(ng-submit='save()', name='form', novalidate='')
-          .box
-            .box-icon
+        .col-md-4
+          .card
+            .image
               .project-image-container(ng-if="!project.image", ng-click="showPopup()")
-                  img(class="img-responsive", src='http://placehold.it/200x200/')
+                  img(class="img-responsive", src='http://placehold.it/360x200/')
               .project-image-container(ng-if='project.image', ng-click="showPopup()")
                   img(class="img-responsive", ng-src='{{getMainImage()}}')
-            .info
-              div.description-full
-                .col-sm-12
-                    h3 Nom
-                    input.form-control(type='text', placeholder='Name', ng-model='project.name')
-                .col-sm-2
-                    h3 Images
-                    .project-image-container(ng-if="!project.image", ng-click="showPopup()")
-                        img(class="img-responsive", src='http://placehold.it/200x200/')
-                        a.btn.btn-default.btn-add-image Ajouter une image
-                    .project-image-container(ng-if='project.image', ng-click="showPopup()")
-                        img(class="img-responsive", ng-src='{{getMainImage()}}')
-                        a.btn.btn-default.btn-add-image Ajouter une image
-                .col-sm-10
-                    h3 Description
-                    textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
-                .buttons
-                    liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                    a.btn.btn-primary(ng-click='save()') Sauver
-                    a.btn.btn-default(href='/projects') Retour
+            .content
+              a.btn.btn-default.btn-block.btn-add-image(ng-click="showPopup()") Ajouter une image
+            .content
+              .buttons
+                //- a.btn.btn-default(href='/projects') Retour
+                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+                a.btn.btn-primary(ng-click='save()') Sauver
+            .content
               div.avatars(ng-if="project.participants")
                   avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
                   avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
               div.avatars(ng-if="!project.participants")
                   avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-            
-            
+        .col-md-8
+          .card
+            .content
+              .title
+                h3 Nom
+                input.form-control(type='text', placeholder='Name', ng-model='project.name')
+            .content
+              h3 Description
+              textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
+              
+          //- .box
+          //-   .info
+          //-     div.description-full
+          //-       .col-sm-12
+          //-           h3 Nom
+          //-           input.form-control(type='text', placeholder='Name', ng-model='project.name')
+          //-       .col-sm-2
+          //-           h3 Images
+          //-           .project-image-container(ng-if="!project.image", ng-click="showPopup()")
+          //-               img(class="img-responsive", src='http://placehold.it/200x200/')
+          //-               br
+          //-               a.btn.btn-default.btn-block.btn-add-image Ajouter une image
+          //-           .project-image-container(ng-if='project.image', ng-click="showPopup()")
+          //-               img(class="img-responsive", ng-src='{{getMainImage()}}')
+          //-               br
+          //-               a.btn.btn-default.btn-block.btn-add-image Ajouter une image
+          //-       .col-sm-10
+          //-           h3 Description
+          //-           textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
+          //-       .buttons
+          //-           liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+          //-           a.btn.btn-primary(ng-click='save()') Sauver
+          //-           a.btn.btn-default(href='/projects') Retour
+          //-     div.avatars(ng-if="project.participants")
+          //-         avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+          //-         avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+          //-     div.avatars(ng-if="!project.participants")
+          //-         avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                  
     div(ng-if='!hasRights()')
-        .row
-            .col-xs-12.col-sm-12
-                .box
-                  .box-icon
-                    img(class="", ng-src='{{getMainImage()}}')
-                  .info
-                      h4.text-center {{ project.name }}
-                      div.description-full
-                          div(ng-bind-html="getHtml(project.description)") 
-                          p(ng-if="!project.description ") Pas de description
-                        .buttons
-                            liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                            .btn.btn-primary(ng-if="$root.currentUser", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
-                            .btn.btn-danger(ng-if="$root.currentUser", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
-                            .btn.btn-default(ng-if="$root.currentUser", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
-                            a.btn.btn-default(href='/projects') Retour  
-                      div.avatars(ng-if="project.participants")
-                          avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                          avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-                      div.avatars(ng-if="!project.participants")
-                          avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline") 
+        .row.project-detail
+          .col-md-4
+            .card
+              .image
+                a(href='/projects/{{project._id}}')
+                  img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
+              .content.clearfix
+                .buttons
+                  //- a.btn.btn-default(href='/projects') Retour  
+                  liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+                  .btn.btn-primary(ng-if="$root.currentUser", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
+                  .btn.btn-danger(ng-if="$root.currentUser", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+                  .btn.btn-default(ng-if="$root.currentUser", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
+                  
+              .content
+                  i.fa.fa-calendar
+                  |  Créé depuis : {{projectCreatedDate()}}
+              .content
+                  i.fa.fa-user
+                  |  Par :
+                  br
+                  br
+                  avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
+              .content
+                  i.fa.fa-users
+                  span  {{project.participants.length +1 }} participants :
+                  br
+                  br
+                  .avatars(ng-if="project.participants")
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                    avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+                  .avatars(ng-if="!project.participants")
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+          .col-md-8
+            .card
+              .content
+                .title
+                  a(href='/projects/{{project._id}}') 
+                    h2 {{ project.name }}
+                .desc-full(ng-bind-html="getHtml(project.description)")
                                
 .modal.fade(id="popup")
   .modal-dialog
@@ -68,11 +113,11 @@
         h4.modal-title Ajout d'image
       .modal-body
           .drop-box(ng-hide="imgSrc", ngf-drop='', ngf-select='', ngf-change='addImages($files)', ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}", ngf-multiple='false', ngf-allow-dir='false', ngf-accept="'image/*'", ngf-drop-available='dropAvailable')
-              div Click here to select image
-              strong OR
-              div(ng-show='dropAvailable') You can also drop image to here
+              div Cliquez ici pour sélectionner une image
+              strong OU
+              div(ng-show='dropAvailable') Fropper une image depuis votre système ici
           .ng-crop-container(ng-show='imgSrc')
-            p Great! Now edit & crop your image...
-            img-crop(image='imgSrc', result-image='myCroppedImage', area-type='square')
+            p Parfait ! Maintenant, éditez votre image pour qu'elle soit conforme...
+            img-crop(image='imgSrc', result-image='myCroppedImage', area-type='rectangle', area-min-size="{w:360, h:200}", aspect-ratio="1.8", result-image-size='{w:360, h:200}')
       .modal-footer
           a.btn.btn-primary(ng-click='saveCroppedImage()', ng-disabled='!imgSrc') Save Image     

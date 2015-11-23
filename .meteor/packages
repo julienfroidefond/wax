@@ -32,7 +32,6 @@ accounts-ui
 cfs:standard-packages
 cfs:gridfs
 danialfarid:ng-file-upload
-alexk111:ng-img-crop
 afruth:chapp
 fortawesome:fontawesome
 angular:angular-animate
@@ -41,3 +40,4 @@ spiderable
 dfischer:phantomjs
 alanning:roles
 lepozepo:cloudinary
+correpw:ng-img-crop-full-extended

@@ -68,8 +68,8 @@ services.factory('ImageService', function($filter, $meteor, $rootScope) {
     var images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
     ImageService.getImageUrl = function(images, idToFind) {
-        if(!idToFind) return "atixnet.png";
-        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet.png";
+        if(!idToFind) return "atixnet-large.png";
+        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
         if (images && images.length) {
             var url = $filter('filter')(images, {_id: idToFind})[0].url();
             return url;
@@ -77,8 +77,8 @@ services.factory('ImageService', function($filter, $meteor, $rootScope) {
     };
 
     ImageService.getImageById = function(idToFind) {
-        if(!idToFind) return "atixnet.png";
-        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet.png";
+        if(!idToFind) return "atixnet-large.png";
+        if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
         var url = $filter('filter')(images, {_id: idToFind})[0].url();
         return url;
     };

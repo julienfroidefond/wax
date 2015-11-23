@@ -91,6 +91,9 @@ angular.module('waxYeoAnguApp')
     if($rootScope.currentUser)
         $scope.projectParticipe = UserService.getProjectParticipeTo($rootScope.currentUser)
 
+    $scope.projectCreatedDate = function(time){
+        return moment(time).fromNow();
+    }
     // if($rootScope.currentUser){
     //     $scope.myProject = $scope.$meteorCollection(function() {
     //         return Projects.find({_id : $rootScope.currentUser.profile.participeTo}, {});
