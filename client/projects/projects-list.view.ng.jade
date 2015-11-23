@@ -26,6 +26,11 @@
   .row.project-list
       .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
         .card
+          .box-icon-container(ng-if="nbLikes(project)>0")
+            .box-icon
+              .heart
+                i.fa.fa-heart
+              span.text {{nbLikes(project)}}
           .image
             a(href='/projects/{{project._id}}')
               img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')

@@ -13,7 +13,8 @@
   "dependencies": {
     "angular-summernote": "~0.5.1",
     "angular-sanitize": "~1.4.7",
-    "angular-owl-carousel": "~0.2.3"
+    "angular-owl-carousel": "~0.2.3",
+    "ng-img-crop-full-extended": "ngImgCropFullExtended#~0.4.4"
   },
   "overrides": {
     "angular": {
