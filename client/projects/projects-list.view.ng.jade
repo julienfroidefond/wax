@@ -52,51 +52,9 @@
             .avatars(ng-if="!project.participants")
               avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
           .content
-            a.btn.btn-block.btn-default(href='/projects/{{project._id}}') 
-              span(ng-if='hasRights(project)') Editer
-              span(ng-if='!hasRights(project)') En savoir plus
-          //- .extra.content.clearfix
-          //-   a(ng-if='project.participants')
-          //-     i.fa.fa-users
-          //-     span  {{project.participants.length +1 }} participants
-          //-   a.pull-right
-          //-     i.glyphicon.glyphicon-heart
-          //-     |  {{nbLikes(project)}} likes
-            
-        
-          //- .box
-          //-   .ribbon(ng-if="nbLikes(project) > 4")
-          //-       div
-          //-           span Populaire
-          //-   .box-icon
-          //-     img(class="", ng-src='{{getMainImage(project.image)}}')
-          //-   .box-icon-likes(ng-if='nbLikes(project)>0')
-          //-   .box-icon-likes-txt(ng-if='nbLikes(project)>0', tooltip="{{nbLikes(project)}} likes")
-          //-     | +{{nbLikes(project)}}
-          //- 
-          //-   .info
-          //-       h4.text-center {{ project.name }}
-          //-       div.description
-          //-           div(ng-bind-html="getHtml(project.description)") 
-          //-           //- div.images(ng-repeat='image in project.images')
-          //-           //-     img(class="img-responsive", ng-src='{{getImageUrl(project.images,image.id)}}')
-          //-       hr
-          //-       div.buttons
-          //-           liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-          //-           a.btn(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
-          //-               i(class="fa fa-trash-o")
-          //-           a.btn(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
-          //-               i(class="fa fa-pencil")
-          //-           a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', tooltip="Voir") 
-          //-               i(class="fa fa-eye")
-          //-           //- a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', title="J'aime") 
-          //-           //-     i(class="fa fa-thumbs-o-up")
-          //-           //- a.btn(ng-if='!hasRights(project)', href='/projects/{{project._id}}', title="Participer") Participe
-          //-       div.avatars(ng-if="project.participants")
-          //-           avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-          //-           avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-          //-       div.avatars(ng-if="!project.participants")
-          //-           avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+            a.btn.btn-block.btn-warning(href='/projects/{{project._id}}', ng-if='hasRights(project)') Editer
+            a.btn.btn-block.btn-default(href='/projects/{{project._id}}', ng-if='!hasRights(project)') En savoir plus
+          
                 
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
   hr
