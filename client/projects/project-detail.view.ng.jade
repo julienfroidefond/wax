@@ -41,6 +41,7 @@
                         avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
                       .avatars(ng-if="!project.participants")
                         avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                  
         .col-md-8
           .card
             .content
@@ -119,6 +120,13 @@
                           avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
                         .avatars(ng-if="!project.participants")
                           avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                    tr
+                      td
+                        i.fa.fa-heart
+                        span  {{project.likers.length }} likers :
+                      td
+                        .avatars
+                          avatar(user='getUser(liker)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="liker in project.likers")
 
           .col-md-8
             .card

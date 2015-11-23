@@ -9,6 +9,8 @@ angular.module('waxYeoAnguApp')
 
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
+    $scope.likers=$scope.project.likers;
+    
     $scope.save = function() {
         $scope.project.save().then(
             function(numberOfDocs) {
