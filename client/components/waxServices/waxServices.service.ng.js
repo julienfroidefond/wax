@@ -38,10 +38,7 @@ services.factory('UserService', function($filter, $meteor, $rootScope) {
         var waxers = Roles.getUsersInRole('coder','waxer').fetch();
         return shuffle(waxers);
     };
-
-    userService.hasParticipeRights = function(){
-
-    }
+    
 
     return userService;
 });
