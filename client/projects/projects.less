@@ -160,8 +160,8 @@
 }
 
 .project-list{
-  .card {
-    &:hover{
+  .card{
+    .image:hover{
       box-shadow: 0 1px 5px 0 #D4D4D5,0 0 0 1px #D4D4D5;
       .hover-content{
         opacity:1;
@@ -170,6 +170,10 @@
         -webkit-filter: blur(5px) grayscale(.7);
         filter: blur(5px) grayscale(.7);
       }
+
+    }
+    
+    &:hover{
       .heart{
         transform: scale(1.2);
       }
