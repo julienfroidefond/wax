@@ -10,7 +10,7 @@ angular.module('waxYeoAnguApp')
     $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
     $scope.likers=$scope.project.likers;
-    
+
     $scope.save = function() {
         $scope.project.save().then(
             function(numberOfDocs) {
@@ -64,6 +64,9 @@ angular.module('waxYeoAnguApp')
 
     $scope.hasRights = function(){
         return $rootScope.currentUser && $scope.project.owner==$rootScope.currentUser._id
+    }
+    $scope.hasParticipeRights = function(){
+        return $rootScope.currentUser && $rootScope.isInRole('coder', 'waxer');
     }
     $scope.join = function(){
         ProjectService.joinProject($rootScope.currentUser, $scope.project, function(){

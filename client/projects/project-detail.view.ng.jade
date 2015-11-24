@@ -92,9 +92,9 @@
                 .buttons
                   //- a.btn.btn-default(href='/projects') Retour  
                   liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                  .btn.btn-primary(ng-if="$root.currentUser", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
-                  .btn.btn-danger(ng-if="$root.currentUser", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
-                  .btn.btn-default(ng-if="$root.currentUser", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
+                  .btn.btn-primary(ng-if="hasParticipeRights()", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
+                  .btn.btn-danger(ng-if="hasParticipeRights()", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+                  .btn.btn-default(ng-if="hasParticipeRights()", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
                   
               .content
                 .table-responsive

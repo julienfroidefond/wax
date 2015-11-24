@@ -39,6 +39,10 @@ services.factory('UserService', function($filter, $meteor, $rootScope) {
         return shuffle(waxers);
     };
 
+    userService.hasParticipeRights = function(){
+
+    }
+
     return userService;
 });
 
