@@ -1,215 +1,159 @@
 .main.container
-    h1 
-        | Bienvenue 
-        small sur le site du Wax
+  h1 
+    | Bienvenue 
+    small sur le site du Wax
 #tf-about.fade(ng-class="showClass")
-      .container
-        .row
-          .col-md-6
-            img.img-responsive.logo-extended(src='WAX-logo-extended.png')
-          .col-md-6
-            .about-text
-              .section-title
-                h4 A propos du WAX
-                h2
-                  | Quelques mots 
-                  strong sur nous
-                hr
-                .clearfix
-              p.intro
-                a(href="http://atixnet.fr") Atixnet
-                | &nbsp;présente le 
-                b WAX.
-                | &nbsp;Toute l'équipe d'aujourd'hui prépare les technologies de demain.
-              ul.about-list
-                li
-                  span.fa.fa-dot-circle-o
-                  strong Workshop
-                  |  
-                  em
-                li
-                  span.fa.fa-dot-circle-o
-                  strong Atixnet
-                  |  
-                  em 
-                li
-                  span.fa.fa-dot-circle-o
-                  strong Xperience
-                  |  
-                  em 
+  .container
+    .row
+      .col-md-6
+        img.img-responsive.logo-extended(src='WAX-logo-extended.png')
+      .col-md-6
+        .about-text
+          .section-title
+            h4 A propos du WAX
+            h2
+              | Quelques mots 
+              strong sur nous
+            hr
+            .clearfix
+          p.intro
+            a(href="http://atixnet.fr") Atixnet
+            | &nbsp;présente le 
+            b WAX.
+            | &nbsp;Toute l'équipe d'aujourd'hui prépare les technologies de demain.
+          ul.about-list
+            li
+              span.fa.fa-dot-circle-o
+              strong Workshop
+              |  
+              em
+            li
+              span.fa.fa-dot-circle-o
+              strong Atixnet
+              |  
+              em 
+            li
+              span.fa.fa-dot-circle-o
+              strong Xperience
+              |  
+              em 
 
 #tf-team.text-center.fade(ng-class="showClass")
-      .overlay
-        .container
-          .section-title.center
-            h2
-              | Les 
-              strong WAXers
-            .line
-              hr
-          #team.owl-carousel.owl-theme.row(owl-carousel="team", owl-options="{}")
-            .item()
-              .thumbnail(ng-if="item._id")
-                img.img-circle.team-img(ng-src="{{avatar(item.profile.avatar)}}", alt='...')
-                .caption
-                  h3 {{item.profile.firstName}}
-                  p {{item.profile.lastName}} {{item.profile.firstName}}
-                  p {{item.emails[0].address}}
+  .overlay
+    .container
+      .section-title.center
+        h2
+          | Les 
+          strong WAXers
+        .line
+          hr
+      #team.owl-carousel.owl-theme.row(owl-carousel="team", owl-options="{}")
+        .item()
+          .thumbnail(ng-if="item._id")
+            img.img-circle.team-img(ng-src="{{avatar(item.profile.avatar)}}", alt='...')
+            .caption
+              h3 {{item.profile.firstName}}
+              p {{item.profile.lastName}} {{item.profile.firstName}}
+              p {{item.emails[0].address}}
 
- 
-  #tf-services.text-center
-        .container
-          .section-title.center
-            h2
-              | Je suis Waxer ... 
-              strong Et maintenant ?
-            .line
-              hr
-            .clearfix
-            | 
-          .space
-          .row
-            .col-md-3.col-sm-6.service
-              i.fa.fa-lightbulb-o
-              h4
-                strong J'ai une idée !
-              p
-                | Vous avez six mois pour réfléchir à une ou plusieurs idées de projet pour le WAX. Pensez loin, soyez ambitieux, lachez-vous !
-            .col-md-3.col-sm-6.service
-              i.fa.fa-desktop
-              h4
-                strong Je la poste sur ce site
-              p
-                | "J'ai une idée, et je sens que c'est la bonne !" ... Tant mieux ! Partagez-la sur ce site dès que vous pouvez !
-            .col-md-3.col-sm-6.service
-              i.fa.fa-thumbs-o-up
-              h4
-                strong Je vote et like
-              p
-                | Trois possibilités sur ce site : Ajouter un projet, Voter pour un projet, Liker un projet. Vous pouvez tout liker mais voter uniquement pour un et un seul projet (qui n'est pas le votre)
-            .col-md-3.col-sm-6.service
-              i.fa.fa-terminal
-              h4
-                strong Je code :)
-              p
-                | A la fin des 6 mois, nous nous retrouvons à Darwin (Bordeaux) pour développer, tous ensemble, les deux projets élus. Un seul sera l'élu !
-                
-    #tf-testimonials.text-center
-          .overlay
-            .container
-              .section-title.center
-                h2
-                  strong Règles
-                  |  du WAX
-                .line
-                  hr
-              .row
-                .col-md-8.col-md-offset-2
-                  #testimonial.owl-carousel.owl-theme(owl-carousel="testimonials", owl-options="{\"singleItem\":true}")
-                    .item
-                      h5
-                        | {{item.content}}
-                      p
-                        strong {{item.name}}
-                        | , {{item.job}}
-    #tf-works
-          .container
-            // Container
-            .section-title.text-center.center
-              h2
-                | Réalisations 
-                strong 2015
-              .line
-                hr
-              .clearfix
-            #lightbox.row
-              .col-sm-6.col-md-3.col-lg-3.branding
-                .portfolio-item
-                  .hover-bg
-                    a(href='#')
-                      .hover-text
-                        h4 Site du WAX
-                        small Julien
-                        .clearfix
-                      img.img-responsive(src='realisations/WAXSite.jpg', alt='...')
-      
-              .col-sm-6.col-md-3.col-lg-3.photography.app
-                .portfolio-item
-                  .hover-bg
-                    a(href='#')
-                      .hover-text
-                        h4 Logos du WAX
-                        small Damien
-                        .clearfix
-                      img.img-responsive(src='realisations/WAX-logo.png')
-              .col-sm-6.col-md-3.col-lg-3.photography.app
-                .portfolio-item
-                  .hover-bg
-                    a(href='#')
-                      .hover-text
-                        h4 Bientôt
-                        small Les projets
-                        .clearfix
-                      p.huge-text A suivre ...
-              //- .col-sm-6.col-md-3.col-lg-3.branding
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/03.jpg', alt='...')
-              //- .col-sm-6.col-md-3.col-lg-3.branding
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/04.jpg', alt='...')
-              //- .col-sm-6.col-md-3.col-lg-3.web
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/05.jpg', alt='...')
-              //- .col-sm-6.col-md-3.col-lg-3.app
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/06.jpg', alt='...')
-              //- .col-sm-6.col-md-3.col-lg-3.photography.web
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/07.jpg', alt='...')
-              //- .col-sm-6.col-md-3.col-lg-3.web
-              //-   .portfolio-item
-              //-     .hover-bg
-              //-       a(href='#')
-              //-         .hover-text
-              //-           h4 Logo Design
-              //-           small Branding
-              //-           .clearfix
-              //-         img.img-responsive(src='img/portfolio/08.jpg', alt='...')
-        
 
-                        
+#tf-services.text-center
+  .container
+    .section-title.center
+      h2
+        | Je suis Waxer ... 
+        strong Et maintenant ?
+      .line
+        hr
+      .clearfix
+      | 
+    .space
+    .row
+      .col-md-3.col-sm-6.service
+        i.fa.fa-lightbulb-o
+        h4
+          strong J'ai une idée !
+        p
+          | Vous avez six mois pour réfléchir à une ou plusieurs idées de projet pour le WAX. Pensez loin, soyez ambitieux, lachez-vous !
+      .col-md-3.col-sm-6.service
+        i.fa.fa-desktop
+        h4
+          strong Je la poste sur ce site
+        p
+          | "J'ai une idée, et je sens que c'est la bonne !" ... Tant mieux ! Partagez-la sur ce site dès que vous pouvez !
+      .col-md-3.col-sm-6.service
+        i.fa.fa-thumbs-o-up
+        h4
+          strong Je vote et like
+        p
+          | Trois possibilités sur ce site : Ajouter un projet, Voter pour un projet, Liker un projet. Vous pouvez tout liker mais voter uniquement pour un et un seul projet (qui n'est pas le votre)
+      .col-md-3.col-sm-6.service
+        i.fa.fa-terminal
+        h4
+          strong Je code :)
+        p
+          | A la fin des 6 mois, nous nous retrouvons à Darwin (Bordeaux) pour développer, tous ensemble, les deux projets élus. Un seul sera l'élu !
+              
+#tf-testimonials.text-center
+  .overlay
+    .container
+      .section-title.center
+        h2
+          strong Règles
+          |  du WAX
+        .line
+          hr
+      .row
+        .col-md-8.col-md-offset-2
+          #testimonial.owl-carousel.owl-theme(owl-carousel="testimonials", owl-options="{\"singleItem\":true}")
+            .item
+              h5
+                | {{item.content}}
+              p
+                strong {{item.name}}
+                | , {{item.job}}
+#tf-works
+  .container
+    // Container
+    .section-title.text-center.center
+      h2
+        | Réalisations 
+        strong 2015
+      .line
+        hr
+      .clearfix
+    #lightbox.row
+      .col-sm-6.col-md-3.col-lg-3.branding
+        .portfolio-item
+          .hover-bg
+            a(href='#')
+              .hover-text
+                h4 Site du WAX
+                small Julien
+                .clearfix
+              img.img-responsive(src='realisations/WAXSite.jpg', alt='...')
+
+      .col-sm-6.col-md-3.col-lg-3.photography.app
+        .portfolio-item
+          .hover-bg
+            a(href='#')
+              .hover-text
+                h4 Logos du WAX
+                small Damien
+                .clearfix
+              img.img-responsive(src='realisations/WAX-logo.png')
+      .col-sm-6.col-md-3.col-lg-3.photography.app
+        .portfolio-item
+          .hover-bg
+            a(href='#')
+              .hover-text
+                h4 Bientôt
+                small Les projets
+                .clearfix
+              p.huge-text A suivre ...
+
 .align-center.fade(ng-class="showClass")
-    img(src="YellowCheeseWax.jpg")
+  img(src="YellowCheeseWax.jpg")
 
 nav#footer.fade(ng-class="showClass")
   .container

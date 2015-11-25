@@ -1,26 +1,23 @@
 .container
-    h1 {{viewName}}
-    form(ng-submit='send()', name='form', novalidate='')
-      p.input-group
-        input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
-        span.input-group-btn
-          input.btn.btn-primary(type='submit', value='Envoyer')
-    //- .well
-    //-     p(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? 'me' : 'other'")
-    //-         b {{chat.user.emails[0].address}}
-    //-         | : {{chat.message}}
-    ul.timeline
-      li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
-        .timeline-badge
-            avatar(user='chat.user', width="50", imageonly="true")
-        .timeline-panel
-          .timeline-heading
-            h4.timeline-title {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}
-            p
-              small.text-muted
-                i.glyphicon.glyphicon-time
-                |  {{chatTime(chat.createdAt)}}
-          .timeline-body
-            p
-              | {{chat.message}}
+  h1 {{viewName}}
+  form(ng-submit='send()', name='form', novalidate='')
+    p.input-group
+      input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
+      span.input-group-btn
+        input.btn.btn-primary(type='submit', value='Envoyer')
+        
+  ul.timeline
+    li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
+      .timeline-badge
+          avatar(user='chat.user', width="50", imageonly="true")
+      .timeline-panel
+        .timeline-heading
+          h4.timeline-title {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}
+          p
+            small.text-muted
+              i.glyphicon.glyphicon-time
+              |  {{chatTime(chat.createdAt)}}
+        .timeline-body
+          p
+            | {{chat.message}}
       

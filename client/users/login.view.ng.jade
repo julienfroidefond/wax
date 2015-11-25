@@ -1,73 +1,67 @@
 .main.container.page(ng-class="pageClass")
     h1 
-        | Se connecter 
-        small sur le site du Wax
+      | Se connecter 
+      small sur le site du Wax
     #tf-connect
-          .container
-            .row
-              .col-md-6
-                  div(ng-hide="$root.currentUser")
-                      .col-md-10
-                          br
-                          br
-                          br
-                          .panel.panel-default
-                              .panel-heading
-                                  h3.panel-title
-                                  strong Se connecter
-                              .panel-body
-                                  .alert.alert-warning(ng-show="error") Erreur : {{error}}
-                                  form(role='form')
-                                      //- .image
-                                      //-     .avatar.align-center(ng-click="showPopup()")
-                                      //-         .info(ng-hide="avatar")
-                                      //-             .btn.btn-default Choisir un avatar
-                                      //-         img(src="avatar.jpg", ng-hide="avatar")
-                                      //-         img(width="100" ,src="avatar.jpg", ng-src="{{avatar.url()}}", ng-show="avatar")
-                                      .form-group
-                                          label(for='exampleInputEmail1') Email
-                                          input#exampleInputEmail1.form-control(type='email', placeholder='Votre email (...@atixnet.fr)', ng-model="credentials.email")
-                                      .form-group
-                                          label(for='exampleInputPassword1')
-                                              | Mot de passe 
-                                              a(href='#', ng-click="reset()") (mot de passe oublié)
-                                          input#exampleInputPassword1.form-control(type='password', placeholder='Mot de passe', ng-model="credentials.password")
-                                      button.btn.btn-sm.btn-primary.pull-right(ng-click="login()",type='submit') Se connecter
-                                      //- button.btn.btn-sm.btn-default(ng-click="register()",type='submit') S'enregistrer
-                                      
-                  div(ng-show="$root.currentUser")
-                      h1 Logout
-                      p
-                          a(ng-click="logout()", ng-show="$root.currentUser") Logout
-              .col-md-6
-                .about-text
-                  .section-title
-                    h4
-                      | Se connecter 
-                      strong sur le WAX
-                    hr
-                    .clearfix
-                  p.intro
-                    | En vous connectant sur le site avec votre compte Atixnet, vous pourrez :
-                  ul.about-list
-                    li
-                      span.fa.fa-lightbulb-o
-                      strong Soumettre des idées
-                      br
-                      |  En soumettant une idée sur le site, vous permettez aux autres de voter pour votre projet. Uniquement deux projets seront élus, alors que le meilleur gagne :)
-                      em
-                    li
-                      span.fa.fa-bookmark
-                      strong Voter pour une et une seule idée
-                      br
-                      |  En tant que waxer, je peux voter pour une seule idée, celle que je trouve la meilleure. Je ne pourrais pas voter pour ma propre idée car je suis un participant obligatoire à mon projet.
-                      em 
-                    li
-                      span.fa.fa-thumbs-o-up
-                      strong Liker des idées
-                      br
-                      |  Chacun peut liker des projets proposés. Ces like seront pris en compte pour le choix final des deux meilleures idées.
-                      em 
+        .container
+          .row
+            .col-md-6
+              div(ng-hide="$root.currentUser")
+                .col-md-10
+                  br
+                  br
+                  br
+                  .panel.panel-default
+                    .panel-heading
+                      h3.panel-title
+                      strong Se connecter
+                    .panel-body
+                      .alert.alert-warning(ng-show="error") Erreur : {{error}}
+                      form(role='form')
+                        .form-group
+                          label(for='exampleInputEmail1') Email
+                          input#exampleInputEmail1.form-control(type='email', placeholder='Votre email (...@atixnet.fr)', ng-model="credentials.email")
+                        .form-group
+                          label(for='exampleInputPassword1')
+                              | Mot de passe 
+                              a(href='#', ng-click="reset()") (mot de passe oublié)
+                          input#exampleInputPassword1.form-control(type='password', placeholder='Mot de passe', ng-model="credentials.password")
+                        button.btn.btn-sm.btn-primary.pull-right(ng-click="login()",type='submit') Se connecter
+                        //- button.btn.btn-sm.btn-default(ng-click="register()",type='submit') S'enregistrer
+                                
+              div(ng-show="$root.currentUser")
+                h1 Logout
+                p
+                  a(ng-click="logout()", ng-show="$root.currentUser") Logout
+            .col-md-6
+              .about-text
+                .section-title
+                  h4
+                    | Se connecter 
+                    strong sur le WAX
+                  hr
+                  .clearfix
+                p.intro
+                  | En vous connectant sur le site avec votre compte Atixnet, vous pourrez :
+                ul.about-list
+                  li
+                    span.fa.fa-lightbulb-o
+                    strong Soumettre des idées
+                    br
+                    |  En soumettant une idée sur le site, vous permettez aux autres de voter pour votre projet. Uniquement deux projets seront élus, alors que le meilleur gagne :)
+                    em
+                  li
+                    span.fa.fa-bookmark
+                    strong Voter pour une et une seule idée
+                    br
+                    |  En tant que waxer, je peux voter pour une seule idée, celle que je trouve la meilleure. Je ne pourrais pas voter pour ma propre idée car je suis un participant obligatoire à mon projet.
+                    em 
+                  li
+                    span.fa.fa-thumbs-o-up
+                    strong Liker des idées
+                    br
+                    |  Chacun peut liker des projets proposés. Ces like seront pris en compte pour le choix final des deux meilleures idées.
+                    em 
     
 
     .modal.fade(id="popup")

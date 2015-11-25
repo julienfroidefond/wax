@@ -1,7 +1,7 @@
 .container
     h1 
-        | A propos 
-        small du site du Wax
+      | A propos 
+      small du site du Wax
     br
     .row
       .col-md-12
@@ -25,59 +25,45 @@
               .col-md-3.col-sm-6.help-box
                 i.fa.fa-terminal
                 h4 4- L'évènement
-                p En mai, pendant une semaine à Bordeaux, nous nous retrouvons tous, et nous réalisons les deux projets. Le dernier jour, le CEO évaluera le meilleur projet
-              
-            //- ul
-            //-   li Le WAX 2015 se déroulera à priori en mai. Vous avez 6 mois à partir d'aujourd'hui pour poster des idées de projet.
-            //-   li Les idées n'ont qu'une limite : l'informatique. On pourrait imaginer des projets pour Raspberry pi, des applications apple Watch, un jeu vidéo, etc.
-            //-   li Dans ces 6 mois, seront donc élues deux idées.
-            //-     ul
-            //-       li Dans ces 6 mois, je peux voter pour une seule et unique idée.
-            //-       li Dans ces 6 mois je peux proposer une infinitée d'idées.
-            //-       li Après le temps écoulé, comme il ne doit rester que deux idées, dans le cas il y en aurait plus de deux,
-            //-         ul 
-            //-           li Seront choisies les deux idées les plus votées. Les likes seront pris en compte dans cette élection.
-            //-           li A cette issue, un revote rapide sera demandé à ceux qui ne sont pas encore dans une de ces deux idées.
-
-                    
+                p En mai, pendant une semaine à Bordeaux, nous nous retrouvons tous, et nous réalisons les deux projets. Le dernier jour, le CEO évaluera le meilleur projet  
                    
-    div.col-md-6
-        div.panel.panel-default
-            div.panel-heading 
-                h4 Todo : reste à faire
-            div.panel-body
-                .alert.alert-warning Trier par nombre de likes
-                .alert.alert-warning Passer les uploads sur cloudinary
-                .alert.alert-warning Compléter texte commercial
-                .alert.alert-warning Création rapide : popup pour les détails d'un évènement
-    .col-md-6
+      .col-md-6
         .panel.panel-default
-            .panel-heading 
-                h4 Tech
-            .panel-body
-                p Made with Meteor/Angular and  
-                    i.glyphicon.glyphicon-heart-empty
-                    |  by Julien. 
-                p
-                    | Sources 
-                    a(href="https://github.com/julienfroidefond/wax") on github
-                    |  hosted by 
-                    a(href="https://heroku.com") heroku
-                .row
-                    .col-xs-4
-                        img.img-responsive(src="meteor-logo.png", height="40")
-                    .col-xs-4
-                        img.img-responsive(src="angular.png", height="40")
-                    .col-xs-4
-                        img.img-responsive(src="heroku.png", height="40")
-    
-    .col-md-6
+          .panel-heading 
+            h4 Todo : reste à faire
+          .panel-body
+            .alert.alert-warning Trier par nombre de likes
+            .alert.alert-warning Passer les uploads sur cloudinary
+            .alert.alert-warning Compléter texte commercial
+            .alert.alert-warning Création rapide : popup pour les détails d'un évènement
+      .col-md-6
         .panel.panel-default
-            .panel-heading 
-                h4 Users list
-            .panel-body
-                div.row
-                    div.col-sm-6(ng-repeat="user in users")
-                        avatar(width='40', user="user")
-                        br
+          .panel-heading 
+            h4 Tech
+          .panel-body
+            p Made with Meteor/Angular and  
+              i.glyphicon.glyphicon-heart-empty
+              |  by Julien. 
+            p
+              | Sources 
+              a(href="https://github.com/julienfroidefond/wax") on github
+              |  hosted by 
+              a(href="https://heroku.com") heroku
+            .row
+              .col-xs-4
+                img.img-responsive(src="meteor-logo.png", height="40")
+              .col-xs-4
+                img.img-responsive(src="angular.png", height="40")
+              .col-xs-4
+                img.img-responsive(src="heroku.png", height="40")
+                
+      .col-md-6
+        .panel.panel-default
+          .panel-heading 
+            h4 Users list
+          .panel-body
+            div.row
+              div.col-sm-6(ng-repeat="user in users")
+                avatar(width='40', user="user")
+                br
                             

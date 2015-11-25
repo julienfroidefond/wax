@@ -24,41 +24,41 @@
       | Je participe au projet : 
       a(href='/projects/{{projectParticipe[0]._id}}') {{ projectParticipe[0].name }} 
   .row.project-list
-      .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
-        .card
-          .box-icon-container(ng-if="nbLikes(project)>0")
-            .box-icon
-              .heart
-                i.fa.fa-heart
-              span.text {{nbLikes(project)}}
-          .image
-            a(href='/projects/{{project._id}}')
-              img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
-            .hover-content
-              .centered
-                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
-              .bottom
-                avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
-                .pull-right
-                  a.btn.btn-link.btn-sm(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
-                    i.fa.fa-pencil
-                  a.btn.btn-link.btn-sm(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
-                    i.fa.fa-trash
-            //- .pull-right {{projectCreatedDate(project.createdAt)}}
-          .content
-            .title
-              a(href='/projects/{{project._id}}') 
-                h2 {{ project.name }}
-            .desc(ng-bind-html="getHtml(project.description)")
-          .content
-            .avatars(ng-if="project.participants")
-              avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-              avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-            .avatars(ng-if="!project.participants")
-              avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-          .content
-            a.btn.btn-block.btn-warning(href='/projects/{{project._id}}', ng-if='hasRights(project)') Editer
-            a.btn.btn-block.btn-default(href='/projects/{{project._id}}', ng-if='!hasRights(project)') En savoir plus
+    .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+      .card
+        .box-icon-container(ng-if="nbLikes(project)>0")
+          .box-icon
+            .heart
+              i.fa.fa-heart
+            span.text {{nbLikes(project)}}
+        .image
+          a(href='/projects/{{project._id}}')
+            img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
+          .hover-content
+            .centered
+              liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
+            .bottom
+              avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
+              .pull-right
+                a.btn.btn-link.btn-sm(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
+                  i.fa.fa-pencil
+                a.btn.btn-link.btn-sm(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
+                  i.fa.fa-trash
+          //- .pull-right {{projectCreatedDate(project.createdAt)}}
+        .content
+          .title
+            a(href='/projects/{{project._id}}') 
+              h2 {{ project.name }}
+          .desc(ng-bind-html="getHtml(project.description)")
+        .content
+          .avatars(ng-if="project.participants")
+            avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+            avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+          .avatars(ng-if="!project.participants")
+            avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+        .content
+          a.btn.btn-block.btn-warning(href='/projects/{{project._id}}', ng-if='hasRights(project)') Editer
+          a.btn.btn-block.btn-default(href='/projects/{{project._id}}', ng-if='!hasRights(project)') En savoir plus
           
                 
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')

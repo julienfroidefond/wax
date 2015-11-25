@@ -1,12 +1,12 @@
 #login-buttons {
-    padding: 10px 15px;
-    line-height: 20px;
+  padding: 10px 15px;
+  line-height: 20px;
 }
 .navbar-collapse.in {
-    overflow: visible!important;
-    #login-dropdown-list {
-        left: 0px!important;
-    }
+  overflow: visible!important;
+  #login-dropdown-list {
+    left: 0px!important;
+  }
 }
 @media (min-width: 768px) {
   #login-buttons {
@@ -20,16 +20,16 @@
 
 /* The starting CSS styles for the enter animation */
 .fade{
-    opacity: 0;
-    transition:0.7s cubic-bezier(.55,0,.1,1) all;
-    &#tf-about, &#login-panel{
-        padding-top: 40px !important;
-    }
+  opacity: 0;
+  transition:0.7s cubic-bezier(.55,0,.1,1) all;
+  &#tf-about, &#login-panel{
+    padding-top: 40px !important;
+  }
 }
 .fade.inScope {
   opacity:1;
   &#tf-about, &#login-panel{
-      padding-top: 60px !important;
+    padding-top: 60px !important;
   }
 }
 
@@ -68,9 +68,9 @@
 .ng-leave.ng-leave-active,
 .ng-enter,
 .ng-move {
-    -webkit-transition:0.5s cubic-bezier(.55,0,.1,1) all;
-    transition:0.5s cubic-bezier(.55,0,.1,1) all;
-    opacity:0;
+  -webkit-transition:0.5s cubic-bezier(.55,0,.1,1) all;
+  transition:0.5s cubic-bezier(.55,0,.1,1) all;
+  opacity:0;
 }
 .ng-leave,
 .ng-move.ng-move-active,
@@ -79,27 +79,27 @@
 }
 
 .login-page, .project-detail-page, .chat-page, .main-page, .about-page{
-    // &.ng-enter {
-    //   transition:0.5s cubic-bezier(.55,0,.1,1) all;
-    //   opacity:0;
-    // }
-    // &.ng-enter.ng-enter-active {
-    //   opacity:1;
-    // }
-    &.ng-leave.ng-leave-active,
-    &.ng-enter,
-    &.ng-move {
-        -webkit-transition:0.5s cubic-bezier(.55,0,.1,1) all;
-        transition:0.5s cubic-bezier(.55,0,.1,1) all;
+  // &.ng-enter {
+  //   transition:0.5s cubic-bezier(.55,0,.1,1) all;
+  //   opacity:0;
+  // }
+  // &.ng-enter.ng-enter-active {
+  //   opacity:1;
+  // }
+  &.ng-leave.ng-leave-active,
+  &.ng-enter,
+  &.ng-move {
+    -webkit-transition:0.5s cubic-bezier(.55,0,.1,1) all;
+    transition:0.5s cubic-bezier(.55,0,.1,1) all;
 
-        opacity:0;
-        margin-top:10px;
+    opacity:0;
+    margin-top:10px;
 
-    }
-    &.ng-leave,
-    &.ng-move.ng-move-active,
-    &.ng-enter.ng-enter-active {
-      opacity:1;
-      margin-top:0px;
-    }
+  }
+  &.ng-leave,
+  &.ng-move.ng-move-active,
+  &.ng-enter.ng-enter-active {
+    opacity:1;
+    margin-top:0px;
+  }
 }

@@ -1,140 +1,111 @@
 .project-detail.container
-    a.btn.btn-default.pull-right(href="/projects") Retour
-    h1 {{project.name}}
-    div(ng-if='hasRights()')
-        form(ng-submit='save()', name='form', novalidate='')
-        .col-md-4
-          .card
-            .image
-              .project-image-container(ng-if="!project.image", ng-click="showPopup()")
-                  img(class="img-responsive", src='http://placehold.it/360x200/')
-              .project-image-container(ng-if='project.image', ng-click="showPopup()")
-                  img(class="img-responsive", ng-src='{{getMainImage()}}')
-            .content
-              a.btn.btn-default.btn-block.btn-add-image(ng-click="showPopup()") Ajouter une image
-            .content
-              .buttons
-                //- a.btn.btn-default(href='/projects') Retour
-                liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                a.btn.btn-primary(ng-click='save()') Sauver
-            .content
-              .table-responsive
-                table.table
-                  tr
-                    td 
-                      i.fa.fa-calendar
-                      |  Créé depuis :
-                    td {{projectCreatedDate()}}
-                  tr
-                    td
-                      i.fa.fa-user
-                      |  Par :
-                    td
+  a.btn.btn-default.pull-right(href="/projects") Retour
+  h1 {{project.name}}
+  div(ng-if='hasRights()')
+    form(ng-submit='save()', name='form', novalidate='')
+      .col-md-4
+        .card
+          .image
+            .project-image-container(ng-if="!project.image", ng-click="showPopup()")
+              img(class="img-responsive", src='http://placehold.it/360x200/')
+            .project-image-container(ng-if='project.image', ng-click="showPopup()")
+              img(class="img-responsive", ng-src='{{getMainImage()}}')
+          .content
+            a.btn.btn-default.btn-block.btn-add-image(ng-click="showPopup()") Ajouter une image
+          .content
+            .buttons
+              //- a.btn.btn-default(href='/projects') Retour
+              liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+              a.btn.btn-primary(ng-click='save()') Sauver
+          .content
+            .table-responsive
+              table.table
+                tr
+                  td 
+                    i.fa.fa-calendar
+                    |  Créé depuis :
+                  td {{projectCreatedDate()}}
+                tr
+                  td
+                    i.fa.fa-user
+                    |  Par :
+                  td
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                tr
+                  td
+                    i.fa.fa-users
+                    span  {{project.participants.length +1 }} participants :
+                  td
+                    .avatars(ng-if="project.participants")
                       avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                  tr
-                    td
-                      i.fa.fa-users
-                      span  {{project.participants.length +1 }} participants :
-                    td
-                      .avatars(ng-if="project.participants")
-                        avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                        avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-                      .avatars(ng-if="!project.participants")
-                        avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                      avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+                    .avatars(ng-if="!project.participants")
+                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
                   
-        .col-md-8
-          .card
-            .content
-              .title
-                h3 Nom
-                input.form-control(type='text', placeholder='Name', ng-model='project.name')
-            .content
-              h3 Description
-              textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
+      .col-md-8
+        .card
+          .content
+            .title
+              h3 Nom
+              input.form-control(type='text', placeholder='Name', ng-model='project.name')
+          .content
+            h3 Description
+            textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
+                
+  div(ng-if='!hasRights()')
+    .row.project-detail
+      .col-md-4
+        .card
+          .image
+            a(href='/projects/{{project._id}}')
+              img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
+          .content.clearfix
+            .buttons
+              //- a.btn.btn-default(href='/projects') Retour  
+              liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+              .btn.btn-primary(ng-if="hasParticipeRights()", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
+              .btn.btn-danger(ng-if="hasParticipeRights()", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+              .btn.btn-default(ng-if="hasParticipeRights()", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
               
-          //- .box
-          //-   .info
-          //-     div.description-full
-          //-       .col-sm-12
-          //-           h3 Nom
-          //-           input.form-control(type='text', placeholder='Name', ng-model='project.name')
-          //-       .col-sm-2
-          //-           h3 Images
-          //-           .project-image-container(ng-if="!project.image", ng-click="showPopup()")
-          //-               img(class="img-responsive", src='http://placehold.it/200x200/')
-          //-               br
-          //-               a.btn.btn-default.btn-block.btn-add-image Ajouter une image
-          //-           .project-image-container(ng-if='project.image', ng-click="showPopup()")
-          //-               img(class="img-responsive", ng-src='{{getMainImage()}}')
-          //-               br
-          //-               a.btn.btn-default.btn-block.btn-add-image Ajouter une image
-          //-       .col-sm-10
-          //-           h3 Description
-          //-           textarea.form-control(summernote="", class="description", placeholder='description', ng-model='project.description')
-          //-       .buttons
-          //-           liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-          //-           a.btn.btn-primary(ng-click='save()') Sauver
-          //-           a.btn.btn-default(href='/projects') Retour
-          //-     div.avatars(ng-if="project.participants")
-          //-         avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-          //-         avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-          //-     div.avatars(ng-if="!project.participants")
-          //-         avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                  
-    div(ng-if='!hasRights()')
-        .row.project-detail
-          .col-md-4
-            .card
-              .image
-                a(href='/projects/{{project._id}}')
-                  img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
-              .content.clearfix
-                .buttons
-                  //- a.btn.btn-default(href='/projects') Retour  
-                  liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-                  .btn.btn-primary(ng-if="hasParticipeRights()", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
-                  .btn.btn-danger(ng-if="hasParticipeRights()", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
-                  .btn.btn-default(ng-if="hasParticipeRights()", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
-                  
-              .content
-                .table-responsive
-                  table.table
-                    tr
-                      td 
-                        i.fa.fa-calendar
-                        |  Créé depuis :
-                      td {{projectCreatedDate()}}
-                    tr
-                      td
-                        i.fa.fa-user
-                        |  Par :
-                      td
-                        avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                    tr
-                      td
-                        i.fa.fa-users
-                        span  {{project.participants.length +1 }} participants :
-                      td
-                        .avatars(ng-if="project.participants")
-                          avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                          avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
-                        .avatars(ng-if="!project.participants")
-                          avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
-                    tr
-                      td
-                        i.fa.fa-heart
-                        span  {{project.likers.length }} likers :
-                      td
-                        .avatars
-                          avatar(user='getUser(liker)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="liker in project.likers")
+          .content
+            .table-responsive
+              table.table
+                tr
+                  td 
+                    i.fa.fa-calendar
+                    |  Créé depuis :
+                  td {{projectCreatedDate()}}
+                tr
+                  td
+                    i.fa.fa-user
+                    |  Par :
+                  td
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                tr
+                  td
+                    i.fa.fa-users
+                    span  {{project.participants.length +1 }} participants :
+                  td
+                    .avatars(ng-if="project.participants")
+                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                      avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
+                    .avatars(ng-if="!project.participants")
+                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                tr
+                  td
+                    i.fa.fa-heart
+                    span  {{project.likers.length }} likers :
+                  td
+                    .avatars
+                      avatar(user='getUser(liker)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="liker in project.likers")
 
-          .col-md-8
-            .card
-              .content
-                .title
-                  a(href='/projects/{{project._id}}') 
-                    h2 {{ project.name }}
-                .desc-full(ng-bind-html="getHtml(project.description)")
+      .col-md-8
+        .card
+          .content
+            .title
+              a(href='/projects/{{project._id}}') 
+                h2 {{ project.name }}
+            .desc-full(ng-bind-html="getHtml(project.description)")
                                
 .modal.fade(id="popup")
   .modal-dialog

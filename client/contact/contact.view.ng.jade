@@ -16,39 +16,38 @@
             hr
             .clearfix
           div.intro(ng-if="!hasSentMessage")
-              p Le WAX vous a plu ? Vous voulez en faire partie ? Vous avez des remarques ? N'hésitez pas à nous contacter ci-dessous !
-              hr
-              form(ng-submit="save()", name="contactform", class="form-horizontal")
-                .form-group
-                    input#InputName.form-control(type='text', name='InputName', placeholder='Votre nom', required='true', ng-model='newMessage.name')
-                .form-group
-                    input#InputEmail.form-control(type='email', name='InputEmail', placeholder='Votre Email', required='true', ng-model='newMessage.email')
-                .form-group
-                    textarea#InputMessage.form-control(name='InputMessage', rows='5', required='true', placeholder='Votre message', ng-model='newMessage.message')
-                input#submit.btn.btn-primary.pull-right(type='submit', name='submit', value='Envoyer')
+            p Le WAX vous a plu ? Vous voulez en faire partie ? Vous avez des remarques ? N'hésitez pas à nous contacter ci-dessous !
+            hr
+            form(ng-submit="save()", name="contactform", class="form-horizontal")
+              .form-group
+                  input#InputName.form-control(type='text', name='InputName', placeholder='Votre nom', required='true', ng-model='newMessage.name')
+              .form-group
+                  input#InputEmail.form-control(type='email', name='InputEmail', placeholder='Votre Email', required='true', ng-model='newMessage.email')
+              .form-group
+                  textarea#InputMessage.form-control(name='InputMessage', rows='5', required='true', placeholder='Votre message', ng-model='newMessage.message')
+              input#submit.btn.btn-primary.pull-right(type='submit', name='submit', value='Envoyer')
           div.intro(ng-if="hasSentMessage")
             p.alert.alert-success Votre message a bien été enregistré...
-              
-        
+
 br
 br
 br
 #tf-messages.text-center(ng-if='getContactMessage().length > 0')
-      .container
-        .section-title.center
-          h2
-            | Les derniers 
-            strong messages
-          .line
-            hr
-          .clearfix
-          | 
-        #messages.owl-carousel.owl-theme.row(owl-carousel="getContactMessage()", owl-options="{}")
-          .item
-              div(ng-if="item._id")
-                h3 {{item.message}}
-                p {{item.name}}
-                small {{item.email}}
-        br
-        br
-        br
+  .container
+    .section-title.center
+      h2
+        | Les derniers 
+        strong messages
+      .line
+        hr
+      .clearfix
+      | 
+    #messages.owl-carousel.owl-theme.row(owl-carousel="getContactMessage()", owl-options="{}")
+      .item
+          div(ng-if="item._id")
+            h3 {{item.message}}
+            p {{item.name}}
+            small {{item.email}}
+    br
+    br
+    br

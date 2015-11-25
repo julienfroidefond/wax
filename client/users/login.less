@@ -1,21 +1,21 @@
 .align-center{text-align: center;}
 .avatar{
-    img{
-        border-radius: 50%;
-    }
+  img{
+    border-radius: 50%;
+  }
+  .info{
+    position: absolute;
+    top:0px;
+    top: 30px;
+    width: 100%;
+    opacity:0;
+    transition:0.5s cubic-bezier(.55,0,.1,1) all;
+  }
+  position: relative;
+  cursor:pointer;
+  &:hover{
     .info{
-        position: absolute;
-        top:0px;
-        top: 30px;
-        width: 100%;
-        opacity:0;
-        transition:0.5s cubic-bezier(.55,0,.1,1) all;
+      opacity:1;
     }
-    position: relative;
-    cursor:pointer;
-    &:hover{
-        .info{
-            opacity:1;
-        }
-    }
+  }
 }
