@@ -1,13 +1,19 @@
 .container
   h1 {{viewName}}
-  //- div(ng-repeat='chatter in chatters')
-  //-   p {{chatter}}
+  
   form(ng-submit='send()', name='form', novalidate='')
     p.input-group
       input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
       span.input-group-btn
         input.btn.btn-primary(type='submit', value='Envoyer')
         
+  .alert.alert-info    
+    .row
+      .col-sm-2
+        p Sont actuellement sur cette page :
+      .col-sm-10
+        avatar(user='getUser(chatter.userId)[0]', width='40', imageonly="true", style="display:inline", ng-repeat='chatter in chatters') 
+         
   ul.timeline
     li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
       .timeline-badge(ng-class="isOnline(chat.user)?'online':''")

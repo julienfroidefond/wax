@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, ChatService) {
+.controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, ChatService, UserService) {
   $scope.viewName = 'Chat';
 
   $scope.pageClass= "chat-page";
@@ -11,6 +11,25 @@ angular.module('waxYeoAnguApp')
       sort : {createdAt: -1}
     });
   }).subscribe('chats');
+
+
+  $scope.chatters = $scope.$meteorCollection(function() {
+    return Chatters.find({});
+  });
+
+  $scope.$meteorSubscribe('chatters', {}).then(function(a) {
+
+    var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
+    for(var i in chatters){
+      $scope.chatters.remove(chatters[i]._id);
+      // console.log('remove : '+chatters[i].userId);
+    }
+
+    var chatter = {};
+    chatter.userId=$rootScope.currentUser._id;
+    if($filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id}).length == 0)
+    $scope.chatters.save(chatter);
+  });
 
   $scope.chatters = $meteor.collection(function() {
     return Chatters.find({});
@@ -30,10 +49,6 @@ angular.module('waxYeoAnguApp')
     return isOnline;
   }
 
-  var chatter = {};
-  chatter.userId=$rootScope.currentUser._id;
-  if($filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id}).length == 0)
-  $scope.chatters.save(chatter);
 
   $scope.$on('$locationChangeStart', function( event ) {
     var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
@@ -41,8 +56,9 @@ angular.module('waxYeoAnguApp')
       $scope.chatters.remove(chatters[i]._id);
       // console.log('remove : '+chatters[i].userId);
     }
-    // $scope.chatters.remove(_id);
-    //$scope.chatters.remove();
   });
+  $scope.getUser= function(idToFind){
+    return UserService.getUser(idToFind);
+  }
 
 });
