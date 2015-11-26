@@ -15,17 +15,17 @@
         avatar(user='getUser(chatter.userId)[0]', width='40', imageonly="true", style="display:inline", ng-repeat='chatter in chatters') 
          
   ul.timeline
-    li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
+    li(ng-repeat="chat in chats", class="chat-item")
       .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
           avatar(user='chat.user', width="50", imageonly="true")
       .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
         .timeline-heading
-          h4.timeline-title {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}
-          p
+          p(class="pull-right")
             small.text-muted
+              | {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}&nbsp;&nbsp;&nbsp;
               i.glyphicon.glyphicon-time
               |  {{chatTime(chat.createdAt)}}
+          h4.timeline-title {{chat.message}}
         .timeline-body
-          p
-            | {{chat.message}}
+          p 
       
