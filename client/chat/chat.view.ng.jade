@@ -1,5 +1,7 @@
 .container
   h1 {{viewName}}
+  //- div(ng-repeat='chatter in chatters')
+  //-   p {{chatter}}
   form(ng-submit='send()', name='form', novalidate='')
     p.input-group
       input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
@@ -8,9 +10,9 @@
         
   ul.timeline
     li(ng-repeat="chat in chats", class="chat-item", ng-class="chat.user.emails[0].address == $root.currentUser.emails[0].address ? '' : 'timeline-inverted'")
-      .timeline-badge
+      .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
           avatar(user='chat.user', width="50", imageonly="true")
-      .timeline-panel
+      .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
         .timeline-heading
           h4.timeline-title {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}
           p

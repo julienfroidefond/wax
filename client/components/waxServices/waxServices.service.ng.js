@@ -119,3 +119,21 @@ services.factory('ProjectService', function($filter, $meteor) {
 
   return ProjectService;
 });
+
+services.factory('ChatService', function($filter, $meteor) {
+  var ChatService = {};
+
+  ChatService.chatters = [];
+
+  ChatService.addChatter = function(userId) {
+    this.chatters.push(userId);
+  };
+  ChatService.deleteChatter = function(userId) {
+    var index = _.indexOf(ChatService.chatters, userId);
+    if(index != -1)
+    ChatService.chatters.splice(index, 1);
+
+  };
+
+  return ChatService;
+});
