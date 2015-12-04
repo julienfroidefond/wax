@@ -86,7 +86,7 @@ services.factory('ImageService', function($filter, $meteor, $rootScope) {
 
   ImageService.getAvatarUrl = function(idToFind, options) {
     if(!idToFind) return "atixnet.png";
-    return $rootScope.uiHelpers.c().url(idToFind, {'hash': options});
+    return $rootScope.uiHelpers.c().url(idToFind, {'hash': options})+'?v=1.0';
   };
 
   return ImageService;

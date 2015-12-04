@@ -1,3 +1,8 @@
+make_passwd = function(n, a) {
+  var index = (Math.random() * (a.length - 1)).toFixed(0);
+  return n > 0 ? a[index] + make_passwd(n - 1, a) : '';
+};
+
 Meteor.startup(function() {
 
   if(Meteor.users.find().count() < 29) {
@@ -86,7 +91,7 @@ function addUser(user, imageId){
     var id = Accounts.createUser({
       username: user.username,
       email: user.email,
-      password: user.password,
+      password: make_passwd(13, 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
       profile: {
         participeTo: null,
         avatar: imageId,

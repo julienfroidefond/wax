@@ -3,7 +3,7 @@
 angular.module('waxYeoAnguApp')
 .controller('MainCtrl', function($scope, $meteor, UserService, ImageService) {
   $scope.pageClass= "main-page";
-  
+
   $scope.team = [];
 
   $meteor.autorun($scope, function() {
@@ -18,21 +18,21 @@ angular.module('waxYeoAnguApp')
     name:'Règle 2',
     job: 'Deux projets'
   },{
-    content:'Une semaine. C\'est la durée du WAX. Vous aurez une semaine pour développer votre projet et créer les techno de demain.',
+    content:'Une semaine. C\'est la durée du WAX. Vous aurez une semaine pour développer votre projet et créer le produit de demain.',
     name:'Règle 3',
     job: 'Durée du WAX'
   },{
-    content:'Le vendredi du WAX, à 14h, on arrète tout pour présentation au CEO d\'Atixnet.',
+    content:'Chaque équipe est composée : d\'un chef de projet, d\'un présentateur, de développeurs. Ils sont élus démocratiquement le lundi matin par l\'équipe.',
     name:'Règle 4',
+    job: 'Equipe'
+  },{
+    content:'Le vendredi du WAX, à 14h, on arrète tout pour présentation au jury',
+    name:'Règle 5',
     job: 'Presentation'
   },{
     content:'Have FUN',
-    name:'Règle 5',
-    job: 'Amusez-vous'
-  },{
-    content:'Chaque équipe est composée : d\'un chef de projet, d\'un présentateur, de développeurs. Ils sont élus démocratiquement le lundi matin par l\'équipe.',
     name:'Règle 6',
-    job: 'Equipe'
+    job: 'Amusez-vous'
   }];
 
 

@@ -4,19 +4,22 @@
     small du Wax 2015
   
   form(ng-submit='save()', name='form', novalidate='')
-    p.input-group(ng-if="$root.currentUser && $root.isInRole('coder', 'waxer')")
-      input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
-      span.input-group-btn
-        input.btn.btn-primary(type='submit', value='Ajouter')
+    div(ng-if="$root.currentUser && $root.isInRole('coder', 'waxer')")
+      br
+      br
+      p.input-group
+        input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
+        span.input-group-btn
+          input.btn.btn-primary(type='submit', value='Ajouter')
     hr
-    .input-group.col-xs-4.col-xs-offset-8
+    .input-group.col-md-4.col-md-offset-8
       input.form-control(type='search', ng-model='search', placeholder='Rechercher')
       .dropdown.input-group-btn(dropdown='', on-toggle='toggled(open)')
         button.btn.btn-primary.dropdown-toggle(dropdown-toggle='') {{ orderProperty==='1' ? 'Ascendant' : 'Descendant' }}
           span.caret
         ul.dropdown-menu(role='menu')
-          li(ng-click="orderProperty='1'") Ascending
-          li(ng-click="orderProperty='-1'") Descending
+          li(ng-click="orderProperty='1'") Ascendant
+          li(ng-click="orderProperty='-1'") Descendant
   
   br
   
@@ -61,6 +64,6 @@
           a.btn.btn-block.btn-default(href='/projects/{{project._id}}', ng-if='!hasRights(project)') En savoir plus
           
                 
-      dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
+    dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')
   hr
   p Nombre de projets: {{projectsCount.count}}

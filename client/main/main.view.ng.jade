@@ -7,37 +7,72 @@
     .row
       .col-md-6
         img.img-responsive.logo-extended(src='WAX-logo-extended.png')
+        br.hidden-md.hidden-lg
+        br.hidden-md.hidden-lg
+        br.hidden-md.hidden-lg
       .col-md-6
         .about-text
           .section-title
-            h4 A propos du WAX
             h2
-              | Quelques mots 
-              strong sur nous
+              | A propos 
+              strong du WAX
             hr
             .clearfix
           p.intro
-            a(href="http://atixnet.fr") Atixnet
-            | &nbsp;présente le 
-            b WAX.
-            | &nbsp;Toute l'équipe d'aujourd'hui prépare les technologies de demain.
-          ul.about-list
-            li
-              span.fa.fa-dot-circle-o
-              strong Workshop
-              |  
-              em
-            li
-              span.fa.fa-dot-circle-o
-              strong Atixnet
-              |  
-              em 
-            li
-              span.fa.fa-dot-circle-o
-              strong Xperience
-              |  
-              em 
+            | Croissance, richesse, bien-être, défi, cohésion, fierté, avenir… 
+            br
+            | Pour une entreprise, l’innovation est tout cela en même temps.
+            br
+            br
+            | Du haut de ses 13 ans, 
+            a(href="http://atixnet.fr") Atixnet 
+            | a soif d’entrevoir le futur et de construire aujourd’hui ce que seront peut-être nos produits et nos services de demain.
+          
+          //- ul.about-list
+          //-   li
+          //-     span.fa.fa-dot-circle-o
+          //-     strong Workshop
+          //-     |  
+          //-     em
+          //-   li
+          //-     span.fa.fa-dot-circle-o
+          //-     strong Atixnet
+          //-     |  
+          //-     em 
+          //-   li
+          //-     span.fa.fa-dot-circle-o
+          //-     strong Xperience
+          //-     |  
+          //-     em 
 
+#tf-quote.fade(ng-class="showClass")
+  .container
+    .row
+      .col-md-12
+        .about-text
+          .section-title
+            h2
+              | Quelques mots 
+              strong du jury
+            hr
+            .clearfix
+      .col-md-2.hidden-xs.hidden-sm
+        br
+        br
+        img.img-responsive(src="img/quote.png")
+      .col-md-10
+        
+        p.intro
+          | Je souhaite que 2016 soit pour Atixnet l’année de l’innovation et je suis très fier d’annoncer le lancement du WAX – Workshop Atixnet Xperience
+        p.intro
+          | Cette première édition du WAX démarre dès aujourd’hui avec en point d’orgue une grande semaine de l’innovation en mai 2016 où les « WAXERS » auront l’honneur et le privilège de nous montrer tout le talent visionnaire de notre belle entreprise.
+          | Soyons nombreux à poster nos idées, nos projets, et pourquoi pas nos rêves… Nous nous efforcerons de les réaliser ensemble.
+        p.intro
+          | Je vous invite toutes et tous à vivre cette formidable expérience !
+        p.intro.pull-right
+          small
+            i - Guillaume Totot -
+                    
 #tf-team.text-center.fade(ng-class="showClass")
   .overlay
     .container
@@ -53,9 +88,9 @@
             img.img-circle.team-img(ng-src="{{avatar(item.profile.avatar)}}", alt='...')
             .caption
               h3 {{item.profile.firstName}}
-              p {{item.profile.lastName}} {{item.profile.firstName}}
+              p {{item.profile.lastName}}
               p {{item.emails[0].address}}
-
+      a.btn.btn-default.pull-right(ng-href='contact') Je veux être Waxer !
 
 #tf-services.text-center
   .container
@@ -74,7 +109,7 @@
         h4
           strong J'ai une idée !
         p
-          | Vous avez six mois pour réfléchir à une ou plusieurs idées de projet pour le WAX. Pensez loin, soyez ambitieux, lachez-vous !
+          | Vous avez cinq mois pour réfléchir à une ou plusieurs idées de projet pour le WAX. Pensez loin, soyez ambitieux, lachez-vous !
       .col-md-3.col-sm-6.service
         i.fa.fa-desktop
         h4
@@ -91,8 +126,7 @@
         i.fa.fa-terminal
         h4
           strong Je code :)
-        p
-          | A la fin des 6 mois, nous nous retrouvons à Darwin (Bordeaux) pour développer, tous ensemble, les deux projets élus. Un seul sera l'élu !
+        p A la fin des 5 mois, nous nous retrouvons à Bordeaux pour développer, tous ensemble, les deux projets retenus. Un jury votera pour le projet le plus convainquant. Un seul sera l'élu !
               
 #tf-testimonials.text-center
   .overlay

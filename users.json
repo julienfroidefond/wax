@@ -5,7 +5,7 @@
             "email": "jfroidefond@atixnet.fr",
             "lastName": "Froidefond",
             "firstName": "Julien",
-            "avatar": "julienfr.jpeg",
+            "avatar": "jfroidefond.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -21,11 +21,11 @@
             "group": "admin"
         },
         {
-            "username": "ccrozat@atixnet.fr",
-            "email": "ccrozat@atixnet.fr",
-            "lastName": "Crozat",
+            "username": "ccrosaz@atixnet.fr",
+            "email": "ccrosaz@atixnet.fr",
+            "lastName": "Crosaz",
             "firstName": "Christophe",
-            "avatar": "christophecr.jpeg",
+            "avatar": "ccrozat.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -35,7 +35,7 @@
             "email": "dernoult@atixnet.fr",
             "lastName": "Ernoult",
             "firstName": "Damien",
-            "avatar": "damien.gif",
+            "avatar": "dernoult.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -45,17 +45,17 @@
             "email": "ddesvignes@atixnet.fr",
             "lastName": "Desvignes",
             "firstName": "Damien",
-            "avatar": "damiendesvignes.jpg",
+            "avatar": "ddesvignes.jpg",
             "password": "test",
-            "role": ["coder"],
-            "group": "waxer"
+            "role": ["other"],
+            "group": "non-waxer"
         },
         {
             "username": "fbaumel@atixnet.fr",
             "email": "fbaumel@atixnet.fr",
             "lastName": "Baumel",
             "firstName": "Florence",
-            "avatar": "Florence.jpeg",
+            "avatar": "fbaumel.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -65,17 +65,17 @@
             "email": "gtotot@atixnet.fr",
             "lastName": "Totot",
             "firstName": "Guillaume",
-            "avatar": "guillaume.png",
+            "avatar": "gtotot.jpg",
             "password": "test",
-            "role": ["coder"],
-            "group": "waxer"
+            "role": ["other"],
+            "group": "non-waxer"
         },
         {
             "username": "isoumare@atixnet.fr",
             "email": "isoumare@atixnet.fr",
             "lastName": "Soumare",
             "firstName": "Issa",
-            "avatar": "Issa.jpeg",
+            "avatar": "isoumare.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -85,7 +85,7 @@
             "email": "jesnault@atixnet.fr",
             "lastName": "Esnault",
             "firstName": "Jérémy",
-            "avatar": "jeremy.jpg",
+            "avatar": "jesnault.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -95,7 +95,7 @@
             "email": "jlejeune@atixnet.fr",
             "lastName": "Lejeune",
             "firstName": "Julien",
-            "avatar": "julienlejeune.jpeg",
+            "avatar": "jlejeune.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -105,7 +105,7 @@
             "email": "lgillier@atixnet.fr",
             "lastName": "Gillier",
             "firstName": "Ludovic",
-            "avatar": "ludo.jpg",
+            "avatar": "lgillier.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -115,7 +115,7 @@
             "email": "tgilbert@atixnet.fr",
             "lastName": "Gilbert",
             "firstName": "Thomas",
-            "avatar": "thomas.png",
+            "avatar": "tgilbert.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -125,7 +125,7 @@
             "email": "tchapelle@atixnet.fr",
             "lastName": "Chapelle",
             "firstName": "Tristan",
-            "avatar": "Tristan.jpg",
+            "avatar": "tchapelle.jpg",
             "password": "test",
             "role": ["coder"],
             "group": "waxer"
@@ -145,7 +145,7 @@
             "email": "calmira@atixnet.fr",
             "lastName": "Almira",
             "firstName": "Christophe",
-            "avatar": "calmira.jpeg",
+            "avatar": "calmira.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -155,7 +155,7 @@
             "email": "rpiffard@atixnet.fr",
             "lastName": "Piffard",
             "firstName": "Romain",
-            "avatar": "rpiffard.jpeg",
+            "avatar": "rpiffard.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -165,7 +165,7 @@
             "email": "abouvier@atixnet.fr",
             "lastName": "Bouvier",
             "firstName": "Antoine",
-            "avatar": "abouvier.jpeg",
+            "avatar": "abouvier.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -175,7 +175,7 @@
             "email": "btoure@atixnet.fr",
             "lastName": "Toure",
             "firstName": "Bakari",
-            "avatar": "btoure.png",
+            "avatar": "btoure.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -185,7 +185,7 @@
             "email": "vmoula@atixnet.fr",
             "lastName": "Moula",
             "firstName": "Valentin",
-            "avatar": "vmoula.jpeg",
+            "avatar": "vmoula.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -205,7 +205,7 @@
             "email": "nporqueddu@atixnet.fr",
             "lastName": "Porqueddu",
             "firstName": "Nicolas",
-            "avatar": "nporqueddu.png",
+            "avatar": "nporqueddu.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -215,7 +215,7 @@
             "email": "hgmichon@atixnet.fr",
             "lastName": "Michon",
             "firstName": "Henry-Georges",
-            "avatar": "hgmichon.jpeg",
+            "avatar": "hgmichon.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -225,7 +225,7 @@
             "email": "cgerdil@atixnet.fr",
             "lastName": "Gerdil",
             "firstName": "Corentin",
-            "avatar": "cgerdil.jpeg",
+            "avatar": "cgerdil.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -235,7 +235,7 @@
             "email": "kledeunf@atixnet.fr",
             "lastName": "Le Deunf",
             "firstName": "Kevin",
-            "avatar": "kledeunf.jpeg",
+            "avatar": "kledeunf.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -245,7 +245,7 @@
             "email": "gnunes@atixnet.fr",
             "lastName": "Nunes",
             "firstName": "Gabriel",
-            "avatar": "gnunes.jpeg",
+            "avatar": "gnunes.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -255,7 +255,7 @@
             "email": "aloupil@atixnet.fr",
             "lastName": "Loupil",
             "firstName": "Adrien",
-            "avatar": "aloupil.jpeg",
+            "avatar": "aloupil.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
@@ -275,7 +275,7 @@
             "email": "fterrioux@atixnet.fr",
             "lastName": "Terrioux",
             "firstName": "Florian",
-            "avatar": "fterrioux.png",
+            "avatar": "fterrioux.jpg",
             "password": "test",
             "role": ["other"],
             "group": "non-waxer"
