@@ -20,7 +20,7 @@
           a(href='/login') 
               i.glyphicon.glyphicon-user
               | &nbsp;&nbsp;Connexion
-        li
+        li(ng-if="$root.currentUser")
           a(href='/projects') 
               i.glyphicon.glyphicon-lock
               | &nbsp;&nbsp;Projets
