@@ -5,7 +5,7 @@ make_passwd = function(n, a) {
 
 Meteor.startup(function() {
 
-  if(Meteor.users.find().count() < 29) {
+  if(Meteor.users.find().count() < 30) {
     var basePath = process.env.PWD;
     var fs = Npm.require('fs');
     data = fs.readFileSync(basePath+'/users.json', 'utf8');
@@ -103,6 +103,8 @@ function addUser(user, imageId){
     console.log("WAX ::: Ajout au groupe : "+ user.group);
     Roles.addUsersToRoles(id, user.role, user.group);
 
+  }else{
+    console.log("WAX ::: user already exists : "+ user.email);
   }
 }
 

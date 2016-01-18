@@ -131,6 +131,16 @@
             "group": "waxer"
         },
         {
+            "username": "jdesarmenien@atixnet.fr",
+            "email": "jdesarmenien@atixnet.fr",
+            "lastName": "Desarmenien",
+            "firstName": "Joachim",
+            "avatar": "jdesarmenien.jpg",
+            "password": "test",
+            "role": ["coder"],
+            "group": "waxer"
+        },
+        {
             "username": "test@atixnet.fr",
             "email": "test@atixnet.fr",
             "lastName": "Test",
