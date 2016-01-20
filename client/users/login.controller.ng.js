@@ -57,9 +57,10 @@ angular.module('waxYeoAnguApp')
   };
 
   vm.reset = function () {
+    if(!vm.credentials.email) $('#forgotPasswordNoUser').modal('show');
     $meteor.forgotPassword({email:vm.credentials.email}).then(
       function () {
-        $state.go('projects-list');
+        $('#forgotPassword').modal('show');
       },
       function (err) {
         vm.error = 'Error sending forgot password email - ' + err;

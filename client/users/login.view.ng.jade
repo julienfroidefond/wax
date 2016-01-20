@@ -63,7 +63,27 @@
                     |  Chacun peut liker des projets proposés. Ces like seront pris en compte pour le choix final des deux meilleures idées.
                     em 
     
-
+    .modal.fade(id="forgotPassword")
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            h4.modal-title Mot de passe oublié
+          .modal-body
+              p Un lien vient de vous être envoyé par mail. Ce lien vous permettra de choisir un nouveau mot de passe.
+              p Attention de bien vérifier vos spams !
+              
+  .modal.fade(id="forgotPasswordNoUser")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type='button', data-dismiss='modal', aria-label='Close')
+            span(aria-hidden='true') ×
+          h4.modal-title Mot de passe oublié
+        .modal-body
+            p Attention l'email est obligatoire !
+                
     .modal.fade(id="popup")
       .modal-dialog
         .modal-content
