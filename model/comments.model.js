@@ -3,13 +3,13 @@ Comments = new Mongo.Collection('Comments');
 Comments.allow({
   insert: function(userId, comment) {
     comment.createdAt = new Date();
-    return true;
+    return userId;
   },
   update: function(userId, comment, fields, modifier) {
     comment.createdAt = new Date();
-    return true;
+    return userId;
   },
   remove: function(userId, comment) {
-    return true;
+    return userId;
   }
 });
