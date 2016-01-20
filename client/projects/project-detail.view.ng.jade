@@ -1,7 +1,7 @@
 .project-detail.container
   a.btn.btn-default.pull-right(href="/projects") Retour
   h1 {{project.name}}
-  div(ng-if='hasRights()')
+  div(ng-if='hasRights()').row
     form(ng-submit='save()', name='form', novalidate='')
       .col-md-4
         .card
@@ -106,47 +106,45 @@
               a(href='/projects/{{project._id}}') 
                 h2 {{ project.name }}
             .desc-full(ng-bind-html="getHtml(project.description)")
-  .row
-    .col-md-4
-      .card
-        .content
-          .title
-            h2 Laisser ...
-          br
-          form(ng-submit='sendComment()', name='form', novalidate='')
-            p.input-group
-              input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
-              span.input-group-btn
-                input.btn.btn-primary(type='submit', value='Envoyer')
-                
-          .alert.alert-info    
-            .row
-              .col-sm-12
-                p Sont actuellement sur cette page :
-              .col-sm-10
-                avatar(user='getUser(chatter.userId)[0]', width='40', imageonly="true", style="display:inline", ng-repeat='chatter in chatters') 
-                 
-    .col-md-8
-      .card(ng-if="comments.length > 0")
-        .content
-          div.comments
+  
+  .comment-container(ng-class="((comments.length > 0)?'':'col-md-8 col-md-offset-4')")    
+    .card
+      .content
+        .row
+          .left-inset(ng-class="((comments.length > 0)?'col-md-4':'col-md-12')")
             .title
-              h2 ... un commentaire
+              h2 Laisser un commentaire
             br
-            ul.timeline
-              li(ng-repeat="chat in comments", class="chat-item")
-                .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
-                    avatar(user='chat.user', width="50", imageonly="true")
-                .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
-                  .timeline-heading
-                    p(class="pull-right")
-                      small.text-muted
-                        | {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}&nbsp;&nbsp;&nbsp;
-                        i.glyphicon.glyphicon-time
-                        |  {{chatTime(chat.createdAt)}}
-                    h4.timeline-title {{chat.message}}
-                  .timeline-body
-                    p 
+            form(ng-submit='sendComment()', name='form', novalidate='')
+              p.input-group
+                input.form-control(type='text', placeholder='Message', ng-model='newChat.message')
+                span.input-group-btn
+                  input.btn.btn-primary(type='submit', value='Envoyer')
+                  
+            .alert.alert-info    
+              .row
+                .col-sm-12
+                  p Sont actuellement sur cette page :
+                .col-sm-10
+                  avatar(user='getUser(chatter.userId)[0]', width='40', imageonly="true", style="display:inline", ng-repeat='chatter in chatters') 
+                   
+          .col-md-8
+            div.comments
+              br
+              ul.timeline(ng-if="comments.length > 0")
+                li(ng-repeat="chat in comments", class="chat-item")
+                  .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
+                      avatar(user='chat.user', width="50", imageonly="true")
+                  .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
+                    .timeline-heading
+                      p(class="pull-right")
+                        small.text-muted
+                          | {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}&nbsp;&nbsp;&nbsp;
+                          i.glyphicon.glyphicon-time
+                          |  {{chatTime(chat.createdAt)}}
+                      h4.timeline-title {{chat.message}}
+                    .timeline-body
+                      p 
                                
 .modal.fade(id="popup")
   .modal-dialog
