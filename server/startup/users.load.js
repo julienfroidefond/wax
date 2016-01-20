@@ -92,6 +92,7 @@ function addUser(user, imageId){
       username: user.username,
       email: user.email,
       password: make_passwd(13, 'qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM1234567890'),
+      // password: "test",
       profile: {
         participeTo: null,
         avatar: imageId,

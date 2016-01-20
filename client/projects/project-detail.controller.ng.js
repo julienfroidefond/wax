@@ -120,4 +120,61 @@ angular.module('waxYeoAnguApp')
   $scope.projectCreatedDate = function(){
     return moment($scope.project.createdAt).fromNow();
   }
+
+  ///Comments and chat
+  var cProjectId = $stateParams.projectId;
+  $scope.comments = $meteor.collection(function() {
+    return Comments.find({project: cProjectId }, {
+      sort : {createdAt: -1}
+    });
+  }).subscribe('comments');
+
+  $scope.chatters = $scope.$meteorCollection(function() {
+    return Chatters.find({});
+  });
+
+  $scope.$meteorSubscribe('chatters', {}).then(function(a) {
+
+    var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
+    for(var i in chatters){
+      $scope.chatters.remove(chatters[i]._id);
+      // console.log('remove : '+chatters[i].userId);
+    }
+
+    var chatter = {};
+    chatter.userId=$rootScope.currentUser._id;
+    if($filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id}).length == 0)
+    $scope.chatters.save(chatter);
+  });
+
+  $scope.chatters = $meteor.collection(function() {
+    return Chatters.find({});
+  }).subscribe('chatters');
+
+  $scope.chatTime = function(time){
+    return moment(time).fromNow();
+  }
+  $scope.sendComment = function() {
+    $scope.newChat.userId=$rootScope.currentUser._id;
+    $scope.newChat.user=$rootScope.currentUser;
+    $scope.newChat.project = $scope.project._id;
+    $scope.comments.save($scope.newChat);
+    $scope.newChat = undefined;
+  };
+  $scope.isOnline = function(user){
+    var isOnline = ($filter('filter')($scope.chatters, {userId: user._id}).length > 0);
+    return isOnline;
+  }
+
+
+  $scope.$on('$locationChangeStart', function( event ) {
+    var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
+    for(var i in chatters){
+      $scope.chatters.remove(chatters[i]._id);
+      // console.log('remove : '+chatters[i].userId);
+    }
+  });
+  $scope.getUser= function(idToFind){
+    return UserService.getUser(idToFind);
+  }
 });
