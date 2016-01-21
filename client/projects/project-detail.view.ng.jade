@@ -80,7 +80,7 @@
                     i.fa.fa-user
                     |  Par :
                   td
-                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline")
+                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
                 tr
                   td
                     i.fa.fa-users
