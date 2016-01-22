@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('liker', function($meteor, $filter, $rootScope) {
+.directive('liker', function($meteor, $filter, $rootScope, ProjectService) {
   return {
     restrict: 'AE',
     templateUrl: 'client/components/liker/liker.view.html',
@@ -26,6 +26,7 @@ angular.module('waxYeoAnguApp')
 
         if(!$scope.alreadyLiked()){
           $scope.project.likers.push($rootScope.currentUser._id);
+          ProjectService.sendNewLikeMail($scope.project._id, $rootScope.currentUser._id, function(){})
         }else{
           var index = _.indexOf($scope.project.likers, $rootScope.currentUser._id);
           if(index != -1)

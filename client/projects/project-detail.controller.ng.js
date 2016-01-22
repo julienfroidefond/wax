@@ -10,7 +10,7 @@ angular.module('waxYeoAnguApp')
   $scope.images = $meteor.collectionFS(Images, false, Images).subscribe('images');
 
   $scope.likers=$scope.project.likers;
-  
+
   $scope.save = function() {
     $scope.project.save().then(
       function(numberOfDocs) {
@@ -159,6 +159,7 @@ angular.module('waxYeoAnguApp')
     $scope.newChat.user=$rootScope.currentUser;
     $scope.newChat.project = $scope.project._id;
     $scope.comments.save($scope.newChat);
+    ProjectService.sendNewCommentEmail($scope.project._id, $scope.newChat.userId, function(){});
     $scope.newChat = undefined;
   };
   $scope.isOnline = function(user){
