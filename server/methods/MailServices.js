@@ -95,12 +95,12 @@ Meteor.methods({
 
         var emailTo = process.env.IS_PROD && process.env.IS_PROD=="true" ? "ToutAtixnet@atixnet.fr" : "jfroidefond@atixnet.fr";
 
-        // Email.send({
-        //   to: emailTo,
-        //   from: "WAX Admin <jfroidefond@atixnet.fr>",
-        //   subject: "Projets",
-        //   html: SSR.render( 'projectEmail', emailData )
-        // });
+        Email.send({
+          to: emailTo,
+          from: "WAX Admin <jfroidefond@atixnet.fr>",
+          subject: "Projets",
+          html: SSR.render( 'projectEmail', emailData )
+        });
 
     }
 });
