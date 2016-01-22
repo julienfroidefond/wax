@@ -10,7 +10,7 @@ Meteor.methods({
             var owner = Meteor.users.findOne(proj.owner);
             var userComment = Meteor.users.findOne(userCommentId);
 
-            if(owner._id != userComment._id || owner.emails[0].address == "jfroiodefond@atixnet.fr"){
+            if(owner._id != userComment._id || owner.emails[0].address == "jfroidefond@atixnet.fr"){
 
                 var emailData = {
                     name: proj.name,
@@ -37,7 +37,7 @@ Meteor.methods({
             var owner = Meteor.users.findOne(proj.owner);
             var liker = Meteor.users.findOne(userLikerId);
 
-            if(owner._id != liker._id || owner.emails[0].address == "jfroiodefond@atixnet.fr"){
+            if(owner._id != liker._id || owner.emails[0].address == "jfroidefond@atixnet.fr"){
 
                 var emailData = {
                     name: proj.name,
