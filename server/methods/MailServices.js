@@ -10,20 +10,23 @@ Meteor.methods({
             var owner = Meteor.users.findOne(proj.owner);
             var userComment = Meteor.users.findOne(userCommentId);
 
-            var emailData = {
-                name: proj.name,
-                url : "http://wax.atixnet.fr/projects/" + proj._id,
-                commenter : userComment.emails[0].address
-            };
+            if(owner._id != userComment._id || owner.emails[0].address == "jfroiodefond@atixnet.fr"){
 
-            var emailTo = owner.emails[0].address;
+                var emailData = {
+                    name: proj.name,
+                    url : "http://wax.atixnet.fr/projects/" + proj._id,
+                    commenter : userComment.emails[0].address
+                };
 
-            Email.send({
-                to: emailTo,
-                from: "WAX Admin <jfroidefond@atixnet.fr>",
-                subject: "Nouveau commentaire sur \""+proj.name+"\"",
-                html: SSR.render('commentEmail', emailData )
-            });
+                var emailTo = owner.emails[0].address;
+
+                Email.send({
+                    to: emailTo,
+                    from: "WAX Admin <jfroidefond@atixnet.fr>",
+                    subject: "Nouveau commentaire sur \""+proj.name+"\"",
+                    html: SSR.render('commentEmail', emailData )
+                });
+            }
 
         }
     },
@@ -34,20 +37,23 @@ Meteor.methods({
             var owner = Meteor.users.findOne(proj.owner);
             var liker = Meteor.users.findOne(userLikerId);
 
-            var emailData = {
-                name: proj.name,
-                url : "http://wax.atixnet.fr/projects/" + proj._id,
-                liker : liker.emails[0].address
-            };
+            if(owner._id != liker._id || owner.emails[0].address == "jfroiodefond@atixnet.fr"){
 
-            var emailTo = owner.emails[0].address;
+                var emailData = {
+                    name: proj.name,
+                    url : "http://wax.atixnet.fr/projects/" + proj._id,
+                    liker : liker.emails[0].address
+                };
 
-            Email.send({
-                to: emailTo,
-                from: "WAX Admin <jfroidefond@atixnet.fr>",
-                subject: "Nouveau like sur \""+proj.name+"\"",
-                html: SSR.render('likeEmail', emailData )
-            });
+                var emailTo = owner.emails[0].address;
+
+                Email.send({
+                    to: emailTo,
+                    from: "WAX Admin <jfroidefond@atixnet.fr>",
+                    subject: "Nouveau like sur \""+proj.name+"\"",
+                    html: SSR.render('likeEmail', emailData )
+                });
+            }
 
         }
     }
