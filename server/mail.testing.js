@@ -1,26 +1,44 @@
-// SSR.compileTemplate('htmlEmail', Assets.getText('email-new-comment.html'));
+
+// SSR.compileTemplate('htmlEmail', Assets.getText('email-news.html'));
 //
-// var proj = Projects.findOne("iwGzC4dRgAf7vCj2K");
-// if(proj){
-//   var owner = Meteor.users.findOne(proj.owner);
-//   console.log(proj);
-//   console.log(owner);
+// var projects = Projects.find({});
+// var consolidateProjects = [];
+// var cpt=0;
+// projects.forEach(function (project) {
+//   if(project){
+//     cpt++;
+//     var owner = Meteor.users.findOne(project.owner);
+//     var image = Images.findOne(project.image);
 //
-//   var emailData = {
-//     name: proj.name,
-//     url : "http://wax.atixnet.fr/projects/" + proj._id
-//   };
+//     var imgUrl = "http://wax.atixnet.fr/atixnet-large.png";
+//     if(image) imgUrl = "http://wax.atixnet.fr/"+image.url();
+//     var isRight = (cpt%2 == 0);
+//     consolidateProjects.push({
+//       name: project.name,
+//       description: project.description,
+//       url : "http://wax.atixnet.fr/projects/" + project._id,
+//       creator : owner.emails[0].address,
+//       image: imgUrl,
+//       right: isRight
+//     })
+//   }
+// });
 //
-//   var emailTo = owner.emails[0].address;
-//   console.log(emailTo);
+// var emailData = {
+//   projects: consolidateProjects,
+//   newProjectName: 'alo',
+//   newProjectOwner: 'Julien',
+//   newProjectUrl: 'http://wax.atixnet.fr/projects/ozfiuahfzao'
+// };
 //
-//   process.env.MAIL_URL = "smtp://wax@atixnet.net:Mot2passe@bonnie2.atixnet.net:25/";
+// // var owner = Meteor.users.findOne(proj.owner);
+// // var emailTo = owner.emails[0].address;
 //
-//   Email.send({
-//     to: "jfroidefond@atixnet.fr",
-//     from: "WAX Admin <jfroidefond@atixnet.fr>",
-//     subject: "Nouveau commentaire sur \""+proj.name+"\"",
-//     html: SSR.render( 'htmlEmail', emailData )
-//   });
+// process.env.MAIL_URL = "smtp://wax@atixnet.net:Mot2passe@bonnie2.atixnet.net:25/";
 //
-// }
+// Email.send({
+//   to: "jfroidefond@atixnet.fr",
+//   from: "WAX Admin <jfroidefond@atixnet.fr>",
+//   subject: "Projets",
+//   html: SSR.render( 'htmlEmail', emailData )
+// });

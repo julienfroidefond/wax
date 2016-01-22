@@ -136,6 +136,18 @@ services.factory('ProjectService', function($filter, $meteor) {
       }
     );
   }
+  ProjectService.sendNewProjectMail = function(projectId, callback){
+    $meteor.call('sendNewProjectMail', projectId, null).then(
+      function(data){
+        callback(data);
+      },
+      function(err){
+        console.log('failed', err);
+      }
+    );
+  }
+
+
 
   return ProjectService;
 });

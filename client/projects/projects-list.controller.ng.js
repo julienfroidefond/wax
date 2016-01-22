@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce, UserService, ImageService, $location) {
+.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce, UserService, ImageService, $location, ProjectService) {
   $scope.page = 1
   $scope.perPage = 8
   $scope.sort = {name_sort : 1};
@@ -42,6 +42,7 @@ angular.module('waxYeoAnguApp')
       $scope.newProject.ownerAvatar=$rootScope.currentUser.profile.avatar;
       $scope.newProject.owner=$rootScope.currentUser._id;
       $scope.projects.save($scope.newProject).then( function(e) {
+        ProjectService.sendNewProjectMail(e[0]._id, function(){});
         $location.path('/projects/'+e[0]._id);
       }, function(err) {
         console.error( 'An error occurred. The error message is: ' + err.message);
