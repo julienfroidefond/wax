@@ -99,6 +99,7 @@ services.factory('ProjectService', function($filter, $meteor) {
 
     $meteor.call('setParticipeTo', user._id, project._id).then(
       function(data){
+        ProjectService.sendNewParticipationMail(project._id, user._id);
         callback(data);
       },
       function(err){
@@ -118,6 +119,16 @@ services.factory('ProjectService', function($filter, $meteor) {
   }
   ProjectService.sendNewCommentEmail = function(projectId, userCommentId, callback){
     $meteor.call('sendNewCommentMail', projectId, userCommentId, null).then(
+      function(data){
+        callback(data);
+      },
+      function(err){
+        console.log('failed', err);
+      }
+    );
+  }
+  ProjectService.sendNewParticipationMail = function(projectId, userParticipeId, callback){
+    $meteor.call('sendNewParticipationMail', projectId, userParticipeId, null).then(
       function(data){
         callback(data);
       },

@@ -2,6 +2,7 @@
 SSR.compileTemplate('commentEmail', Assets.getText('email-new-comment.html'));
 SSR.compileTemplate('likeEmail', Assets.getText('email-new-like.html'));
 SSR.compileTemplate('projectEmail', Assets.getText('email-new-project.html'));
+SSR.compileTemplate('participationEmail', Assets.getText('email-new-participation.html'));
 
 Meteor.methods({
     sendNewCommentMail: function (projectId, userCommentId) {
@@ -26,6 +27,33 @@ Meteor.methods({
                     from: "WAX Admin <jfroidefond@atixnet.fr>",
                     subject: "Nouveau commentaire sur \""+proj.name+"\"",
                     html: SSR.render('commentEmail', emailData )
+                });
+            }
+
+        }
+    },
+    sendNewParticipationMail: function (projectId, userParticipeId) {
+
+        var proj = Projects.findOne(projectId);
+        if(proj){
+            var owner = Meteor.users.findOne(proj.owner);
+            var userParticipe = Meteor.users.findOne(userParticipeId);
+
+            if(owner._id != userParticipe._id || owner.emails[0].address == "jfroidefond@atixnet.fr"){
+
+                var emailData = {
+                    name: proj.name,
+                    url : "http://wax.atixnet.fr/projects/" + proj._id,
+                    commenter : userParticipe.emails[0].address
+                };
+
+                var emailTo = process.env.IS_PROD && process.env.IS_PROD=="true" ? owner.emails[0].address : "jfroidefond@atixnet.fr";
+
+                Email.send({
+                    to: emailTo,
+                    from: "WAX Admin <jfroidefond@atixnet.fr>",
+                    subject: "Nouvelle participation sur \""+proj.name+"\"",
+                    html: SSR.render('participationEmail', emailData )
                 });
             }
 
