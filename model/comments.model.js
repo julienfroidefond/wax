@@ -10,6 +10,6 @@ Comments.allow({
     return userId;
   },
   remove: function(userId, comment) {
-    return userId;
+    return userId && comment.userId === userId;
   }
 });

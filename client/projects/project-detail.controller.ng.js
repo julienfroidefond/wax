@@ -167,6 +167,20 @@ angular.module('waxYeoAnguApp')
     return isOnline;
   }
 
+  $scope.confirmDeleteComment = function(chatId){
+    $("#confirm-delete-comment").modal('show');
+    $("#confirm-delete-comment").attr('data-chatId', chatId);
+
+  }
+  $scope.removeComment = function() {
+    var chatId = $("#confirm-delete-comment").attr('data-chatId');
+    $scope.comments.remove(chatId);
+    $("#confirm-delete-comment").modal('hide');
+  }
+  $scope.hasCommentsRights = function(chat){
+    return $rootScope.currentUser && chat.userId==$rootScope.currentUser._id;
+  }
+
 
   $scope.$on('$locationChangeStart', function( event ) {
     var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})

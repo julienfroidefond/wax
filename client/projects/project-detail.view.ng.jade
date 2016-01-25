@@ -142,6 +142,8 @@
                   .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
                       avatar(user='chat.user', width="50", imageonly="true")
                   .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
+                    .close(ng-click="confirmDeleteComment(chat._id)", ng-if="hasCommentsRights(chat)")
+                      i.glyphicon.glyphicon-remove
                     .timeline-heading
                       p(class="pull-right")
                         small.text-muted
@@ -168,4 +170,16 @@
             p Parfait ! Maintenant, éditez votre image pour qu'elle soit conforme...
             img-crop(image='imgSrc', result-image='myCroppedImage', area-type='rectangle', area-min-size="{w:360, h:200}", aspect-ratio="1.8", result-image-size='{w:360, h:200}')
       .modal-footer
-          a.btn.btn-primary(ng-click='saveCroppedImage()', ng-disabled='!imgSrc') Save Image     
+          a.btn.btn-primary(ng-click='saveCroppedImage()', ng-disabled='!imgSrc') Save Image 
+              
+.modal.fade(id="confirm-delete-comment")
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close(type='button', data-dismiss='modal', aria-label='Close')
+          span(aria-hidden='true') ×
+        h4.modal-title Suppression de votre commentaire
+      .modal-body
+        p Etes-vous sur de vouloir supprimer ce commentaire ?
+      .modal-footer
+          a.btn.btn-danger(ng-click='removeComment()') Supprimer    
