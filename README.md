@@ -50,6 +50,6 @@ Ce service permet par son API de **cropper** les images au besoin. L'appli pouss
 
 On récupère, en Angular, une image par :
 
-> $rootScope.uiHelpers.c().url(idToFind, {'hash': options});
+> Cloudinary._helpers.url(idToFind, {'hash': options});
 
 cf aussi : https://github.com/Lepozepo/cloudinary
