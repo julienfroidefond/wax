@@ -1,17 +1,23 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('toolbar', function($meteor, $filter, $rootScope) {
+.directive('toolbar', function($meteor, $filter, $rootScope, $auth) {
   return {
     restrict: 'AE',
     templateUrl: 'client/components/toolbar/toolbar.view.html',
     replace: true,
     link: function($scope){
-      if($rootScope.currentUser && $rootScope.currentUser.profile){
-        var avatarId = $rootScope.currentUser.profile.avatar;
-        $scope.avatar = $meteor.collectionFS(function(){
-          return Images.find({_id : avatarId});
-        }, false).subscribe('images');
+
+      var user = $auth.getUserInfo().currentUser;
+      if(user && user.profile){
+        var avatarId = user.profile.avatar;
+        $scope.subscribe('images');
+        $scope.helpers({
+          avatar() {
+            return Images.find({_id : avatarId});
+          }
+        });
+
       }
     }
   };

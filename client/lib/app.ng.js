@@ -1,5 +1,6 @@
 angular.module('waxYeoAnguApp', [
   'angular-meteor',
+  'angular-meteor.auth',
   'ui.router',
   'ui.bootstrap',
   'angularUtils.directives.dirPagination',

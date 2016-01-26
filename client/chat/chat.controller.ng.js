@@ -6,34 +6,34 @@ angular.module('waxYeoAnguApp')
 
   $scope.pageClass= "chat-page";
 
-  $scope.chats = $meteor.collection(function() {
-    return Chats.find({}, {
-      sort : {createdAt: -1}
-    });
-  }).subscribe('chats');
-
-
-  $scope.chatters = $scope.$meteorCollection(function() {
-    return Chatters.find({});
+  $scope.helpers({
+    chats() {
+      return Chats.find({}, {
+        sort : {createdAt: -1}
+      });
+    }
   });
+  $scope.subscribe('chats');
 
-  $scope.$meteorSubscribe('chatters', {}).then(function(a) {
+
+  $scope.helpers({
+    chatters() {
+      return Chatters.find({});
+    }
+  });
+  $scope.subscribe('chatters', function(){}, function(a) {
 
     var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
     for(var i in chatters){
-      $scope.chatters.remove(chatters[i]._id);
-      // console.log('remove : '+chatters[i].userId);
+      Chatters.remove(chatters[i]._id);
     }
 
     var chatter = {};
     chatter.userId=$rootScope.currentUser._id;
     if($filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id}).length == 0)
-    $scope.chatters.save(chatter);
+    Chatters.insert(chatter);
   });
 
-  $scope.chatters = $meteor.collection(function() {
-    return Chatters.find({});
-  }).subscribe('chatters');
 
   $scope.chatTime = function(time){
     return moment(time).fromNow();
@@ -41,7 +41,7 @@ angular.module('waxYeoAnguApp')
   $scope.send = function() {
     $scope.newChat.userId=$rootScope.currentUser._id;
     $scope.newChat.user=$rootScope.currentUser;
-    $scope.chats.save($scope.newChat);
+    Chats.insert($scope.newChat);
     $scope.newChat = undefined;
   };
   $scope.isOnline = function(user){
@@ -53,7 +53,7 @@ angular.module('waxYeoAnguApp')
   $scope.$on('$locationChangeStart', function( event ) {
     var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
     for(var i in chatters){
-      $scope.chatters.remove(chatters[i]._id);
+      Chatters.remove(chatters[i]._id);
       // console.log('remove : '+chatters[i].userId);
     }
   });

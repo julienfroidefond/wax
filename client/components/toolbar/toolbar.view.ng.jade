@@ -13,18 +13,18 @@
       ul.nav.navbar-nav.navbar-right
         //- li
         //-   blaze-template(name='loginButtons')
-        li(ng-if="$root.currentUser")
+        li(ng-if="$auth.currentUser")
           a(href='#') 
-              avatar(user="$root.currentUser")
-        li(ng-hide="$root.currentUser")
+              avatar(user="$auth.currentUser")
+        li(ng-hide="$auth.currentUser")
           a(href='/login') 
               i.glyphicon.glyphicon-user
               | &nbsp;&nbsp;Connexion
-        li(ng-if="$root.currentUser")
+        li(ng-if="$auth.currentUser")
           a(href='/projects') 
               i.glyphicon.glyphicon-lock
               | &nbsp;&nbsp;Projets
-        li(ng-if='$root.currentUser')
+        li(ng-if='$auth.currentUser')
           a(href='/chat') 
               i.glyphicon.glyphicon-thumbs-up
               | &nbsp;&nbsp;Chat
@@ -36,7 +36,7 @@
           a(href='/contact')
               i.glyphicon.glyphicon-envelope
               | &nbsp;&nbsp;Contact
-        li(ng-show="$root.currentUser")
+        li(ng-show="$auth.currentUser")
           a(href='/logout') 
               i.glyphicon.glyphicon-share-alt
               | &nbsp;&nbsp;Déconnexion
