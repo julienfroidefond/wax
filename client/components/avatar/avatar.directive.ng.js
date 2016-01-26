@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('avatar', function($meteor, $filter, $rootScope, ImageService) {
+.directive('avatar', function($meteor, $filter, $rootScope, ImageService, $auth) {
   return {
     restrict: 'AE',
     templateUrl: 'client/components/avatar/avatar.view.html',
@@ -13,6 +13,9 @@ angular.module('waxYeoAnguApp')
       showname: "@"
     },
     link: function($scope, element, attrs){
+
+      var user = $auth.getUserInfo().currentUser;
+
       if($scope.user){
         var avatarId = $scope.user.profile.avatar;
         $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
@@ -20,11 +23,11 @@ angular.module('waxYeoAnguApp')
         $scope.name = $scope.user.profile.firstName;
       }
       else{
-        if($rootScope.currentUser && $rootScope.currentUser.profile){
-          var avatarId = $rootScope.currentUser.profile.avatar;
+        if(user && user.profile){
+          var avatarId = user.profile.avatar;
           $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
-          $scope.email = $rootScope.currentUser.emails[0].address;
-          $scope.name = $rootScope.currentUser.profile.firstName;
+          $scope.email = user.emails[0].address;
+          $scope.name = user.profile.firstName;
         }
       }
     }
