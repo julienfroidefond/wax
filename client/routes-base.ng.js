@@ -8,9 +8,9 @@ angular.module('waxYeoAnguApp')
 }).run(['$rootScope', '$state', function($rootScope, $state) {
 
     $.cloudinary.config().cloud_name = "dpcocrdyl";
-    $rootScope.uiHelpers = UI._globalHelpers;
+    
     $rootScope.isInRole = function(role, group) {
-        return $rootScope.uiHelpers.isInRole(role, group);
+        return Roles._uiHelpers.isInRole(role, group);
     }
     $rootScope.userIsInRole = function(user, role, group) {
         return Roles.userIsInRole(user, role, group);
