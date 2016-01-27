@@ -4,7 +4,7 @@
     small du Wax 2015
   
   form(ng-submit='save()', name='form', novalidate='')
-    div(ng-if="$root.currentUser")
+    div(ng-if="$auth.currentUser")
       br
       br
       p.input-group
@@ -39,7 +39,7 @@
             img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
           .hover-content
             .centered
-              liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
+              liker(project="project", ng-if='$auth.currentUser', css-classes="btn btn-primary btn-lg")
             .bottom
               avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
               .pull-right

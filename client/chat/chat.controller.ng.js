@@ -1,7 +1,10 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, ChatService, UserService) {
+.controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, $auth, ChatService, UserService) {
+
+  var currentUser = $auth.getUserInfo().currentUser;
+
   $scope.viewName = 'Chat';
 
   $scope.pageClass= "chat-page";
@@ -23,14 +26,14 @@ angular.module('waxYeoAnguApp')
   });
   $scope.subscribe('chatters', function(){}, function(a) {
 
-    var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
+    var chatters = $filter('filter')($scope.chatters, {userId: currentUser._id})
     for(var i in chatters){
       Chatters.remove(chatters[i]._id);
     }
 
     var chatter = {};
-    chatter.userId=$rootScope.currentUser._id;
-    if($filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id}).length == 0)
+    chatter.userId=currentUser._id;
+    if($filter('filter')($scope.chatters, {userId: currentUser._id}).length == 0)
     Chatters.insert(chatter);
   });
 
@@ -39,8 +42,8 @@ angular.module('waxYeoAnguApp')
     return moment(time).fromNow();
   }
   $scope.send = function() {
-    $scope.newChat.userId=$rootScope.currentUser._id;
-    $scope.newChat.user=$rootScope.currentUser;
+    $scope.newChat.userId=currentUser._id;
+    $scope.newChat.user=currentUser;
     Chats.insert($scope.newChat);
     $scope.newChat = undefined;
   };
@@ -51,7 +54,7 @@ angular.module('waxYeoAnguApp')
 
 
   $scope.$on('$locationChangeStart', function( event ) {
-    var chatters = $filter('filter')($scope.chatters, {userId: $rootScope.currentUser._id})
+    var chatters = $filter('filter')($scope.chatters, {userId: currentUser._id})
     for(var i in chatters){
       Chatters.remove(chatters[i]._id);
       // console.log('remove : '+chatters[i].userId);

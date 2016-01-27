@@ -1,7 +1,10 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce, UserService, ImageService, $location, ProjectService) {
+.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $auth, $sce, UserService, ImageService, $location, ProjectService) {
+
+  var currentUser = $auth.getUserInfo().currentUser;
+
   $scope.page = 1
   $scope.perPage = 8
   $scope.sort = {name_sort : 1};
@@ -39,8 +42,8 @@ angular.module('waxYeoAnguApp')
   $scope.newProject={};
   $scope.save = function() {
     if($scope.form.$valid) {
-      $scope.newProject.ownerAvatar=$rootScope.currentUser.profile.avatar;
-      $scope.newProject.owner=$rootScope.currentUser._id;
+      $scope.newProject.ownerAvatar=currentUser.profile.avatar;
+      $scope.newProject.owner=currentUser._id;
       $scope.projects.save($scope.newProject).then( function(e) {
         ProjectService.sendNewProjectMail(e[0]._id, function(){});
         $location.path('/projects/'+e[0]._id);
@@ -56,7 +59,7 @@ angular.module('waxYeoAnguApp')
   }
 
   $scope.hasRights = function(project) {
-    return $rootScope.currentUser && project.owner==$rootScope.currentUser._id
+    return currentUser && project.owner==currentUser._id
   };
 
   $scope.remove = function(project) {
@@ -89,15 +92,15 @@ angular.module('waxYeoAnguApp')
     return $sce.trustAsHtml(html);
   };
 
-  if($rootScope.currentUser)
-  $scope.projectParticipe = UserService.getProjectParticipeTo($rootScope.currentUser)
+  if(currentUser)
+  $scope.projectParticipe = UserService.getProjectParticipeTo(currentUser)
 
   $scope.projectCreatedDate = function(time){
     return moment(time).fromNow();
   }
-  // if($rootScope.currentUser){
+  // if(currentUser){
   //   $scope.myProject = $scope.$meteorCollection(function() {
-  //     return Projects.find({_id : $rootScope.currentUser.profile.participeTo}, {});
+  //     return Projects.find({_id : currentUser.profile.participeTo}, {});
   //   }).subscribe('projects');
   // }
 });

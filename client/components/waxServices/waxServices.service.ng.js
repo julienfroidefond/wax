@@ -99,7 +99,7 @@ services.factory('ProjectService', function($filter, $meteor) {
 
     $meteor.call('setParticipeTo', user._id, project._id).then(
       function(data){
-        ProjectService.sendNewParticipationMail(project._id, user._id);
+        ProjectService.sendNewParticipationMail(project._id, user._id, function(){});
         callback(data);
       },
       function(err){

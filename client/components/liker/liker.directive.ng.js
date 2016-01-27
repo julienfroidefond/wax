@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('liker', function($meteor, $filter, $rootScope, ProjectService) {
+.directive('liker', function($meteor, $filter, $rootScope, ProjectService, $auth) {
   return {
     restrict: 'AE',
     templateUrl: 'client/components/liker/liker.view.html',
@@ -12,11 +12,13 @@ angular.module('waxYeoAnguApp')
     },
     link: function($scope, element, attrs){
 
+      var user = $auth.getUserInfo().currentUser;
+
       $scope.alreadyLiked = function(){
         var alreadyLiked = false;
         if($scope.project && $scope.project.likers){
           $scope.project.likers = _.without($scope.project.likers, null);
-          var index = _.indexOf($scope.project.likers, $rootScope.currentUser._id);
+          var index = _.indexOf($scope.project.likers, user._id);
           alreadyLiked = (index != -1);
         }
         return alreadyLiked;
@@ -25,10 +27,10 @@ angular.module('waxYeoAnguApp')
         if(!$scope.project.likers) $scope.project.likers=[];
 
         if(!$scope.alreadyLiked()){
-          $scope.project.likers.push($rootScope.currentUser._id);
-          ProjectService.sendNewLikeMail($scope.project._id, $rootScope.currentUser._id, function(){})
+          $scope.project.likers.push(user._id);
+          ProjectService.sendNewLikeMail($scope.project._id, user._id, function(){})
         }else{
-          var index = _.indexOf($scope.project.likers, $rootScope.currentUser._id);
+          var index = _.indexOf($scope.project.likers, user._id);
           if(index != -1)
           $scope.project.likers.splice(index, 1);
         }

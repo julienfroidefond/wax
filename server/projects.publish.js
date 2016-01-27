@@ -10,3 +10,7 @@ Meteor.publish('projects', function(options, searchString) {
   Counts.publish(this, 'numberOfProjects', Projects.find(where), {noReady: true});
   return Projects.find(where, options);
 });
+Meteor.publish('allProjects', function() {
+
+  return Projects.find({});
+});

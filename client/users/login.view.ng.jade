@@ -6,7 +6,7 @@
         .container
           .row
             .col-md-6
-              div(ng-hide="$root.currentUser")
+              div(ng-hide="$auth.currentUser")
                 .col-md-10
                   br
                   br
@@ -29,10 +29,10 @@
                         button.btn.btn-sm.btn-primary.pull-right(ng-click="login()",type='submit') Se connecter
                         //- button.btn.btn-sm.btn-default(ng-click="register()",type='submit') S'enregistrer
                                 
-              div(ng-show="$root.currentUser")
+              div(ng-show="$auth.currentUser")
                 h1 Logout
                 p
-                  a(ng-click="logout()", ng-show="$root.currentUser") Logout
+                  a(ng-click="logout()", ng-show="$auth.currentUser") Logout
             .col-md-6
               .about-text
                 .section-title
