@@ -30,17 +30,17 @@
                     i.fa.fa-user
                     |  Par :
                   td
-                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                    avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                 tr
                   td
                     i.fa.fa-users
                     span  {{project.participants.length +1 }} participants :
                   td
                     .avatars(ng-if="project.participants")
-                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                      avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                       avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
                     .avatars(ng-if="!project.participants")
-                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                      avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                 tr
                   td
                     i.fa.fa-heart
@@ -86,17 +86,17 @@
                     i.fa.fa-user
                     |  Par :
                   td
-                    avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                    avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                 tr
                   td
                     i.fa.fa-users
                     span  {{project.participants.length +1 }} participants :
                   td
                     .avatars(ng-if="project.participants")
-                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                      avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                       avatar(user='getUser(particip.id)[0]', width='40', imageonly="true", style="display:inline", ng-repeat="particip in project.participants")
                     .avatars(ng-if="!project.participants")
-                      avatar(user='getUser(project.owner)[0]', width='40', imageonly="true", style="display:inline", ng-if="project.owner")
+                      avatar(user='ownerUser', width='40', imageonly="true", style="display:inline", ng-if="ownerUser")
                 tr
                   td
                     i.fa.fa-heart

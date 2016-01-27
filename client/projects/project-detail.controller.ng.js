@@ -18,6 +18,7 @@ angular.module('waxYeoAnguApp')
   $scope.subscribe('allProjects',function(){},function(){
     $scope.subscribe('images',function(){},function(){
 
+      $scope.ownerUser = UserService.getUser($scope.project.owner)[0];
 
       $scope.likers = $scope.project.likers;
 
@@ -33,20 +34,8 @@ angular.module('waxYeoAnguApp')
           }
         });
 
-        // Projects.insert(
-        //   function(numberOfDocs) {
-        //     console.log('save successful, docs affected ', numberOfDocs);
-        //     $location.path('/projects');
-        //   },
-        //   function(error) {
-        //     console.log('save error ', error);
-        //   }
-        // )
       };
 
-      // $scope.reset = function() {
-      //   $scope.project.reset();
-      // };
 
       $scope.addImages = function (files) {
         if (files.length > 0) {
@@ -101,14 +90,6 @@ angular.module('waxYeoAnguApp')
             $set: {participants: participants}
           });
 
-          // $scope.project.save().then(
-          //   function(numberOfDocs) {
-          //     console.log('save successful, docs affected ', numberOfDocs);
-          //   },
-          //   function(error) {
-          //     console.log('save error ', error);
-          //   }
-          // )
         });
 
       }

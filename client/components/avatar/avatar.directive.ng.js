@@ -14,8 +14,8 @@ angular.module('waxYeoAnguApp')
     },
     link: function($scope, element, attrs){
 
-      var user = $auth.getUserInfo().currentUser;
-
+      var currentUser = $auth.getUserInfo().currentUser;
+      console.log($scope.user)
       if($scope.user){
         var avatarId = $scope.user.profile.avatar;
         $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
@@ -23,11 +23,11 @@ angular.module('waxYeoAnguApp')
         $scope.name = $scope.user.profile.firstName;
       }
       else{
-        if(user && user.profile){
-          var avatarId = user.profile.avatar;
+        if(currentUser && currentUser.profile){
+          var avatarId = currentUser.profile.avatar;
           $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});
-          $scope.email = user.emails[0].address;
-          $scope.name = user.profile.firstName;
+          $scope.email = currentUser.emails[0].address;
+          $scope.name = currentUser.profile.firstName;
         }
       }
     }
