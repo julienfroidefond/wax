@@ -17,31 +17,29 @@ angular.module('waxYeoAnguApp')
       $scope.alreadyLiked = function(){
         var alreadyLiked = false;
         if($scope.project && $scope.project.likers){
-          $scope.project.likers = _.without($scope.project.likers, null);
-          var index = _.indexOf($scope.project.likers, user._id);
+          var likers = $scope.project.likers;
+          likers = _.without(likers, null);
+          var index = _.indexOf(likers, user._id);
           alreadyLiked = (index != -1);
         }
         return alreadyLiked;
       }
       $scope.like = function(){
-        if(!$scope.project.likers) $scope.project.likers=[];
+        var likers = $scope.project.likers;
+        if(!likers) likers=[];
 
         if(!$scope.alreadyLiked()){
-          $scope.project.likers.push(user._id);
+          likers.push(user._id);
           ProjectService.sendNewLikeMail($scope.project._id, user._id, function(){})
         }else{
-          var index = _.indexOf($scope.project.likers, user._id);
+          var index = _.indexOf(likers, user._id);
           if(index != -1)
-          $scope.project.likers.splice(index, 1);
+          likers.splice(index, 1);
+
         }
-
-        //TODO Save project ?
-
-        // projects.save(project).then( function() {
-        //     console.log('The project was saved');
-        // }, function(err) {
-        //     console.error( 'An error occurred. The error message is: ' + err.message);
-        // });
+        Projects.update($scope.project._id, {
+          $set: {likers: likers}
+        });
       }
       $scope.nbLikes = function(){
         if(!$scope.project.likers) return 0;

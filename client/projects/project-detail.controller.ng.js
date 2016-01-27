@@ -6,7 +6,7 @@ angular.module('waxYeoAnguApp')
   $scope.pageClass= "project-detail-page";
 
   var currentUser = $auth.getUserInfo().currentUser;
-  
+
   $scope.helpers({
     project() {
       return Projects.findOne($stateParams.projectId);
@@ -26,20 +26,27 @@ angular.module('waxYeoAnguApp')
       }
 
       $scope.save = function() {
-        Projects.insert(
-          function(numberOfDocs) {
-            console.log('save successful, docs affected ', numberOfDocs);
-            $location.path('/projects');
-          },
-          function(error) {
-            console.log('save error ', error);
+        Projects.update($scope.project._id, {
+          $set: {
+            name: $scope.project.name,
+            description: $scope.project.description
           }
-        )
+        });
+
+        // Projects.insert(
+        //   function(numberOfDocs) {
+        //     console.log('save successful, docs affected ', numberOfDocs);
+        //     $location.path('/projects');
+        //   },
+        //   function(error) {
+        //     console.log('save error ', error);
+        //   }
+        // )
       };
 
-      $scope.reset = function() {
-        $scope.project.reset();
-      };
+      // $scope.reset = function() {
+      //   $scope.project.reset();
+      // };
 
       $scope.addImages = function (files) {
         if (files.length > 0) {
@@ -59,8 +66,10 @@ angular.module('waxYeoAnguApp')
 
       $scope.saveCroppedImage = function() {
         if ($scope.myCroppedImage !== '') {
-          Images.insert($scope.myCroppedImage).then(function(result) {
-            $scope.project.image = result[0]._id._id;
+          Images.insert($scope.myCroppedImage, function(err, fileObj) {
+            Projects.update($scope.project._id, {
+              $set: {image: fileObj._id}
+            });
             $scope.imgSrc = undefined;
             $scope.myCroppedImage = '';
             $('#popup').modal('hide');
