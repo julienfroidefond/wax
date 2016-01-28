@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.directive('avatar', function($meteor, $filter, $rootScope, ImageService, $auth) {
+.directive('avatar', function($filter, ImageService) {
   return {
     restrict: 'AE',
     templateUrl: 'client/components/avatar/avatar.view.html',
@@ -14,8 +14,8 @@ angular.module('waxYeoAnguApp')
     },
     link: function($scope, element, attrs){
 
-      var currentUser = $auth.getUserInfo().currentUser;
-      console.log($scope.user)
+      var currentUser = Meteor.user();
+
       if($scope.user){
         var avatarId = $scope.user.profile.avatar;
         $scope.avatar = ImageService.getAvatarUrl(avatarId, {width : $scope.width || 50, height : $scope.width || 50, crop:"fill"});

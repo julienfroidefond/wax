@@ -8,9 +8,14 @@ angular.module('waxYeoAnguApp')
     templateUrl: 'client/chat/chat.view.html',
     controller: 'ChatCtrl',
     resolve: {
-      currentUser: ['$meteor', function($meteor) {
-        return $meteor.requireUser();
-      }]
+      currentUser: ($q) => {
+        if (Meteor.userId() == null) {
+          return $q.reject();
+        }
+        else {
+          return $q.resolve();
+        }
+      }
     }
   });
 });

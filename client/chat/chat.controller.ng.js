@@ -3,7 +3,7 @@
 angular.module('waxYeoAnguApp')
 .controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, $auth, ChatService, UserService) {
 
-  var currentUser = $auth.getUserInfo().currentUser;
+  var currentUser = Meteor.user();
 
   $scope.viewName = 'Chat';
 

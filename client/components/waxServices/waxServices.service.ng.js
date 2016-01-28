@@ -66,8 +66,14 @@ function shuffle(array) {
 services.factory('ImageService', function($filter, $meteor, $rootScope) {
   var ImageService = {};
 
-  var images = $meteor.collectionFS(Images, false, Images).subscribe('images');
+  $rootScope.helpers({
+    images() {
+      return Images.find({});
+    }
+  });
+  $rootScope.subscribe('images');
 
+  var images =$rootScope.images;
   ImageService.getImageUrl = function(images, idToFind) {
     if(!idToFind) return "atixnet-large.png";
     if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
@@ -88,6 +94,10 @@ services.factory('ImageService', function($filter, $meteor, $rootScope) {
     if(!idToFind) return "atixnet.png";
     return Cloudinary._helpers.url(idToFind, {'hash': options})+'?v=2.0';
   };
+
+  // $meteor.collectionFS(Images, false, Images).subscribe('images');
+
+
 
   return ImageService;
 });

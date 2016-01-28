@@ -1,11 +1,11 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $auth, $location, $sce, UserService, ImageService, ProjectService) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, $filter, $rootScope, $location, $sce, UserService, ImageService, ProjectService) {
 
   $scope.pageClass= "project-detail-page";
 
-  var currentUser = $auth.getUserInfo().currentUser;
+  var currentUser = Meteor.user();
 
   $scope.helpers({
     project() {
@@ -15,9 +15,8 @@ angular.module('waxYeoAnguApp')
       return Images.find({});
     }
   });
-  $scope.subscribe('allProjects',function(){},function(){
-    $scope.subscribe('images',function(){},function(){
-
+  $scope.subscribe('projects',function(){}, function(){
+    $scope.subscribe('images',function(){}, function(){
       $scope.ownerUser = UserService.getUser($scope.project.owner)[0];
 
       $scope.likers = $scope.project.likers;
@@ -130,6 +129,7 @@ angular.module('waxYeoAnguApp')
       }
     });
   });
+
 
 
 

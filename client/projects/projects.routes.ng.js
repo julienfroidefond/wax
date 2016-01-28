@@ -8,9 +8,14 @@ angular.module('waxYeoAnguApp')
     templateUrl: 'client/projects/projects-list.view.html',
     controller: 'ProjectsListCtrl',
     resolve: {
-      currentUser: ['$meteor', function($meteor) {
-        return $meteor.requireUser();
-      }]
+      currentUser: ($q) => {
+        if (Meteor.userId() == null) {
+          return $q.reject();
+        }
+        else {
+          return $q.resolve();
+        }
+      }
     }
   })
   .state('project-detail', {
@@ -18,9 +23,14 @@ angular.module('waxYeoAnguApp')
     templateUrl: 'client/projects/project-detail.view.html',
     controller: 'ProjectDetailCtrl',
     resolve: {
-      currentUser: ['$meteor', function($meteor) {
-        return $meteor.requireUser();
-      }]
+      currentUser: ($q) => {
+        if (Meteor.userId() == null) {
+          return $q.reject();
+        }
+        else {
+          return $q.resolve();
+        }
+      }
     }
   });
 });

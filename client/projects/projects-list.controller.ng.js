@@ -1,54 +1,69 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $auth, $sce, UserService, ImageService, $location, ProjectService) {
-
-  var currentUser = $auth.getUserInfo().currentUser;
+.controller('ProjectsListCtrl', function($scope, $filter, $sce, $location, ProjectService) {
+  // console.log('init');
+  var currentUser = Meteor.user();
 
   $scope.page = 1
-  $scope.perPage = 8
+  $scope.perPage = 9
   $scope.sort = {name_sort : 1};
   $scope.orderProperty = '1'
 
   $scope.pageClass= "project-list-page";
 
-  $scope.projects = $scope.$meteorCollection(function() {
-
-    var limitP = parseInt($scope.getReactively('perPage'));
-    var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
-    var sortP = $scope.getReactively('sort');
-    return Projects.find({}, {
-      limit: limitP,
-      skip: skipP,
-      sort: sortP
-    });
+  $scope.helpers({
+    projects: () => {
+      return Projects.find({}, {
+        sort : $scope.getReactively('sort'),
+        transform : function(item){
+          var mainImage = Images.findOne(item.image);
+          if(mainImage && mainImage.url()){
+            item.mainImageUrl =  Images.findOne(item.image).url();
+          }else{
+            item.mainImageUrl =  "atixnet-large.png";
+          }
+          item.hasRights = currentUser && item.owner==currentUser._id;
+          item.ownerObject =  Meteor.users.findOne(item.owner);
+          item.participantsObject = [];
+          for(var i in item.participants){
+            var participant = item.participants[i];
+            item.participantsObject.push(Meteor.users.findOne(participant))
+          }
+          return item;
+        }
+     });
+    },
+    projectsCount: () => {
+      return Counts.get('numberOfProjects');
+    },
+    projectParticipeTo: () => {
+      return Projects.findOne(currentUser.profile.participeTo);
+    }
   });
-
-  $meteor.autorun($scope, function() {
-
-    var limitP = parseInt($scope.getReactively('perPage'));
-    var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
-    var sortP = $scope.getReactively('sort');
-    $scope.$meteorSubscribe('projects', {
-      limit: limitP,
-      skip: skipP,
-      sort: sortP
-    }, $scope.getReactively('search')).then(function(a) {
-      $scope.projectsCount = $scope.$meteorObject(Counts, 'numberOfProjects', false);
-    });
+  $scope.subscribe('projects', () => {
+    return [
+      {
+        limit: parseInt($scope.getReactively('perPage')),
+        skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage')),
+        sort: $scope.getReactively('sort')
+      },
+      $scope.getReactively('searchText')
+    ]
+  }, function(e){
+    // console.log($scope.getReactively('perPage'))
+    // console.log($scope.getReactively('page'))
   });
-
 
   $scope.newProject={};
   $scope.save = function() {
     if($scope.form.$valid) {
       $scope.newProject.ownerAvatar=currentUser.profile.avatar;
       $scope.newProject.owner=currentUser._id;
-      $scope.projects.save($scope.newProject).then( function(e) {
-        ProjectService.sendNewProjectMail(e[0]._id, function(){});
-        $location.path('/projects/'+e[0]._id);
-      }, function(err) {
-        console.error( 'An error occurred. The error message is: ' + err.message);
+      Projects.insert($scope.newProject, function(err, id) {
+        // console.log(err);
+        ProjectService.sendNewProjectMail(id, function(){});
+        $location.path('/projects/'+id);
       });
       $scope.newProject = {};
     }
@@ -58,24 +73,13 @@ angular.module('waxYeoAnguApp')
     return project.likers.length;
   }
 
-  $scope.hasRights = function(project) {
-    return currentUser && project.owner==currentUser._id
-  };
-
   $scope.remove = function(project) {
-    $scope.projects.remove(project);
+    Projects.remove(project._id);
   };
 
   $scope.pageChanged = function(newPage) {
+    // console.log(newPage);
     $scope.page = newPage;
-  };
-
-  $scope.getMainImage = function(image) {
-    return ImageService.getImageById(image);
-  };
-
-  $scope.getImageUrl = function(images, idToFind) {
-    return ImageService.getImageUrl(images, idToFind);
   };
 
   $scope.$watch('orderProperty', function() {
@@ -84,23 +88,12 @@ angular.module('waxYeoAnguApp')
     }
   });
 
-  $scope.getUser= function(idToFind){
-    return UserService.getUser(idToFind);
-  }
-
   $scope.getHtml = function(html) {
     return $sce.trustAsHtml(html);
   };
 
-  if(currentUser)
-  $scope.projectParticipe = UserService.getProjectParticipeTo(currentUser)
-
   $scope.projectCreatedDate = function(time){
     return moment(time).fromNow();
   }
-  // if(currentUser){
-  //   $scope.myProject = $scope.$meteorCollection(function() {
-  //     return Projects.find({_id : currentUser.profile.participeTo}, {});
-  //   }).subscribe('projects');
-  // }
+
 });

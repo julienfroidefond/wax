@@ -1,12 +1,12 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('MainCtrl', function($scope, $meteor, UserService, ImageService) {
+.controller('MainCtrl', function($scope, UserService, ImageService) {
   $scope.pageClass= "main-page";
 
   $scope.team = [];
 
-  $meteor.autorun($scope, function() {
+  $scope.autorun($scope, function() {
     $scope.team = UserService.getWaxers();
   })
   $scope.testimonials = [{

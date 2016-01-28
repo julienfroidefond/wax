@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('waxYeoAnguApp')
-.controller('ContactCtrl', function($scope, $meteor, $filter, $rootScope) {
+.controller('ContactCtrl', function($scope, $filter, $rootScope) {
 
   $scope.helpers({
     meteorContactMessages: () => {
