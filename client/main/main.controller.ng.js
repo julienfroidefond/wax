@@ -5,10 +5,10 @@ angular.module('waxYeoAnguApp')
   $scope.pageClass= "main-page";
 
   $scope.team = [];
-
-  $scope.autorun($scope, function() {
-    $scope.team = UserService.getWaxers();
-  })
+  $scope.team = UserService.getWaxers();
+  // $scope.autorun($scope, function() {
+  //
+  // })
   $scope.testimonials = [{
     content:'Chacun est libre de proposer n\'importe quelle idée autour de la technologie.',
     name:'Règle 1',
