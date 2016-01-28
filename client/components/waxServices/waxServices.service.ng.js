@@ -5,21 +5,21 @@ var services = angular.module('waxServices', []);
 services.factory('UserService', function($filter, $meteor, $rootScope) {
   var userService = {};
 
-  var users = $meteor.collection(Meteor.users, false).subscribe('users');
+  // var users = $meteor.collection(Meteor.users, false).subscribe('users');
 
-  userService.getUser = function(idToFind) {
-    if(!idToFind) return null;
-    if($filter('filter')(users, {_id: idToFind}).length>0){
-      return $filter('filter')(users, {_id: idToFind});
-    }
-  };
-  userService.getProjectParticipeTo = function(user){
-    if(!user || !user.profile) return null;
-    var project = $meteor.collection(function(){
-      return Projects.find({_id: user.profile.participeTo});
-    },false).subscribe('projects');
-    return project;
-  }
+  // userService.getUser = function(idToFind) {
+  //   if(!idToFind) return null;
+  //   if($filter('filter')(users, {_id: idToFind}).length>0){
+  //     return $filter('filter')(users, {_id: idToFind});
+  //   }
+  // };
+  // userService.getProjectParticipeTo = function(user){
+  //   if(!user || !user.profile) return null;
+  //   var project = $meteor.collection(function(){
+  //     return Projects.find({_id: user.profile.participeTo});
+  //   },false).subscribe('projects');
+  //   return project;
+  // }
 
   userService.isAParticipantInAnotherProject= function(user, project){
     if(user.profile == null) return false;
@@ -66,29 +66,29 @@ function shuffle(array) {
 services.factory('ImageService', function($filter, $meteor, $rootScope) {
   var ImageService = {};
 
-  $rootScope.helpers({
-    images() {
-      return Images.find({});
-    }
-  });
-  $rootScope.subscribe('images');
-
-  var images =$rootScope.images;
-  ImageService.getImageUrl = function(images, idToFind) {
-    if(!idToFind) return "atixnet-large.png";
-    if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
-    if (images && images.length) {
-      var url = $filter('filter')(images, {_id: idToFind})[0].url();
-      return url;
-    }
-  };
-
-  ImageService.getImageById = function(idToFind) {
-    if(!idToFind) return "atixnet-large.png";
-    if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
-    var url = $filter('filter')(images, {_id: idToFind})[0].url();
-    return url;
-  };
+  // $rootScope.helpers({
+  //   images() {
+  //     return Images.find({});
+  //   }
+  // });
+  // $rootScope.subscribe('images');
+  //
+  // var images =$rootScope.images;
+  // ImageService.getImageUrl = function(images, idToFind) {
+  //   if(!idToFind) return "atixnet-large.png";
+  //   if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
+  //   if (images && images.length) {
+  //     var url = $filter('filter')(images, {_id: idToFind})[0].url();
+  //     return url;
+  //   }
+  // };
+  //
+  // ImageService.getImageById = function(idToFind) {
+  //   if(!idToFind) return "atixnet-large.png";
+  //   if($filter('filter')(images, {_id: idToFind}).length == 0) return "atixnet-large.png";
+  //   var url = $filter('filter')(images, {_id: idToFind})[0].url();
+  //   return url;
+  // };
 
   ImageService.getAvatarUrl = function(idToFind, options) {
     if(!idToFind) return "atixnet.png";

@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ProjectDetailCtrl', function($scope, $stateParams, $filter, $rootScope, $location, $sce, UserService, ImageService, ProjectService) {
+.controller('ProjectDetailCtrl', function($scope, $stateParams, $filter, $rootScope, $location, $sce, UserService, ProjectService) {
 
   $scope.pageClass= "project-detail-page";
 
@@ -9,127 +9,125 @@ angular.module('waxYeoAnguApp')
 
   $scope.helpers({
     project() {
-      return Projects.findOne($stateParams.projectId);
+      return Projects.findOne($stateParams.projectId, {
+        transform : function(item){
+          var mainImage = Images.findOne(item.image);
+          if(mainImage && mainImage.url()){
+            item.mainImageUrl =  Images.findOne(item.image).url();
+          }else{
+            item.mainImageUrl =  "atixnet-large.png";
+          }
+          item.hasRights = currentUser && item.owner==currentUser._id;
+          item.ownerObject =  Meteor.users.findOne(item.owner);
+          item.participantsObject = [];
+          for(var i in item.participants){
+            var participant = item.participants[i];
+            item.participantsObject.push(Meteor.users.findOne(participant))
+          }
+          item.likersObject = [];
+          for(var i in item.likers){
+            var liker = item.likers[i];
+            item.likersObject.push(Meteor.users.findOne(liker))
+          }
+          item.projectCreatedDate = moment(item.createdAt).fromNow();
+          item.isAParticipant = UserService.isParticipant(currentUser, item.participants);
+          item.isAParticipantInAnotherProject = UserService.isAParticipantInAnotherProject(currentUser, item);
+          return item;
+        }
+      });
     },
     images() {
       return Images.find({});
     }
   });
-  $scope.subscribe('projects',function(){}, function(){
-    $scope.subscribe('images',function(){}, function(){
-      $scope.ownerUser = UserService.getUser($scope.project.owner)[0];
+  $scope.subscribe('projects');
+  $scope.subscribe('images');
 
-      $scope.likers = $scope.project.likers;
-
-      $scope.hasRights = function(){
-        return currentUser && $scope.project.owner==currentUser._id
-      }
-
-      $scope.save = function() {
-        Projects.update($scope.project._id, {
-          $set: {
-            name: $scope.project.name,
-            description: $scope.project.description
-          }
-        });
-
-      };
-
-
-      $scope.addImages = function (files) {
-        if (files.length > 0) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $scope.$apply(function() {
-              $scope.imgSrc = e.target.result;
-              $scope.myCroppedImage = '';
-            });
-          };
-          reader.readAsDataURL(files[0]);
-        }
-        else {
-          $scope.imgSrc = undefined;
-        }
-      };
-
-      $scope.saveCroppedImage = function() {
-        if ($scope.myCroppedImage !== '') {
-          Images.insert($scope.myCroppedImage, function(err, fileObj) {
-            Projects.update($scope.project._id, {
-              $set: {image: fileObj._id}
-            });
-            $scope.imgSrc = undefined;
-            $scope.myCroppedImage = '';
-            $('#popup').modal('hide');
-          });
-        }
-
-      };
-      $scope.showPopup = function() {
-        $('#popup').modal('show');
-      };
-
-      $scope.getMainImage = function() {
-        return ImageService.getImageById($scope.project.image);
-      };
-
-
-      $scope.hasParticipeRights = function(){
-        return currentUser && $rootScope.isInRole('coder', 'waxer');
-      }
-      $scope.join = function(){
-        ProjectService.joinProject(currentUser, $scope.project, function(){
-          var participants = [];
-          participants = $scope.project.participants;
-          if(!participants ) participants=[];
-
-          participants.push({id: currentUser._id, avatar: currentUser.profile.avatar});
-
-          Projects.update($scope.project._id, {
-            $set: {participants: participants}
-          });
-
-        });
-
-      }
-
-      $scope.unjoin = function(){
-        ProjectService.unjoinProject(currentUser, $scope.project, function(){
-          var participants = [];
-          participants = $scope.project.participants;
-          if(!participants ) participants=[];
-
-          angular.forEach($scope.project.participants, function(participant, i) {
-            if(participant && participant.id == currentUser._id)
-            participants = participants.splice(participants, i);
-          });
-
-          Projects.update($scope.project._id, {
-            $set: {participants: participants}
-          });
-        });
-
-      }
-
-      $scope.isAParticipant = function(){
-        return UserService.isParticipant(currentUser, $scope.project.participants);
-      }
-      $scope.isAParticipantInAnotherProject = function(){
-        return UserService.isAParticipantInAnotherProject(currentUser, $scope.project)
-      }
-
-      $scope.getUser= function(idToFind){
-        return UserService.getUser(idToFind);
-      }
-      $scope.getHtml = function(html) {
-        return $sce.trustAsHtml(html);
-      };
-      $scope.projectCreatedDate = function(){
-        return moment($scope.project.createdAt).fromNow();
+  $scope.save = function() {
+    Projects.update($scope.project._id, {
+      $set: {
+        name: $scope.project.name,
+        description: $scope.project.description
       }
     });
-  });
 
+  };
+
+
+  $scope.addImages = function (files) {
+    if (files.length > 0) {
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $scope.$apply(function() {
+          $scope.imgSrc = e.target.result;
+          $scope.myCroppedImage = '';
+        });
+      };
+      reader.readAsDataURL(files[0]);
+    }
+    else {
+      $scope.imgSrc = undefined;
+    }
+  };
+
+  $scope.saveCroppedImage = function() {
+    if ($scope.myCroppedImage !== '') {
+      Images.insert($scope.myCroppedImage, function(err, fileObj) {
+        Projects.update($scope.project._id, {
+          $set: {image: fileObj._id}
+        });
+        $scope.imgSrc = undefined;
+        $scope.myCroppedImage = '';
+        $('#popup').modal('hide');
+      });
+    }
+
+  };
+  $scope.showPopup = function() {
+    $('#popup').modal('show');
+  };
+
+  $scope.hasParticipeRights = function(){
+    return currentUser && $rootScope.isInRole('coder', 'waxer');
+  }
+  $scope.join = function(){
+    ProjectService.joinProject(currentUser, $scope.project, function(){
+      var participants = [];
+      participants = $scope.project.participants;
+      if(!participants ) participants=[];
+
+      participants.push({id: currentUser._id, avatar: currentUser.profile.avatar});
+
+      Projects.update($scope.project._id, {
+        $set: {participants: participants}
+      });
+
+    });
+
+  }
+
+  $scope.unjoin = function(){
+    ProjectService.unjoinProject(currentUser, $scope.project, function(){
+      var participants = [];
+      participants = $scope.project.participants;
+      if(!participants ) participants=[];
+
+      angular.forEach($scope.project.participants, function(participant, i) {
+        if(participant && participant.id == currentUser._id)
+        participants = participants.splice(participants, i);
+      });
+
+      Projects.update($scope.project._id, {
+        $set: {participants: participants}
+      });
+    });
+
+  }
+
+
+  $scope.getHtml = function(html) {
+    return $sce.trustAsHtml(html);
+  };
 
 
 
