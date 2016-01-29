@@ -13,13 +13,14 @@
   //-       p Sont actuellement sur cette page :
   //-     .col-sm-10
   //-       avatar(user='getUser(chatter.userId)[0]', width='40', imageonly="true", style="display:inline", ng-repeat='chatter in chatters') 
-         
+  
   ul.timeline
     li(ng-repeat="chat in chats", class="chat-item")
-      .timeline-badge(ng-class="isOnline(chat.user)?'online':''")
+      .timeline-badge(ng-class="chat.user.status.online?'online':''")
           avatar(user='chat.user', width="50", imageonly="true")
-      .timeline-panel(ng-class="isOnline(chat.user)?'online':''")
+      .timeline-panel(ng-class="chat.user.status.online?'online':''")
         .timeline-heading
+        p {{chat.user}}
           p(class="pull-right")
             small.text-muted
               | {{chat.user.profile.lastName}} {{chat.user.profile.firstName}}&nbsp;&nbsp;&nbsp;

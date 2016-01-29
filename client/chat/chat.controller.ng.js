@@ -1,29 +1,29 @@
 'use strict'
 
 angular.module('waxYeoAnguApp')
-.controller('ChatCtrl', function($scope, $meteor, $filter, $rootScope, $auth, ChatService, UserService) {
+.controller('ChatCtrl', function($scope, $filter) {
 
   var currentUser = Meteor.user();
-
+console.log(currentUser)
   $scope.viewName = 'Chat';
 
   $scope.pageClass= "chat-page";
 
   $scope.helpers({
+    chatters() {
+        return Chatters.find({});
+    },
     chats() {
       return Chats.find({}, {
-        sort : {createdAt: -1}
+        sort : {createdAt: -1},
+        transform : function(item){
+            item.user = Meteor.users.findOne(item.userId);
+            return item;
+        }
       });
     }
   });
   $scope.subscribe('chats');
-
-
-  $scope.helpers({
-    chatters() {
-      return Chatters.find({});
-    }
-  });
   $scope.subscribe('chatters', function(){}, function(a) {
 
     var chatters = $filter('filter')($scope.chatters, {userId: currentUser._id})
@@ -35,6 +35,11 @@ angular.module('waxYeoAnguApp')
     chatter.userId=currentUser._id;
     if($filter('filter')($scope.chatters, {userId: currentUser._id}).length == 0)
     Chatters.insert(chatter);
+
+    $scope.isOnline = function(user){
+      var isOnline = ($filter('filter')($scope.chatters, {userId: currentUser._id}).length > 0);
+      return isOnline;
+    }
   });
 
 
@@ -47,10 +52,7 @@ angular.module('waxYeoAnguApp')
     Chats.insert($scope.newChat);
     $scope.newChat = undefined;
   };
-  $scope.isOnline = function(user){
-    var isOnline = ($filter('filter')($scope.chatters, {userId: user._id}).length > 0);
-    return isOnline;
-  }
+
 
 
   $scope.$on('$locationChangeStart', function( event ) {
@@ -60,8 +62,5 @@ angular.module('waxYeoAnguApp')
       // console.log('remove : '+chatters[i].userId);
     }
   });
-  $scope.getUser= function(idToFind){
-    return UserService.getUser(idToFind);
-  }
 
 });
