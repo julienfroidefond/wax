@@ -141,6 +141,16 @@
             "group": "waxer"
         },
         {
+            "username": "baubard@atixnet.fr",
+            "email": "baubard@atixnet.fr",
+            "lastName": "Aubard",
+            "firstName": "Balthazar",
+            "avatar": "baubard.jpg",
+            "password": "test",
+            "role": ["coder"],
+            "group": "waxer"
+        },
+        {
             "username": "test@atixnet.fr",
             "email": "test@atixnet.fr",
             "lastName": "Test",

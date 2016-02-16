@@ -4,13 +4,14 @@ make_passwd = function(n, a) {
 };
 
 Meteor.startup(function() {
+  var basePath = process.env.PWD;
+  var fs = Npm.require('fs');
+  data = fs.readFileSync(basePath+'/users.json', 'utf8');
 
-  if(Meteor.users.find().count() < 30) {
-    var basePath = process.env.PWD;
-    var fs = Npm.require('fs');
-    data = fs.readFileSync(basePath+'/users.json', 'utf8');
+  data = JSON.parse(data);
 
-    data = JSON.parse(data);
+  if(Meteor.users.find().count() < data.users.length) {
+
     for(var i in data.users){
       var user = data.users[i];
       console.log("-----TRAITEMENT user : "+ user.username);
