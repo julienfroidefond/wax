@@ -3,31 +3,32 @@
     | Les projets 
     small du Wax 2015
   
-  form(ng-submit='save()', name='form', novalidate='')
-    div(ng-if="$root.currentUser")
-      br
-      br
-      p.input-group
-        input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
-        span.input-group-btn
-          input.btn.btn-primary(type='submit', value='Ajouter')
-    hr
-    .input-group.col-md-4.col-md-offset-8
-      input.form-control(type='search', ng-model='search', placeholder='Rechercher')
-      .dropdown.input-group-btn(dropdown='', on-toggle='toggled(open)')
-        button.btn.btn-primary.dropdown-toggle(dropdown-toggle='') {{ orderProperty==='1' ? 'Ascendant' : 'Descendant' }}
-          span.caret
-        ul.dropdown-menu(role='menu')
-          li(ng-click="orderProperty='1'") Ascendant
-          li(ng-click="orderProperty='-1'") Descendant
-  
-  br
+  //- form(ng-submit='save()', name='form', novalidate='')
+  //-   div(ng-if="$root.currentUser")
+  //-     br
+  //-     br
+  //-     p.input-group
+  //-       input.form-control(type='text', placeholder='Nom', ng-model='newProject.name')
+  //-       span.input-group-btn
+  //-         input.btn.btn-primary(type='submit', value='Ajouter')
+  //-   hr
+  //-   .input-group.col-md-4.col-md-offset-8
+  //-     input.form-control(type='search', ng-model='search', placeholder='Rechercher')
+  //-     .dropdown.input-group-btn(dropdown='', on-toggle='toggled(open)')
+  //-       button.btn.btn-primary.dropdown-toggle(dropdown-toggle='') {{ orderProperty==='1' ? 'Ascendant' : 'Descendant' }}
+  //-         span.caret
+  //-       ul.dropdown-menu(role='menu')
+  //-         li(ng-click="orderProperty='1'") Ascendant
+  //-         li(ng-click="orderProperty='-1'") Descendant
+  //- 
+  //- br
   
   p(class="alert alert-info", ng-if="projectParticipe[0]._id") 
       | Je participe au projet : 
       a(href='/projects/{{projectParticipe[0]._id}}') {{ projectParticipe[0].name }} 
   .row.project-list
-    .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+    //- .col-xs-12.col-sm-4.col-md-4.repeat-animation(dir-paginate='project in projects | itemsPerPage: perPage', total-items='projectsCount.count',  current-page='page')
+    .col-xs-12.col-sm-4.col-md-4.repeat-animation(ng-repeat='project in projects')
       .card
         .box-icon-container(ng-if="nbLikes(project)>0")
           .box-icon

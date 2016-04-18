@@ -11,14 +11,15 @@ angular.module('waxYeoAnguApp')
 
   $scope.projects = $scope.$meteorCollection(function() {
 
-    var limitP = parseInt($scope.getReactively('perPage'));
-    var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
-    var sortP = $scope.getReactively('sort');
-    return Projects.find({}, {
-      limit: limitP,
-      skip: skipP,
-      sort: sortP
-    });
+    // var limitP = parseInt($scope.getReactively('perPage'));
+    // var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
+    // var sortP = $scope.getReactively('sort');
+    // return Projects.find({}, {
+    //   limit: limitP,
+    //   skip: skipP,
+    //   sort: sortP
+    // });
+    return Projects.find({}, {});
   });
 
   $meteor.autorun($scope, function() {
