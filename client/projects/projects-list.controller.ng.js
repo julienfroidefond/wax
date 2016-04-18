@@ -22,19 +22,19 @@ angular.module('waxYeoAnguApp')
     return Projects.find({}, {});
   });
 
-  $meteor.autorun($scope, function() {
-
-    var limitP = parseInt($scope.getReactively('perPage'));
-    var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
-    var sortP = $scope.getReactively('sort');
-    $scope.$meteorSubscribe('projects', {
-      limit: limitP,
-      skip: skipP,
-      sort: sortP
-    }, $scope.getReactively('search')).then(function(a) {
-      $scope.projectsCount = $scope.$meteorObject(Counts, 'numberOfProjects', false);
-    });
-  });
+  // $meteor.autorun($scope, function() {
+  //
+  //   var limitP = parseInt($scope.getReactively('perPage'));
+  //   var skipP = parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'));
+  //   var sortP = $scope.getReactively('sort');
+  //   $scope.$meteorSubscribe('projects', {
+  //     limit: limitP,
+  //     skip: skipP,
+  //     sort: sortP
+  //   }, $scope.getReactively('search')).then(function(a) {
+  //     $scope.projectsCount = $scope.$meteorObject(Counts, 'numberOfProjects', false);
+  //   });
+  // });
 
 
   $scope.newProject={};
@@ -76,11 +76,11 @@ angular.module('waxYeoAnguApp')
     return ImageService.getImageUrl(images, idToFind);
   };
 
-  $scope.$watch('orderProperty', function() {
-    if($scope.orderProperty) {
-      $scope.sort = {name_sort: parseInt($scope.orderProperty)};
-    }
-  });
+  // $scope.$watch('orderProperty', function() {
+  //   if($scope.orderProperty) {
+  //     $scope.sort = {name_sort: parseInt($scope.orderProperty)};
+  //   }
+  // });
 
   $scope.getUser= function(idToFind){
     return UserService.getUser(idToFind);
