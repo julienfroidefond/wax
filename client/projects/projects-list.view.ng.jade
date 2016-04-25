@@ -40,7 +40,7 @@
             img.img-responsive.project-image(ng-src='{{getMainImage(project.image)}}')
           .hover-content
             .centered
-              liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
+              //- liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-primary btn-lg")
             .bottom
               avatar(user='getUser(project.owner)[0]', width='40', style="display:inline")
               .pull-right
