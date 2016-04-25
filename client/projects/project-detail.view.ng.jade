@@ -16,6 +16,8 @@
             .buttons
               //- a.btn.btn-default(href='/projects') Retour
               //- liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
+              .btn.btn-danger(ng-if="hasAdminRights() && project.choosed", ng-click="unchoose()") Admin : Rejeter
+              .btn.btn-danger(ng-if="hasAdminRights() && !project.choosed", ng-click="choose()") Admin : Elire
               a.btn.btn-primary(ng-click='save()') Sauver
           .content
             .table-responsive
@@ -69,9 +71,11 @@
             .buttons
               //- a.btn.btn-default(href='/projects') Retour  
               //- liker(project="project", ng-if='$root.currentUser', css-classes="btn btn-default")
-              //- .btn.btn-primary(ng-if="hasParticipeRights()", ng-show="!isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
-              //- .btn.btn-danger(ng-if="hasParticipeRights()", ng-show="isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
-              .btn.btn-default(ng-if="hasParticipeRights()", ng-show="isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
+              .btn.btn-danger(ng-if="hasAdminRights() && project.choosed", ng-click="unchoose()") Admin : Rejeter
+              .btn.btn-danger(ng-if="hasAdminRights() && !project.choosed", ng-click="choose()") Admin : Elire
+              .btn.btn-primary(ng-if="hasParticipeRights() && project.choosed", ng-show="canParticipeProject() && !isAParticipant() && !isAParticipantInAnotherProject()", ng-click="join()") Je participe !
+              .btn.btn-danger(ng-if="hasParticipeRights() && project.choosed", ng-show="canParticipeProject() && isAParticipant() && !isAParticipantInAnotherProject()", ng-click="unjoin()") Je ne participe plus
+              .btn.btn-default(ng-if="hasParticipeRights() && project.choosed", ng-show="canParticipeProject() && isAParticipantInAnotherProject()", disabled="disabled") Je participe à un autre événement
               
           .content
             .table-responsive

@@ -2,6 +2,12 @@
 
 angular.module('waxYeoAnguApp')
 .controller('ProjectsListCtrl', function($scope, $meteor, $filter, $rootScope, $sce, UserService, ImageService, $location, ProjectService) {
+
+  var canAddProjectParam = false;
+  var canFilterProjectParam = false;
+  var canLikeProjectParam = false;
+  var canChooseProjectParam = false;
+
   $scope.page = 1
   $scope.perPage = 8
   $scope.sort = {name_sort : 1};
@@ -19,7 +25,9 @@ angular.module('waxYeoAnguApp')
     //   skip: skipP,
     //   sort: sortP
     // });
-    return Projects.find({}, {});
+    var sort = {};
+    if(canChooseProjectParam) sort = {sort: {choosed : -1}}
+    return Projects.find({}, sort);
   });
 
   // $meteor.autorun($scope, function() {
@@ -54,6 +62,18 @@ angular.module('waxYeoAnguApp')
   $scope.nbLikes = function(project){
     if(!project.likers) return 0;
     return project.likers.length;
+  }
+  $scope.canAddProject = function(){
+    return $rootScope.currentUser && canAddProjectParam;
+  }
+  $scope.canFilterProject = function(){
+    return $rootScope.currentUser && canFilterProjectParam;
+  }
+  $scope.canLikeProject = function(){
+    return $rootScope.currentUser && canLikeProjectParam;
+  }
+  $scope.canChooseProject = function(){
+    return $rootScope.currentUser && canChooseProjectParam;
   }
 
   $scope.hasRights = function(project) {
@@ -95,6 +115,10 @@ angular.module('waxYeoAnguApp')
 
   $scope.projectCreatedDate = function(time){
     return moment(time).fromNow();
+  }
+
+  $scope.hasAdminRights = function(){
+    return $rootScope.currentUser && $rootScope.isInRole('admin', 'waxer');
   }
   // if($rootScope.currentUser){
   //   $scope.myProject = $scope.$meteorCollection(function() {

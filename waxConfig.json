@@ -1,0 +1,8 @@
+{
+    "config":
+    {
+        "canAddProjectParam" : false,
+        "canFilterProjectParam" : false,
+        "canLikeProjectParam" : false
+    }
+}

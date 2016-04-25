@@ -3,6 +3,8 @@
 angular.module('waxYeoAnguApp')
 .controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce, UserService, ImageService, ProjectService) {
 
+  var canParticipeProjectParam = false;
+
   $scope.pageClass= "project-detail-page";
   $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
   $scope.$meteorSubscribe('projects');
@@ -26,6 +28,10 @@ angular.module('waxYeoAnguApp')
   $scope.reset = function() {
     $scope.project.reset();
   };
+
+  $scope.canParticipeProject = function(){
+    return canParticipeProjectParam;
+  }
 
   $scope.addImages = function (files) {
     if (files.length > 0) {
@@ -68,6 +74,33 @@ angular.module('waxYeoAnguApp')
   $scope.hasParticipeRights = function(){
     return $rootScope.currentUser && $rootScope.isInRole('coder', 'waxer');
   }
+  $scope.hasAdminRights = function(){
+    return $rootScope.currentUser && $rootScope.isInRole('admin', 'waxer');
+  }
+  $scope.choose = function(){
+    ProjectService.chooseProject($scope.project, function(){
+      $scope.project.save().then(
+        function(numberOfDocs) {
+          console.log('save successful, docs affected ', numberOfDocs);
+        },
+        function(error) {
+          console.log('save error ', error);
+        }
+      )
+    });
+  }
+  $scope.unchoose = function(){
+    ProjectService.unchooseProject($scope.project, function(){
+      $scope.project.save().then(
+        function(numberOfDocs) {
+          console.log('save successful, docs affected ', numberOfDocs);
+        },
+        function(error) {
+          console.log('save error ', error);
+        }
+      )
+    });
+  }
   $scope.join = function(){
     ProjectService.joinProject($rootScope.currentUser, $scope.project, function(){
       if($scope.project.participants == null) $scope.project.participants = [];
@@ -86,7 +119,7 @@ angular.module('waxYeoAnguApp')
   }
 
   $scope.unjoin = function(){
-    ProjectService.unjoinProject($rootScope.currentUser, $scope.project, function(){
+    ProjectService.unjoinProject($scope.project, function(){
       angular.forEach($scope.project.participants, function(participant, i) {
         if(participant && participant.id == $rootScope.currentUser._id)
         $scope.project.participants = $scope.project.participants.splice($scope.project.participants, i);

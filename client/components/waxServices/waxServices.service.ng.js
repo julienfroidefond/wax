@@ -97,9 +97,9 @@ services.factory('ProjectService', function($filter, $meteor) {
 
   ProjectService.joinProject = function(user, project, callback) {
 
-    $meteor.call('setParticipeTo', user._id, project._id).then(
+    $meteor.call('setParticipeTo', project._id).then(
       function(data){
-        ProjectService.sendNewParticipationMail(project._id, user._id);
+        ProjectService.sendNewParticipationMail(project._id, user._id, function(){});
         callback(data);
       },
       function(err){
@@ -107,8 +107,30 @@ services.factory('ProjectService', function($filter, $meteor) {
       }
     );
   };
-  ProjectService.unjoinProject = function(user, project, callback){
-    $meteor.call('setParticipeTo', user._id, null).then(
+  ProjectService.chooseProject = function(project, callback) {
+
+    $meteor.call('chooseProject', project._id).then(
+      function(data){
+        callback(data);
+      },
+      function(err){
+        console.log('failed', err);
+      }
+    );
+  };
+  ProjectService.unchooseProject = function(project, callback) {
+
+    $meteor.call('unchooseProject', project._id).then(
+      function(data){
+        callback(data);
+      },
+      function(err){
+        console.log('failed', err);
+      }
+    );
+  };
+  ProjectService.unjoinProject = function(project, callback){
+    $meteor.call('setParticipeTo', null).then(
       function(data){
         callback(data);
       },

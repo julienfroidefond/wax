@@ -7,7 +7,7 @@
             "firstName": "Julien",
             "avatar": "jfroidefond.jpg",
             "password": "test",
-            "role": ["coder"],
+            "role": ["coder", "admin"],
             "group": "waxer"
         },
         {
