@@ -6,7 +6,7 @@ angular.module('waxYeoAnguApp')
   var canAddProjectParam = false;
   var canFilterProjectParam = false;
   var canLikeProjectParam = false;
-  var canChooseProjectParam = false;
+  var canChooseProjectParam = true;
 
   $scope.page = 1
   $scope.perPage = 8

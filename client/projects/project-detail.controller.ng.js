@@ -3,7 +3,7 @@
 angular.module('waxYeoAnguApp')
 .controller('ProjectDetailCtrl', function($scope, $stateParams, $meteor, $filter, $rootScope, $location, $sce, UserService, ImageService, ProjectService) {
 
-  var canParticipeProjectParam = false;
+  var canParticipeProjectParam = true;
 
   $scope.pageClass= "project-detail-page";
   $scope.project = $scope.$meteorObject(Projects, $stateParams.projectId);
