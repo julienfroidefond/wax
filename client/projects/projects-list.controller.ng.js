@@ -7,6 +7,7 @@ angular.module('waxYeoAnguApp')
   var canFilterProjectParam = false;
   var canLikeProjectParam = false;
   var canChooseProjectParam = true;
+  var canDeleteProjectParam = false;
 
   $scope.page = 1
   $scope.perPage = 8
@@ -65,6 +66,9 @@ angular.module('waxYeoAnguApp')
   }
   $scope.canAddProject = function(){
     return $rootScope.currentUser && canAddProjectParam;
+  }
+  $scope.canDeleteProject = function(){
+    return $rootScope.currentUser && canDeleteProjectParam;
   }
   $scope.canFilterProject = function(){
     return $rootScope.currentUser && canFilterProjectParam;

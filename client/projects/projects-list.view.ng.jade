@@ -46,7 +46,7 @@
               .pull-right
                 a.btn.btn-link.btn-sm(ng-if='hasRights(project)', href='/projects/{{project._id}}', tooltip="Editer")
                   i.fa.fa-pencil
-                a.btn.btn-link.btn-sm(ng-if='hasRights(project)', ng-click='remove(project)', tooltip="Supprimer")
+                a.btn.btn-link.btn-sm(ng-if='hasRights(project) && canDeleteProject()', ng-click='remove(project)', tooltip="Supprimer")
                   i.fa.fa-trash
           //- .pull-right {{projectCreatedDate(project.createdAt)}}
         .content
